@@ -6,7 +6,7 @@
 <table id="mainTable" class="display table table-striped  table-bordered w-auto text-light">
     <thead>
         <tr>
-            <th>a</th>
+            <th></th>
             {block name=thead}
             {/block}
             <th class="hidden-print"></th>

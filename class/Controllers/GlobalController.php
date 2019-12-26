@@ -43,4 +43,9 @@ class GlobalController extends Controller
         throw new \Exceptions\EmptyValue();
       }
     }
+
+    public function ajaxAddForm(){
+        $className = substr(get_class($this), strrpos(get_class($this),'\\') + 1);
+        $this->view->setTemplate('ajaxModals/add'.$className);
+    }
 }

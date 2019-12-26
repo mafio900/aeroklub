@@ -15,7 +15,15 @@ class Usluga extends GlobalController
     {
         $this->view->setTemplate('Usluga/showAll');
         $this->view->addCSSSet(array('external/datatables'));
-        $this->view->addJSSet(array('external/datatables', 'dataTables'));
+        $this->view->addJSSet(array('external/datatables',
+                                    'dataTables',
+                                    'modal/load-modal',
+                                    'modal/usluga',
+                                    'external/jquery.validate',
+                                    'external/jquery.validate.add',
+                                    'external/jquery.validate.polish',
+                                    'validation',
+                                    'validation/usluga'));
         $model = $this->createModel('Usluga');
         $result['data'] = $model->selectAll();
 
@@ -97,7 +105,7 @@ class Usluga extends GlobalController
         }
         $model = $this->createModel('Usluga');
         $model->update($_POST['id'], $_POST['UslugaNazwa'], $_POST['CenaJedn'], $_POST['JednMiary'], $_POST['Opis']);
-        $this->redirect("usluga/".$_POST['id']);
+        $this->redirect("usluga/");
     }
 
 }

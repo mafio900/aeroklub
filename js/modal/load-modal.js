@@ -24,6 +24,9 @@ $.fn.loadModal = function(extendDefaultOptions) {
                     $(settings.selectorModal + ' form').loadValidation();
                     $(settings.selectorModal + ' form')[settings.klasa]();
                 }
+                if(typeof jQuery().loadSelect2 !== "undefined"){
+                    $(settings.selectorModal + ' form').loadSelect2();
+                }
                 $(settings.selectorModal).modal(settings.parameterForModal);
             });
         } else {

@@ -15,7 +15,15 @@ class Status extends GlobalController
     {
         $this->view->setTemplate('Status/showAll');
         $this->view->addCSSSet(array('external/datatables'));
-        $this->view->addJSSet(array('external/datatables', 'dataTables'));
+        $this->view->addJSSet(array('external/datatables',
+                                    'dataTables',
+                                    'modal/load-modal',
+                                    'modal/status',
+                                    'external/jquery.validate',
+                                    'external/jquery.validate.add',
+                                    'external/jquery.validate.polish',
+                                    'validation',
+                                    'validation/status'));
         $model = $this->createModel('Status');
         $result['data'] = $model->selectAll();
 
@@ -97,7 +105,7 @@ class Status extends GlobalController
         }
         $model = $this->createModel('Status');
         $model->update($_POST['id'], $_POST['StatusNazwa']);
-        $this->redirect("status/".$_POST['id']);
+        $this->redirect("status/");
     }
 
 }

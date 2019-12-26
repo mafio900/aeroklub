@@ -14,8 +14,19 @@ class Samolot extends GlobalController
     public function showAll()
     {
         $this->view->setTemplate('Samolot/showAll');
-        $this->view->addCSSSet(array('external/datatables'));
-        $this->view->addJSSet(array('external/datatables', 'dataTables'));
+        $this->view->addCSSSet(array('external/datatables', 'external/select2'));
+        $this->view->addJSSet(array('external/datatables',
+                                    'dataTables',
+                                    'external/select2',
+                                    'external/pl',
+                                    'select2',
+                                    'modal/load-modal',
+                                    'modal/samolot',
+                                    'external/jquery.validate',
+                                    'external/jquery.validate.add',
+                                    'external/jquery.validate.polish',
+                                    'validation',
+                                    'validation/samolot'));
         $model = $this->createModel('Samolot');
         $result['data'] = $model->selectAll();
         $model = $this->createModel('Producent');
@@ -33,6 +44,23 @@ class Samolot extends GlobalController
         $this->view->setTemplate('Samolot/showOne');
         $this->view->addCSSSet(array('external/select2'));
         $this->view->addJSSet(array('external/select2', 'external/pl', 'select2', 'external/jquery.validate', 'external/jquery.validate.add', 'external/jquery.validate.polish', 'validation', 'validation/samolot'));
+        $model = $this->createModel('Samolot');
+        $result['data'] = $model->selectOneById($id);
+        $model = $this->createModel('Producent');
+        $result['producenci'] = $model->transferByColumn($model->selectAll());
+        return $result;
+    }
+
+    public function ajaxAddForm(){
+        $this->view->setTemplate('ajaxModals/addSamolot');
+        $model = $this->createModel('Producent');
+        $result['producenci'] = $model->transferByColumn($model->selectAll());
+        return $result;
+    }
+
+    public function ajaxEditForm($id)
+    {
+        $this->view->setTemplate('ajaxModals/editSamolot');
         $model = $this->createModel('Samolot');
         $result['data'] = $model->selectOneById($id);
         $model = $this->createModel('Producent');
@@ -103,7 +131,7 @@ class Samolot extends GlobalController
         }
         $model = $this->createModel('Samolot');
         $model->update($_POST['id'], $_POST['IdProducent'], $_POST['Model'], $_POST['Rejestracja'], $_POST['Opis']);
-        $this->redirect("samolot/".$_POST['id']);
+        $this->redirect("samolot/");
     }
 
 }

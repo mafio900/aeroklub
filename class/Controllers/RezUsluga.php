@@ -77,7 +77,8 @@ class RezUsluga extends GlobalController
         }
         $model = $this->createModel('RezUsluga');
         $model->update($_POST['id'], $_POST['IdUsluga'], $_POST['Ilosc'], $_POST['IdSamolot']);
-        $this->redirect('rezusluga/formedytuj/'.$_POST['id']);
+        $idRez = $model->selectOneById($_POST['id'])['IdRezerwacja'];
+        $this->redirect('rezerwacja/'.$idRez);
     }
 
     public function editForm($id)

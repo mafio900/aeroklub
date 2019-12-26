@@ -48,14 +48,6 @@ class Producent extends GlobalController
     }
 
     /**
-     * Informacje o producencie
-     * @throws \Exceptions\Application
-     */
-     public function ajaxAddForm() {
-       $this->view->setTemplate('ajaxModals/addProducent');
-     }
-
-    /**
      * Usuwanie producenta
      * @param  int $id
      */
@@ -118,7 +110,7 @@ class Producent extends GlobalController
         }
         $model = $this->createModel('Producent');
         $model->update($_POST['id'], $_POST['ProducentNazwa']);
-        $this->redirect("producent/".$_POST['id']);
+        $this->redirect("producent/");
     }
 
 }
