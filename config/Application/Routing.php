@@ -17,11 +17,11 @@ final class Routing {
     ['POST','/user/dodaj/?', array('controller' => 'User', 'action' => 'add'), 'user_add'],
     //konfiguracja Producent
     ['GET','/producent/?', array('controller' => 'Producent', 'action' => 'showAll'), 'producent'],
-    ['GET','/producent/[i:id]/?', array('controller' => 'Producent', 'action' => 'showOne'), 'producent_showOne'],
+    ['GET','/producent/[i:id]/?', array('controller' => 'Producent', 'action' => 'ajaxEditForm'), 'producent_showOne'],
     ['GET','/producent/usun/[i:id]?', array('controller' => 'Producent', 'action' => 'delete'), 'producent_delete'],
     ['POST','/producent/usunwiele/?', array('controller' => 'Producent', 'action' => 'deletePlenty'), 'producent_usunwiele'],
     ['POST','/producent/edytuj/?', array('controller' => 'Producent', 'action' => 'edit'), 'producent_edit'],
-    ['GET','/producent/formularz/?', array('controller' => 'Producent', 'action' => 'form'), 'producent_form'],
+    ['GET','/producent/formularz/?', array('controller' => 'Producent', 'action' => 'ajaxAddForm'), 'producent_form'],
     ['POST','/producent/dodaj/?', array('controller' => 'Producent', 'action' => 'add'), 'producent_add'],
     //konfiguracja Samolot
     ['GET','/samolot/?', array('controller' => 'Samolot', 'action' => 'showAll'), 'samolot'],
@@ -61,6 +61,10 @@ final class Routing {
     ['POST','/rezusluga/edytuj/?', array('controller' => 'RezUsluga', 'action' => 'edit'), 'rezusluga_edit'],
     ['GET','/rezusluga/formularz/[i:id]?', array('controller' => 'RezUsluga', 'action' => 'form'), 'rezusluga_form'],
     ['GET','/rezusluga/formedytuj/[i:id]?', array('controller' => 'RezUsluga', 'action' => 'editForm'), 'rezusluga_editForm'],
-    ['POST','/rezusluga/dodaj/?', array('controller' => 'RezUsluga', 'action' => 'add'), 'rezusluga_add']
+    ['POST','/rezusluga/dodaj/?', array('controller' => 'RezUsluga', 'action' => 'add'), 'rezusluga_add'],
+
+    //testy
+    ['GET','/test/[i:id]?', array('controller' => 'Producent', 'action' => 'showJson'), 'producent_json']
+
     ];
 }

@@ -1,45 +1,46 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2019-12-17 20:52:15
-  from 'C:\xampp\htdocs\lab10\templates\tableTemplate.html.tpl' */
+/* Smarty version 3.1.34-dev-7, created on 2019-12-26 20:32:30
+  from 'C:\xampp\htdocs\aeroklub\templates\tableTemplate.html.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5df931eff2ae13_30546240',
+  'unifunc' => 'content_5e050acea85aa0_30653271',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'ecab049a1570e2b5b6c5d68354a106599e44682d' => 
+    '30249db917ba226297acf5c8b376101806480726' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\lab10\\templates\\tableTemplate.html.tpl',
-      1 => 1576178959,
+      0 => 'C:\\xampp\\htdocs\\aeroklub\\templates\\tableTemplate.html.tpl',
+      1 => 1577388749,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
+    'file:./modals/base.html.tpl' => 1,
   ),
 ),false)) {
-function content_5df931eff2ae13_30546240 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e050acea85aa0_30653271 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_12338755405df931eff06d83_69994290', 'body');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_5478647695e050acea6efb4_56827354', 'body');
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "./baseTemplate.html.tpl");
 }
 /* {block 'footUrlName'} */
-class Block_13674960265df931eff19324_86766317 extends Smarty_Internal_Block
+class Block_13642856895e050acea76c47_99658392 extends Smarty_Internal_Block
 {
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 }
 /* {/block 'footUrlName'} */
 /* {block 'thead'} */
-class Block_5720710985df931eff1a323_77167849 extends Smarty_Internal_Block
+class Block_11851311205e050acea77472_23993474 extends Smarty_Internal_Block
 {
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
@@ -49,7 +50,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block 'thead'} */
 /* {block 'tbody'} */
-class Block_237461625df931eff24fd8_54269577 extends Smarty_Internal_Block
+class Block_16357793125e050acea7d580_00318603 extends Smarty_Internal_Block
 {
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
@@ -60,70 +61,70 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block 'tbody'} */
 /* {block 'footUrlName'} */
-class Block_17387428425df931eff261d2_01415039 extends Smarty_Internal_Block
+class Block_3047365805e050acea7e667_20423126 extends Smarty_Internal_Block
 {
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 }
 /* {/block 'footUrlName'} */
 /* {block 'footUrlName'} */
-class Block_12881695315df931eff276f6_90742035 extends Smarty_Internal_Block
+class Block_20707875335e050acea7fb18_35536447 extends Smarty_Internal_Block
 {
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 }
 /* {/block 'footUrlName'} */
 /* {block 'tfoot'} */
-class Block_1904496615df931eff287a3_58985963 extends Smarty_Internal_Block
+class Block_8975776505e050acea808b9_32952516 extends Smarty_Internal_Block
 {
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 }
 /* {/block 'tfoot'} */
 /* {block 'footUrlName'} */
-class Block_5270001415df931eff29729_38345277 extends Smarty_Internal_Block
+class Block_463864245e050acea81760_25241101 extends Smarty_Internal_Block
 {
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 }
 /* {/block 'footUrlName'} */
 /* {block 'footButtonName'} */
-class Block_11500588255df931eff29d98_45316552 extends Smarty_Internal_Block
+class Block_14236439915e050acea81d78_12086848 extends Smarty_Internal_Block
 {
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 }
 /* {/block 'footButtonName'} */
 /* {block 'body'} */
-class Block_12338755405df931eff06d83_69994290 extends Smarty_Internal_Block
+class Block_5478647695e050acea6efb4_56827354 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_12338755405df931eff06d83_69994290',
+    0 => 'Block_5478647695e050acea6efb4_56827354',
   ),
   'footUrlName' => 
   array (
-    0 => 'Block_13674960265df931eff19324_86766317',
-    1 => 'Block_17387428425df931eff261d2_01415039',
-    2 => 'Block_12881695315df931eff276f6_90742035',
-    3 => 'Block_5270001415df931eff29729_38345277',
+    0 => 'Block_13642856895e050acea76c47_99658392',
+    1 => 'Block_3047365805e050acea7e667_20423126',
+    2 => 'Block_20707875335e050acea7fb18_35536447',
+    3 => 'Block_463864245e050acea81760_25241101',
   ),
   'thead' => 
   array (
-    0 => 'Block_5720710985df931eff1a323_77167849',
+    0 => 'Block_11851311205e050acea77472_23993474',
   ),
   'tbody' => 
   array (
-    0 => 'Block_237461625df931eff24fd8_54269577',
+    0 => 'Block_16357793125e050acea7d580_00318603',
   ),
   'tfoot' => 
   array (
-    0 => 'Block_1904496615df931eff287a3_58985963',
+    0 => 'Block_8975776505e050acea808b9_32952516',
   ),
   'footButtonName' => 
   array (
-    0 => 'Block_11500588255df931eff29d98_45316552',
+    0 => 'Block_14236439915e050acea81d78_12086848',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -134,15 +135,15 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 <form action="<?php echo $_smarty_tpl->tpl_vars['protocol']->value;
 echo $_SERVER['HTTP_HOST'];
 echo $_smarty_tpl->tpl_vars['subdir']->value;
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_13674960265df931eff19324_86766317', 'footUrlName', $this->tplIndex);
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_13642856895e050acea76c47_99658392', 'footUrlName', $this->tplIndex);
 ?>
 /usunwiele/" method="post">
 <table id="mainTable" class="display table table-striped  table-bordered w-auto text-light">
     <thead>
         <tr>
-            <th></th>
+            <th>a</th>
             <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_5720710985df931eff1a323_77167849', 'thead', $this->tplIndex);
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_11851311205e050acea77472_23993474', 'thead', $this->tplIndex);
 ?>
 
             <th class="hidden-print"></th>
@@ -158,21 +159,21 @@ foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_var
             <td class="text-center"><input type="checkbox" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['id'];?>
 " name="ids[]" /></td>
             <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_237461625df931eff24fd8_54269577', 'tbody', $this->tplIndex);
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_16357793125e050acea7d580_00318603', 'tbody', $this->tplIndex);
 ?>
 
-            <td><span class="btn-group"><a href="<?php echo $_smarty_tpl->tpl_vars['protocol']->value;
+            <td><span class="btn-group"><button data-url="<?php echo $_smarty_tpl->tpl_vars['protocol']->value;
 echo $_SERVER['HTTP_HOST'];
 echo $_smarty_tpl->tpl_vars['subdir']->value;
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_17387428425df931eff261d2_01415039', 'footUrlName', $this->tplIndex);
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_3047365805e050acea7e667_20423126', 'footUrlName', $this->tplIndex);
 ?>
 /<?php echo $_smarty_tpl->tpl_vars['row']->value['id'];?>
 "
-            role="button" class="btn btn-primary btn-sm ml-2" title="Pokaż szczegółowe informacje"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+            role="button" type="button" class="edit-button btn btn-primary btn-sm ml-2" title="Pokaż szczegółowe informacje"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
             <a href="<?php echo $_smarty_tpl->tpl_vars['protocol']->value;
 echo $_SERVER['HTTP_HOST'];
 echo $_smarty_tpl->tpl_vars['subdir']->value;
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_12881695315df931eff276f6_90742035', 'footUrlName', $this->tplIndex);
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_20707875335e050acea7fb18_35536447', 'footUrlName', $this->tplIndex);
 ?>
 /usun/<?php echo $_smarty_tpl->tpl_vars['row']->value['id'];?>
 "
@@ -186,7 +187,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
     <tfoot>
         <tr>
             <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1904496615df931eff287a3_58985963', 'tfoot', $this->tplIndex);
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_8975776505e050acea808b9_32952516', 'tfoot', $this->tplIndex);
 ?>
 
         </tr>
@@ -194,17 +195,18 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1904496615df931eff
 </table><!-- END TABLE WITH DATA -->
 <button type="submit" class="btn btn-danger btn-sm" title="Usuń zaznaczone"><i class="fa fa-times" aria-hidden="true"></i> Usuń zaznaczone</button></br>
 </form>
-<a href="<?php echo $_smarty_tpl->tpl_vars['protocol']->value;
+<button data-url="<?php echo $_smarty_tpl->tpl_vars['protocol']->value;
 echo $_SERVER['HTTP_HOST'];
 echo $_smarty_tpl->tpl_vars['subdir']->value;
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_5270001415df931eff29729_38345277', 'footUrlName', $this->tplIndex);
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_463864245e050acea81760_25241101', 'footUrlName', $this->tplIndex);
 ?>
 /formularz"
-role="button" class="btn btn-primary btn-sm mt-2"><i class="fa fa-plus" aria-hidden="true"></i> <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_11500588255df931eff29d98_45316552', 'footButtonName', $this->tplIndex);
+role="button" class="add-button btn btn-primary btn-sm mt-2"><i class="fa fa-plus" aria-hidden="true"></i> <?php 
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_14236439915e050acea81d78_12086848', 'footButtonName', $this->tplIndex);
 ?>
-</a>
+</button>
 <?php }
+$_smarty_tpl->_subTemplateRender("file:./modals/base.html.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 }
 }
 /* {/block 'body'} */

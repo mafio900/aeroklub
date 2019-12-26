@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2019-12-17 22:18:33
-  from 'C:\xampp\htdocs\lab10\templates\BaseClient\headerBlock.html.tpl' */
+/* Smarty version 3.1.34-dev-7, created on 2019-12-26 20:31:44
+  from 'C:\xampp\htdocs\aeroklub\templates\headerBlock.html.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5df946290413e5_86166758',
+  'unifunc' => 'content_5e050aa00ab876_31847951',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'fd8cf92e322657f8683e0068069227f35467de1c' => 
+    '27ef6811e338cdf833340aeef73249442c2e6fac' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\lab10\\templates\\BaseClient\\headerBlock.html.tpl',
+      0 => 'C:\\xampp\\htdocs\\aeroklub\\templates\\headerBlock.html.tpl',
       1 => 1576598224,
       2 => 'file',
     ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5df946290413e5_86166758 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e050aa00ab876_31847951 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 ?>
@@ -28,18 +28,18 @@ $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 <html lang="pl-PL" class="h-100">
     <head>
         <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_11220141385df9462902a355_65887251', 'header');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_2552960405e050aa00a5381_92953996', 'header');
 ?>
 
         <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1604678095df9462902b4d0_87888565', 'css');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_12182799075e050aa00a7237_95126384', 'css');
 ?>
 
     </head>
     <body class="d-flex flex-column h-100 bg-dark text-light">
 <?php }
 /* {block 'title'} */
-class Block_14214609545df9462902a980_17583794 extends Smarty_Internal_Block
+class Block_15669072265e050aa00a5d90_73428547 extends Smarty_Internal_Block
 {
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
@@ -48,16 +48,16 @@ Lab10<?php
 }
 /* {/block 'title'} */
 /* {block 'header'} */
-class Block_11220141385df9462902a355_65887251 extends Smarty_Internal_Block
+class Block_2552960405e050aa00a5381_92953996 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'header' => 
   array (
-    0 => 'Block_11220141385df9462902a355_65887251',
+    0 => 'Block_2552960405e050aa00a5381_92953996',
   ),
   'title' => 
   array (
-    0 => 'Block_14214609545df9462902a980_17583794',
+    0 => 'Block_15669072265e050aa00a5d90_73428547',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -69,7 +69,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
             <meta name="description" content="ZPAI">
             <meta name="author" content="Bartosz Brzychciński">
             <title>Aeroklub - <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_14214609545df9462902a980_17583794', 'title', $this->tplIndex);
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_15669072265e050aa00a5d90_73428547', 'title', $this->tplIndex);
 ?>
 </title>
         <?php
@@ -77,12 +77,12 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_14214609545df94629
 }
 /* {/block 'header'} */
 /* {block 'css'} */
-class Block_1604678095df9462902b4d0_87888565 extends Smarty_Internal_Block
+class Block_12182799075e050aa00a7237_95126384 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'css' => 
   array (
-    0 => 'Block_1604678095df9462902b4d0_87888565',
+    0 => 'Block_12182799075e050aa00a7237_95126384',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {

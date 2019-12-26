@@ -34,7 +34,7 @@ class RezUsluga extends GlobalController
     public function delete($id)
     {
         $model = $this->createModel('RezUsluga');
-        $idRez = $model->selecteOneById($id)['IdRezerwacja'];
+        $idRez = $model->selectOneById($id)['IdRezerwacja'];
         $this->deleteOne($id);
         $this->redirect('rezerwacja/'.$idRez);
     }
@@ -87,7 +87,7 @@ class RezUsluga extends GlobalController
         $this->view->addJSSet(array('external/select2', 'external/pl', 'select2', 'external/jquery.validate', 'external/jquery.validate.add', 'external/jquery.validate.polish', 'validation', 'validation/rezusluga'));
 
         $model = $this->createModel('RezUsluga');
-        $result['data'] = $model->selecteOneById($id);
+        $result['data'] = $model->selectOneById($id);
 
         $model = $this->createModel('Samolot');
         $result['samoloty'] = $model->transferByColumn($model->selectAll());

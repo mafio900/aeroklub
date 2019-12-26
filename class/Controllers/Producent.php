@@ -15,7 +15,16 @@ class Producent extends GlobalController
     {
         $this->view->setTemplate('Producent/showAll');
         $this->view->addCSSSet(array('external/datatables'));
-        $this->view->addJSSet(array('external/datatables', 'dataTables'));
+        $this->view->addJSSet(array('external/datatables',
+                                    'dataTables',
+                                    'modal/load-modal',
+                                    'modal/producent',
+                                    'external/jquery.validate',
+                                    'external/jquery.validate.add',
+                                    'external/jquery.validate.polish',
+                                    'validation',
+                                    'validation/producent'));
+
         $model = $this->createModel('Producent');
         $result['data'] = $model->selectAll();
 
@@ -34,9 +43,17 @@ class Producent extends GlobalController
         $this->view->addCSSSet(array());
         $this->view->addJSSet(array('external/jquery.validate', 'external/jquery.validate.add', 'external/jquery.validate.polish', 'validation', 'validation/producent'));
         $model = $this->createModel('Producent');
-        $result['data'] = $model->selecteOneById($id);
+        $result['data'] = $model->selectOneById($id);
         return $result;
     }
+
+    /**
+     * Informacje o producencie
+     * @throws \Exceptions\Application
+     */
+     public function ajaxAddForm() {
+       $this->view->setTemplate('ajaxModals/addProducent');
+     }
 
     /**
      * Usuwanie producenta

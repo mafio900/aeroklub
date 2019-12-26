@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2019-12-17 20:52:16
-  from 'C:\xampp\htdocs\lab10\templates\navbarBlock.html.tpl' */
+/* Smarty version 3.1.34-dev-7, created on 2019-12-26 20:31:44
+  from 'C:\xampp\htdocs\aeroklub\templates\navbarBlock.html.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5df931f0041764_84428427',
+  'unifunc' => 'content_5e050aa00df606_53441217',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '1da72c6fea3bd894e257fa2370c1bed91bb56db7' => 
+    'e12dd933e1f49bb3de983fa68add212b0e8e2c95' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\lab10\\templates\\navbarBlock.html.tpl',
+      0 => 'C:\\xampp\\htdocs\\aeroklub\\templates\\navbarBlock.html.tpl',
       1 => 1576178937,
       2 => 'file',
     ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5df931f0041764_84428427 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e050aa00df606_53441217 (Smarty_Internal_Template $_smarty_tpl) {
 ?><nav class="navbar navbar-dark navbar-expand-md bg-secondary sticky-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="<?php echo $_smarty_tpl->tpl_vars['protocol']->value;

@@ -1,5 +1,6 @@
-$(function() {
-    $("#formularz").validate({
+(function($) {
+    $.fn.loadValidation = function() {
+    $("#modal-form").validate({
         errorClass: 'error',
         validClass: 'success',
         errorElement: 'span',
@@ -29,4 +30,5 @@ $(function() {
             }
         });
     });
-});
+    }
+})(jQuery);

@@ -114,7 +114,7 @@ class PDODatabase extends Model
     * @param  string $table nazwa tablicy
     * @return array rekord
     */
-    public function selecteOneById($id, $table = null)
+    public function selectOneById($id, $table = null)
     {
         $this->testConnection();
         $table = $this->getTableName($table);

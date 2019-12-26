@@ -41,7 +41,7 @@ class Rezerwacja extends GlobalController
         $this->view->addCSSSet(array('external/datatables', 'external/select2', 'external/daterangepicker'));
         $this->view->addJSSet(array('external/datatables','external/select2', 'external/pl', 'external/moment', 'external/daterangepicker', 'dataTables', 'select2', 'datapicker', 'external/jquery.validate', 'external/jquery.validate.add', 'external/jquery.validate.polish', 'external/date-validator', 'validation', 'validation/rezerwacja'));
         $model = $this->createModel('Rezerwacja');
-        $result['data'] = $model->selecteOneById($id);
+        $result['data'] = $model->selectOneById($id);
 
         $model = $this->createModel('Status');
         $result['statusy'] = $model->transferByColumn($model->selectAll());

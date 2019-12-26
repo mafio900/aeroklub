@@ -34,7 +34,7 @@ class Samolot extends GlobalController
         $this->view->addCSSSet(array('external/select2'));
         $this->view->addJSSet(array('external/select2', 'external/pl', 'select2', 'external/jquery.validate', 'external/jquery.validate.add', 'external/jquery.validate.polish', 'validation', 'validation/samolot'));
         $model = $this->createModel('Samolot');
-        $result['data'] = $model->selecteOneById($id);
+        $result['data'] = $model->selectOneById($id);
         $model = $this->createModel('Producent');
         $result['producenci'] = $model->transferByColumn($model->selectAll());
         return $result;

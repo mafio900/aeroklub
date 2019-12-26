@@ -29,4 +29,18 @@ class GlobalController extends Controller
             }
         }
     }
+
+    public function ajaxEditForm($id){
+      $className = substr(get_class($this), strrpos(get_class($this),'\\') + 1);
+      if(isset($id)){
+        $this->view->setTemplate('ajaxModals/edit'.$className);
+        $model = $this->createModel($className);
+        $result['data'] = $model->selectOneById($id);
+        if(count($result['data']) === 0)
+          throw new \Exceptions\Application();
+        return $result;
+      } else {
+        throw new \Exceptions\EmptyValue();
+      }
+    }
 }

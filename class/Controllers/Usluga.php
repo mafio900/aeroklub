@@ -33,7 +33,7 @@ class Usluga extends GlobalController
         $this->view->addCSSSet(array());
         $this->view->addJSSet(array('external/jquery.validate', 'external/jquery.validate.add', 'external/jquery.validate.polish', 'validation', 'validation/usluga'));
         $model = $this->createModel('Usluga');
-        $result['data'] = $model->selecteOneById($id);
+        $result['data'] = $model->selectOneById($id);
         return $result;
     }
 
