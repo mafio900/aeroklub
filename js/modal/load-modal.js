@@ -21,7 +21,7 @@ $.fn.loadModal = function(extendDefaultOptions) {
             //asynchroniczne załadowanie widoku formularza
             $(settings.selectorModal+" "+settings.selectorContent).load(path, function() {
                 if(typeof jQuery().loadValidation !== "undefined"){
-                    $(settings.selectorModal + ' form').loadValidation();
+                    $(settings.selectorModal + ' form').loadValidation("#modal-form");
                     $(settings.selectorModal + ' form')[settings.klasa]();
                 }
                 if(typeof jQuery().loadSelect2 !== "undefined"){

@@ -14,8 +14,11 @@ class Rezerwacja extends GlobalController
     public function showAll()
     {
         $this->view->setTemplate('Rezerwacja/showAll');
-        $this->view->addCSSSet(array('external/datatables', 'external/select2'));
+        $this->view->addCSSSet(array('external/datatables',
+                                    'external/jquery-timepicker',
+                                    'external/select2'));
         $this->view->addJSSet(array('external/datatables',
+                                    'external/jquery-timepicker',
                                     'external/select2',
                                     'external/pl',
                                     'dataTables',
@@ -50,8 +53,25 @@ class Rezerwacja extends GlobalController
     public function showOne($id)
     {
         $this->view->setTemplate('Rezerwacja/showOne');
-        $this->view->addCSSSet(array('external/datatables', 'external/select2', 'external/daterangepicker'));
-        $this->view->addJSSet(array('external/datatables','external/select2', 'external/pl', 'external/moment', 'external/daterangepicker', 'dataTables', 'select2', 'datapicker', 'external/jquery.validate', 'external/jquery.validate.add', 'external/date-validator', 'validation', 'validation/rezerwacja'));
+        $this->view->addCSSSet(array('external/datatables',
+                                    'external/jquery-timepicker',
+                                    'external/select2'));
+        $this->view->addJSSet(array('external/datatables',
+                                    'external/jquery-timepicker',
+                                    'external/select2',
+                                    'external/pl',
+                                    'dataTables',
+                                    'select2',
+                                    'datepicker',
+                                    'external/jquery.validate',
+                                    'external/jquery.validate.add',
+                                    'external/date-validator',
+                                    'validation',
+                                    'validation/rezerwacja',
+                                    'validation/rezusluga',
+                                    'modal/load-modal',
+                                    'modal/rezusluga',
+                                    'rezerwacja'));
         $model = $this->createModel('Rezerwacja');
         $result['data'] = $model->selectOneById($id);
 
@@ -101,7 +121,7 @@ class Rezerwacja extends GlobalController
      * Formularz dodawania rezerwacji
      * @return array
      */
-    public function ajaxAddForm()
+    public function ajaxAddForm($id)
     {
         $this->view->setTemplate('ajaxModals/addRezerwacja');
 

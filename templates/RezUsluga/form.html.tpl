@@ -1,6 +1,6 @@
 <div class="form-control-* form-row mb-2">
-    <label class="col-12 col-md-2 col-form-label text-center text-md-left" for="IdUsluga">Wybierz usługę</label>
-    <select class="col-12 col-md-3 js-example-basic-single js-example-language" name="IdUsluga">
+    <label class="col-12 col-md-6 col-form-label text-center text-md-left" for="IdUsluga">Wybierz usługę</label>
+    <select class="col-12 col-md-6 js-select2" style="width: 50%;" name="IdUsluga">
         <option value="def">Wybierz usługę...</option>
         {foreach $uslugi as $id => $usluga}
             <option value="{$id}" {if isset($data['IdUsluga']) && $data['IdUsluga']==$id}selected{/if}>{$usluga['UslugaNazwa']} ({$usluga['CenaJedn']}zł za {$usluga['JednMiary']})</option>
@@ -10,14 +10,14 @@
 </div>
 
 <div class="form-control-* form-row mb-2">
-  <label class="col-12 col-md-2 col-form-label text-center text-md-left" for="Ilosc">Ilość</label>
-  <input class="col-12 col-md-3" name="Ilosc" value="{if isset($data['Ilosc'])}{$data['Ilosc']}{/if}" type="text" required>
+  <label class="col-12 col-md-6 col-form-label text-center text-md-left" for="Ilosc">Ilość</label>
+  <input class="col-12 col-md-6" name="Ilosc" value="{if isset($data['Ilosc'])}{$data['Ilosc']}{/if}" type="text" required>
   <div class="col-12 text-center text-md-left"></div>
 </div>
 
 <div class="form-control-* form-row mb-2">
-    <label class="col-12 col-md-2 col-form-label text-center text-md-left" for="IdSamolot">Wybierz samolot</label>
-    <select class="col-12 col-md-3 js-example-basic-single js-example-language" name="IdSamolot">
+    <label class="col-12 col-md-6 col-form-label text-center text-md-left" for="IdSamolot">Wybierz samolot</label>
+    <select class="col-12 col-md-6 js-select2" style="width: 50%;" name="IdSamolot">
         <option value="0" selected>Żaden</option>
         {foreach $samoloty as $id => $samolot}
         <option value="{$id}" {if isset($data['IdSamolot']) && $data['IdSamolot']==$id}selected{/if}>{$producenci[$samolot['IdProducent']]['ProducentNazwa']} {$samolot['Model']}</option>

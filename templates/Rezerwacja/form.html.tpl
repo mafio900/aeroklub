@@ -29,7 +29,7 @@
 {/if}
 <div class="form-control-* form-row mb-2">
     <label class="col-12 col-md-6 col-form-label text-center text-md-left" for="IdKlient">Klient</label>
-    <select class="col-12 col-md-6 js-select2" style="width: 50%;" name="IdKlient">
+    <select class="col-12 col-md-6 js-select2" name="IdKlient">
         {if !isset($data)}<option value="def">Wybierz klienta...</option>{/if}
         {foreach $klienci as $id => $klient}
             <option value="{$id}" {if isset($data['IdKlient']) && $data['IdKlient']==$id}selected{/if}>{$klient['Imie']} {$klient['Nazwisko']}</option>
@@ -40,7 +40,7 @@
 
 <div class="form-control-* form-row mb-2">
     <label class="col-12 col-md-6 col-form-label text-center text-md-left" for="IdPracownik">Pracownik</label>
-    <select class="col-12 col-md-6 js-select2" style="width: 50%;" name="IdPracownik">
+    <select class="col-12 col-md-6 js-select2" name="IdPracownik">
         {if !isset($data)}<option value="def">Wybierz pracownika...</option>{/if}
         {foreach $pracownicy as $id => $pracownik}
             <option value="{$id}" {if isset($data['IdPracownik']) && $data['IdPracownik']==$id}selected{/if}>{$pracownik['Imie']} {$pracownik['Nazwisko']}</option>

@@ -44,7 +44,7 @@ class GlobalController extends Controller
       }
     }
 
-    public function ajaxAddForm(){
+    public function ajaxAddForm($id){
         $className = substr(get_class($this), strrpos(get_class($this),'\\') + 1);
         $this->view->setTemplate('ajaxModals/add'.$className);
     }

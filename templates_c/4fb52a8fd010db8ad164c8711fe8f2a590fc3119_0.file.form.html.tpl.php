@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2019-12-26 22:34:31
+/* Smarty version 3.1.34-dev-7, created on 2019-12-27 20:17:33
   from 'C:\xampp\htdocs\aeroklub\templates\RezUsluga\form.html.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e05276778b566_41725050',
+  'unifunc' => 'content_5e0658cd8fdbf4_60714819',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4fb52a8fd010db8ad164c8711fe8f2a590fc3119' => 
     array (
       0 => 'C:\\xampp\\htdocs\\aeroklub\\templates\\RezUsluga\\form.html.tpl',
-      1 => 1576590085,
+      1 => 1577474184,
       2 => 'file',
     ),
   ),
@@ -20,10 +20,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e05276778b566_41725050 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e0658cd8fdbf4_60714819 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="form-control-* form-row mb-2">
-    <label class="col-12 col-md-2 col-form-label text-center text-md-left" for="IdUsluga">Wybierz usługę</label>
-    <select class="col-12 col-md-3 js-example-basic-single js-example-language" name="IdUsluga">
+    <label class="col-12 col-md-6 col-form-label text-center text-md-left" for="IdUsluga">Wybierz usługę</label>
+    <select class="col-12 col-md-6 js-select2" style="width: 50%;" name="IdUsluga">
         <option value="def">Wybierz usługę...</option>
         <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['uslugi']->value, 'usluga', false, 'id');
@@ -44,16 +44,16 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 </div>
 
 <div class="form-control-* form-row mb-2">
-  <label class="col-12 col-md-2 col-form-label text-center text-md-left" for="Ilosc">Ilość</label>
-  <input class="col-12 col-md-3" name="Ilosc" value="<?php if (isset($_smarty_tpl->tpl_vars['data']->value['Ilosc'])) {
+  <label class="col-12 col-md-6 col-form-label text-center text-md-left" for="Ilosc">Ilość</label>
+  <input class="col-12 col-md-6" name="Ilosc" value="<?php if (isset($_smarty_tpl->tpl_vars['data']->value['Ilosc'])) {
 echo $_smarty_tpl->tpl_vars['data']->value['Ilosc'];
 }?>" type="text" required>
   <div class="col-12 text-center text-md-left"></div>
 </div>
 
 <div class="form-control-* form-row mb-2">
-    <label class="col-12 col-md-2 col-form-label text-center text-md-left" for="IdSamolot">Wybierz samolot</label>
-    <select class="col-12 col-md-3 js-example-basic-single js-example-language" name="IdSamolot">
+    <label class="col-12 col-md-6 col-form-label text-center text-md-left" for="IdSamolot">Wybierz samolot</label>
+    <select class="col-12 col-md-6 js-select2" style="width: 50%;" name="IdSamolot">
         <option value="0" selected>Żaden</option>
         <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['samoloty']->value, 'samolot', false, 'id');

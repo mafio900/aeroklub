@@ -1,6 +1,6 @@
 (function($) {
-    $.fn.loadValidation = function() {
-    $("#modal-form").validate({
+    $.fn.loadValidation = function(form) {
+    $(form).validate({
         errorClass: 'error',
         validClass: 'success',
         errorElement: 'span',

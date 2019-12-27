@@ -51,7 +51,7 @@ class Samolot extends GlobalController
         return $result;
     }
 
-    public function ajaxAddForm(){
+    public function ajaxAddForm($id){
         $this->view->setTemplate('ajaxModals/addSamolot');
         $model = $this->createModel('Producent');
         $result['producenci'] = $model->transferByColumn($model->selectAll());

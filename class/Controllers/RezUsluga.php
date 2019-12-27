@@ -7,11 +7,9 @@ namespace Controllers;
 class RezUsluga extends GlobalController
 {
 
-    public function form($id)
+    public function ajaxAddForm($id)
     {
-        $this->view->setTemplate('RezUsluga/addForm');
-        $this->view->addCSSSet(array('external/select2'));
-        $this->view->addJSSet(array('external/select2', 'external/pl', 'select2', 'external/jquery.validate', 'external/jquery.validate.add', 'external/jquery.validate.polish', 'validation', 'validation/rezusluga'));
+        $this->view->setTemplate('ajaxModals/addRezUsluga');
 
         $model = $this->createModel('Usluga');
         $result['uslugi'] = $model->transferByColumn($model->selectAll());
@@ -81,11 +79,9 @@ class RezUsluga extends GlobalController
         $this->redirect('rezerwacja/'.$idRez);
     }
 
-    public function editForm($id)
+    public function ajaxEditForm($id)
     {
-        $this->view->setTemplate('RezUsluga/editForm');
-        $this->view->addCSSSet(array('external/select2'));
-        $this->view->addJSSet(array('external/select2', 'external/pl', 'select2', 'external/jquery.validate', 'external/jquery.validate.add', 'external/jquery.validate.polish', 'validation', 'validation/rezusluga'));
+        $this->view->setTemplate('ajaxModals/editRezUsluga');
 
         $model = $this->createModel('RezUsluga');
         $result['data'] = $model->selectOneById($id);

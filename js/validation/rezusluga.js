@@ -1,6 +1,6 @@
 (function($) {
     $.fn.loadValidationRezUsluga = function() {
-        //$(".js-example-basic-single").valid();
+        $(".js-select2").valid();
         $.validator.addMethod("valueNotEquals", function(value, element, arg){
             return arg !== value;
         }, "Value must not equal arg.");
@@ -21,8 +21,8 @@
             }
         });
 
-        /*$('.select2').on('change', function() {
+        $('.js-select2').on('change', function() {
             $(this).valid();
-        });*/
+        });
         }
 })(jQuery);
