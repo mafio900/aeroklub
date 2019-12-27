@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2019-12-26 22:34:29
+/* Smarty version 3.1.34-dev-7, created on 2019-12-27 01:35:56
   from 'C:\xampp\htdocs\aeroklub\templates\Rezerwacja\form.html.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e052765203024_98496338',
+  'unifunc' => 'content_5e0551ec017b00_67605651',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2a709314129d88f246dbc9dbd424b50d9f0633cc' => 
     array (
       0 => 'C:\\xampp\\htdocs\\aeroklub\\templates\\Rezerwacja\\form.html.tpl',
-      1 => 1576535782,
+      1 => 1577406952,
       2 => 'file',
     ),
   ),
@@ -20,26 +20,26 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e052765203024_98496338 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e0551ec017b00_67605651 (Smarty_Internal_Template $_smarty_tpl) {
 if (isset($_smarty_tpl->tpl_vars['data']->value['DataZlozenia'])) {?>
 <div class="form-control-* form-row mb-2">
-    <label class="col-12 col-md-2 col-form-label text-center text-md-left">Data złożenia rezerwacji</label>
-    <input id="DataZlozenia" class="col-12 col-md-3" value="<?php if (isset($_smarty_tpl->tpl_vars['data']->value['DataZlozenia'])) {
+    <label class="col-12 col-md-6 col-form-label text-center text-md-left">Data złożenia rezerwacji</label>
+    <input id="DataZlozenia" class="col-12 col-md-6" value="<?php if (isset($_smarty_tpl->tpl_vars['data']->value['DataZlozenia'])) {
 echo $_smarty_tpl->tpl_vars['data']->value['DataZlozenia'];
 }?>" type="text" readonly>
 </div>
 <?php }?>
 <div class="form-control-* form-row mb-2">
-    <label class="col-12 col-md-2 col-form-label text-center text-md-left" for="TerminRealizacji">Termin realizacji</label>
-    <input class="date col-12 col-md-3" name="TerminRealizacji" value="<?php if (isset($_smarty_tpl->tpl_vars['data']->value['TerminRealizacji'])) {
+    <label class="col-12 col-md-6 col-form-label text-center text-md-left" for="TerminRealizacji">Termin realizacji</label>
+    <input class="date col-12 col-md-6" name="TerminRealizacji" value="<?php if (isset($_smarty_tpl->tpl_vars['data']->value['TerminRealizacji'])) {
 echo $_smarty_tpl->tpl_vars['data']->value['TerminRealizacji'];
 }?>" type="text" required>
     <div class="col-12 text-center text-md-left"></div>
 </div>
 <?php if (isset($_smarty_tpl->tpl_vars['data']->value['KwotaLaczna'])) {?>
 <div class="form-control-* form-row mb-2">
-    <label class="col-12 col-md-2 col-form-label text-center text-md-left" for="KwotaLaczna">Kwota łączna (zł)</label>
-    <input class="col-12 col-md-3" name="KwotaLaczna" value="<?php if (isset($_smarty_tpl->tpl_vars['data']->value['KwotaLaczna'])) {
+    <label class="col-12 col-md-6 col-form-label text-center text-md-left" for="KwotaLaczna">Kwota łączna (zł)</label>
+    <input class="col-12 col-md-6" name="KwotaLaczna" value="<?php if (isset($_smarty_tpl->tpl_vars['data']->value['KwotaLaczna'])) {
 echo $_smarty_tpl->tpl_vars['data']->value['KwotaLaczna'];
 }?>" type="text" required>
     <div class="col-12 text-center text-md-left"></div>
@@ -47,8 +47,8 @@ echo $_smarty_tpl->tpl_vars['data']->value['KwotaLaczna'];
 <?php }
 if (isset($_smarty_tpl->tpl_vars['statusy']->value)) {?>
 <div class="form-control-* form-row mb-2">
-    <label class="col-12 col-md-2 col-form-label text-center text-md-left" for="IdStatus">Status</label>
-    <select class="col-12 col-md-3 js-example-basic-single js-example-language" name="IdStatus">
+    <label class="col-12 col-md-6 col-form-label text-center text-md-left" for="IdStatus">Status</label>
+    <select class="col-12 col-md-6 js-select2" name="IdStatus">
         <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['statusy']->value, 'status', false, 'id');
 if ($_from !== null) {
@@ -66,8 +66,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 </div>
 <?php }?>
 <div class="form-control-* form-row mb-2">
-    <label class="col-12 col-md-2 col-form-label text-center text-md-left" for="IdKlient">Klient</label>
-    <select class="col-12 col-md-3 js-example-basic-single js-example-language" name="IdKlient">
+    <label class="col-12 col-md-6 col-form-label text-center text-md-left" for="IdKlient">Klient</label>
+    <select class="col-12 col-md-6 js-select2" style="width: 50%;" name="IdKlient">
         <?php if (!isset($_smarty_tpl->tpl_vars['data']->value)) {?><option value="def">Wybierz klienta...</option><?php }?>
         <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['klienci']->value, 'klient', false, 'id');
@@ -87,8 +87,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 </div>
 
 <div class="form-control-* form-row mb-2">
-    <label class="col-12 col-md-2 col-form-label text-center text-md-left" for="IdPracownik">Pracownik</label>
-    <select class="col-12 col-md-3 js-example-basic-single js-example-language" name="IdPracownik">
+    <label class="col-12 col-md-6 col-form-label text-center text-md-left" for="IdPracownik">Pracownik</label>
+    <select class="col-12 col-md-6 js-select2" style="width: 50%;" name="IdPracownik">
         <?php if (!isset($_smarty_tpl->tpl_vars['data']->value)) {?><option value="def">Wybierz pracownika...</option><?php }?>
         <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['pracownicy']->value, 'pracownik', false, 'id');

@@ -1,6 +1,6 @@
 <!-- BEGIN OF MODAL WINDOW -->
 <div class="modal fade" id="{block name=modalid}modal{/block}"
-     tabindex="-1" role="dialog"
+     role="dialog"
      aria-labelledby="{block name=modalid}modal{/block}-title" aria-hidden="true">
      <div class="modal-dialog {block name=modalsize}{/block}">
         <div class="modal-content bg-dark">

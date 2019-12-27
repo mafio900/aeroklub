@@ -11,7 +11,7 @@ input[type=text],[type=date], [type=password]{
 
 .calendar-table {
     border: 1px solid #555;
-    color: #000;
+    color: #fff;
 }
 
 @media (min-width: 992px) {
@@ -45,4 +45,17 @@ input.success{
 .error .select2-selection__rendered {
     border: 2px solid #D8000C;
     border-radius: 5px;
+}
+
+body.modal-open .datepicker {
+z-index: 1200000000 !important;
+}
+body.modal-open #ui-datepicker-div {
+z-index: 1200000000 !important;
+}
+.daterangepicker{
+z-index: 10000000 !important;
+}
+.typeahead {
+z-index: 20000000 !important;
 }

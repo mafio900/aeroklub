@@ -5,7 +5,7 @@
         validClass: 'success',
         errorElement: 'span',
         errorPlacement: function(error, element) {
-            if (element.hasClass('js-example-basic-single')) {
+            if (element.hasClass('js-select2')) {
                 error.appendTo(element.next('span').next('div'));
             }
             error.appendTo( element.next("div") );

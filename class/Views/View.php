@@ -30,8 +30,8 @@ abstract class View
     /**
     * kolekcja globalnych plików dołączanych do każdego szablonu
     */
-    protected $globalJS = array('external/jquery', 'external/popper', 'external/bootstrap');
-    protected $globalCSS = array('external/bootstrap', 'external/font-awesome', 'custom');
+    protected $globalJS = array('external/jquery', 'external/jquery-ui', 'external/jquery-timepicker', 'external/popper', 'external/bootstrap');
+    protected $globalCSS = array('external/bootstrap', 'external/jquery-ui', 'external/jquery-timepicker', 'external/font-awesome', 'custom');
 
     public function  __construct($name)
     {

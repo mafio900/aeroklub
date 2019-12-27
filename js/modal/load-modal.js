@@ -27,6 +27,9 @@ $.fn.loadModal = function(extendDefaultOptions) {
                 if(typeof jQuery().loadSelect2 !== "undefined"){
                     $(settings.selectorModal + ' form').loadSelect2();
                 }
+                if(typeof jQuery().loadDatePicker !== "undefined"){
+                    $(settings.selectorModal + ' form').loadDatePicker();
+                }
                 $(settings.selectorModal).modal(settings.parameterForModal);
             });
         } else {

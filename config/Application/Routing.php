@@ -53,7 +53,7 @@ final class Routing {
     ['GET','/rezerwacja/usun/[i:id]?', array('controller' => 'Rezerwacja', 'action' => 'delete'), 'rezerwacja_delete'],
     ['POST','/rezerwacja/usunwiele/?', array('controller' => 'Rezerwacja', 'action' => 'deletePlenty'), 'rezerwacja_usunwiele'],
     ['POST','/rezerwacja/edytuj/?', array('controller' => 'Rezerwacja', 'action' => 'edit'), 'rezerwacja_edit'],
-    ['GET','/rezerwacja/formularz/?', array('controller' => 'Rezerwacja', 'action' => 'form'), 'rezerwacja_form'],
+    ['GET','/rezerwacja/formularz/?', array('controller' => 'Rezerwacja', 'action' => 'ajaxAddForm'), 'rezerwacja_form'],
     ['POST','/rezerwacja/dodaj/?', array('controller' => 'Rezerwacja', 'action' => 'add'), 'rezerwacja_add'],
     //konfiguracja RezUsluga
     ['GET','/rezusluga/usun/[i:id]?', array('controller' => 'RezUsluga', 'action' => 'delete'), 'rezusluga_delete'],
