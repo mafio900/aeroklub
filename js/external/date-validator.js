@@ -608,7 +608,7 @@
 	// Adding the dateValidator messages.
 	$.extend( $.validator.messages, {
 		dateValidatorMessages: {
-			"default": $.validator.format( "Please enter a valid date, format {0}." ),
+			"default": $.validator.format( "Proszę podać poprawną datę, format {0}." ),
 			minDate: $.validator.format( "Please enter a date after {0}." ),
 			maxDate: $.validator.format( "Please enter a date before {0}." ),
 			range: $.validator.format( "Please enter a date between {0} and {1}." )

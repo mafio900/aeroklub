@@ -1,6 +1,6 @@
 <div class="form-control-* form-row mb-2">
     <label class="col-12 col-md-6 col-form-label text-center text-md-left" for="IdProducent">Wybierz producenta</label>
-    <select class="col-12 col-md-6 js-select2" style="width: 50%;" name="IdProducent">
+    <select class="col-12 col-md-6 js-select2" name="IdProducent">
         {if !isset($data)}<option value="def">Wybierz producenta...</option>{/if}
         {foreach $producenci as $id => $producent}
             <option value="{$id}" {if isset($data['IdProducent']) && $data['IdProducent']==$id}selected{/if}>{$producent['ProducentNazwa']}</option>

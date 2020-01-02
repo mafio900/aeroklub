@@ -13,10 +13,12 @@
         highlight: function(element, errorClass, validClass) {
             $(element).parents("div.form-control-*").addClass(errorClass).removeClass(validClass);
             $(element).addClass(errorClass).removeClass(validClass);
+            $(element).next('span').addClass(errorClass).removeClass(validClass);
         },
         unhighlight: function(element, errorClass, validClass) {
             $(element).parents(".error").removeClass(errorClass).addClass(validClass);
             $(element).removeClass(errorClass).addClass(validClass);
+            $(element).next('span').removeClass(errorClass).addClass(validClass);
         }
     });
 
