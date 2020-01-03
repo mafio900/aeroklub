@@ -63,7 +63,7 @@ class PDODatabase extends Model
     */
     public function selectAll($table = null)
     {
-        return $this->selectAllOrderBy(null, 'ASC', $table);
+        return $this->selectAllOrderBy(null, 'ASC', null, null, $table);
     }
 
     /**

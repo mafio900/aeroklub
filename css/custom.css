@@ -9,11 +9,6 @@ input[type=text],[type=date], [type=password]{
     color: #000;
 }
 
-.calendar-table {
-    border: 1px solid #555;
-    color: #fff;
-}
-
 .select2 {
     width: 100% !important;
 }
