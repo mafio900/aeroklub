@@ -1,6 +1,5 @@
 (function($) {
     $.fn.loadValidationSamolot = function() {
-        //$(".js-example-basic-single").valid();
         $.validator.addMethod("valueNotEquals", function(value, element, arg){
             return arg !== value;
         }, "Value must not equal arg.");
@@ -36,8 +35,8 @@
             maxlength: '100',
         });
 
-        /*$('.select2').on('change', function() {
+        $('.js-select2').on('change', function() {
             $(this).valid();
-        });*/
+        });
     }
 })(jQuery);
