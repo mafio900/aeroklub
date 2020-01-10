@@ -13,6 +13,11 @@ abstract class View
     protected $template;
 
     /**
+    * folder widoku
+    */
+    protected $templateFolder;
+
+    /**
     * referencja do obiektu smarty
     */
     protected $smarty;
@@ -30,13 +35,12 @@ abstract class View
     /**
     * kolekcja globalnych plików dołączanych do każdego szablonu
     */
-    protected $globalJS = array('external/jquery', 'external/jquery-ui', 'external/popper', 'external/bootstrap');
-    protected $globalCSS = array('external/bootstrap', 'external/jquery-ui', 'external/font-awesome', 'custom');
+    protected $globalJS = array();
+    protected $globalCSS = array();
 
-    public function  __construct($name)
+    public function  __construct()
     {
         $this->smarty = new Smarty();
-        $this->set('active', $name);
         $this->set('subdir', '/'.\Config\Application\Config::$subdir);
         $this->set('protocol', \Config\Application\Config::$protocol);
     }
@@ -47,7 +51,7 @@ abstract class View
     */
     public function setTemplate($name)
     {
-	    $path='./templates/'; //DIRECTORY_SEPARATOR
+	    $path='./templates/'.$this->templateFolder.'/'; //DIRECTORY_SEPARATOR
         $path.=$name.'.html.tpl';
         $this->template = $path;
     }

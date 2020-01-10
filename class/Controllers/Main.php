@@ -23,7 +23,7 @@ class Main extends GlobalController
             $appController = new $fullController();
             // Utworzenie obiektu widoku
 
-            $appController->view = $this->createView('AppView', $controller);
+            $appController->view = $this->createView('AdminView', $controller);
 
             // Sprawdzamy, czy akcja kontrolera istnieje
             if (!method_exists($appController, $action)) {
