@@ -113,7 +113,7 @@ class Producent extends GlobalController
             throw new \Exceptions\EmptyValue;
         }
         $model = $this->createModel('Producent');
-        $model->update($_POST['id'], $_POST['ProducentNazwa']);
+        $id = $model->update($_POST['id'], $_POST['ProducentNazwa']);
         FlashMessage::addMessage($id, 'update');
         $this->redirect("producent/");
     }
