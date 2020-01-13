@@ -5,7 +5,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Przełącznik nawigacji">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="mainmenu">
+        <div class="collapse navbar-collapse text-center" id="mainmenu">
             <ul class="navbar-nav mr-auto text-center">
 
                 <li class="nav-item {if $active=='User'}active{/if}">
@@ -33,9 +33,10 @@
                 </li>
 
             </ul>
+            {if isset($name)}
+                <span>Jesteś zalogowany jako: {$name}</span>
+                <a class="ml-3 btn btn-danger btn-sm" href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}wyloguj/">Wyloguj</a>
+            {/if}
         </div>
-        {if isset($name)}
-            Jesteś zalogowany jako: {$name}
-        {/if}
     </div>
 </nav>
