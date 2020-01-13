@@ -7,4 +7,5 @@ final class Error {
     public static $templateNotFound = 'Błąd tworzenia widoku';
     public static $query = 'Błąd zapytania do bazy danych';
     public static $empty = 'Któraś z wartości jest pusta';
+    public static $login = 'Login lub hasło jest niepoprawne!';
 }

@@ -15,7 +15,7 @@
     </div>
   {/if}
   {if isset($error) && $error|count > 0}
-  	<div class="alert alert-error alert-dismissible" role="alert">
+  	<div class="alert alert-danger alert-dismissible" role="alert">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       {foreach $error as $v}
         <p class="my-auto">{$v}</p>

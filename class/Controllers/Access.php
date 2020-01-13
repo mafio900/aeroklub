@@ -15,6 +15,8 @@ class Access extends Controller {
             if($model->login($this->getPost('login'), $this->getPost('password') ) )
                 $this->redirect('');
         }
+        FlashMessage::addMessage(-1, 'login');
+        //d('xd');
         $this->redirect('formularz-logowania/');
     }
     // wylogowywuje z systemu
