@@ -63,8 +63,10 @@ final class Routing {
     ['GET','/rezusluga/formedytuj/[i:id]?', array('controller' => 'RezUsluga', 'action' => 'ajaxEditForm'), 'rezusluga_editForm'],
     ['POST','/rezusluga/dodaj/?', array('controller' => 'RezUsluga', 'action' => 'add'), 'rezusluga_add'],
 
-    //testy
-    ['GET','/test/[i:id]?', array('controller' => 'Producent', 'action' => 'showJson'), 'producent_json']
+    //konfiguracja logowania
+    ['GET','/formularz-logowania/?', array('controller' => 'Access', 'action' => 'logForm'), 'login_form'],
+    ['POST','/zaloguj/?', array('controller' => 'Access', 'action' => 'login'), 'login'],
+    ['GET','/wyloguj/?', array('controller' => 'Access', 'action' => 'logout'), 'logout']
 
     ];
 }

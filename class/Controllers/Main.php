@@ -7,6 +7,7 @@ class Main extends GlobalController
     function __construct()
     {
         try {
+            \Tools\Session::initialize();
             // Routing aplikacji
             $router = \Tools\Router::getRouter();
             $match = $router->match();
@@ -25,13 +26,32 @@ class Main extends GlobalController
 
             $appController->view = $this->createView('AdminView', $controller);
 
-            // Sprawdzamy, czy akcja kontrolera istnieje
-            if (!method_exists($appController, $action)) {
-                throw new \Exceptions\Application();
+            if (\Tools\Access::islogin() !== true) {
+              // Logowanie do systemu lub rejestracja
+              if ($controller === 'Access' && (
+                      $action === 'login'   ||
+                      $action === 'add'     ||
+                      $action === 'regForm' ||
+                      $action === 'logForm' )) {
+                  $result = $appController->$action();
+              } else {
+                  //\Tools\FlashMessage::addWarning(\Messages\Warning::$nologin);
+                  if (preg_match('/^ajax/', $action) === 1) // Zapytanie asynchroniczne
+                    $appController->view->setTemplate('ajaxModals/notAllow');
+                  else // To nie jest zapytanie asynchroniczne
+                    $this->redirect('formularz-logowania/');
+              }
+        	}
+            else {
+                // Sprawdzamy, czy akcja kontrolera istnieje
+                if (!method_exists($appController, $action)) {
+                    throw new \Exceptions\Application();
+                }
+                // Uruchamiamy akcję kontrolera
+                $result = $appController->$action($id);
+                $appController->view->set('name', $_SESSION['name']);
             }
-            // Uruchamiamy akcję kontrolera
-            $result = $appController->$action($id);
-            //d($result);
+
             // Przekazujemy zwrócone dane do widoku
             $appController->view->setData($result);
             // Renderujemy widok

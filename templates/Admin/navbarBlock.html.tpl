@@ -34,5 +34,8 @@
 
             </ul>
         </div>
+        {if isset($name)}
+            Jesteś zalogowany jako: {$name}
+        {/if}
     </div>
 </nav>

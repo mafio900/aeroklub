@@ -62,4 +62,36 @@ abstract class Controller
         }
     }
 
+    /**
+    * filtrowanie danych wejściowych pod kątem niebezpiecznych danych
+    * @param  mixed $var
+    * @return mixed
+    */
+    public function protectXss($var) {
+        if(\is_array($var))
+        foreach ($var as &$value) {
+        $value = $this->protectXss($value);
+        }
+        else
+        $var = $this->checkVariable($var);
+        return $var;
+    }
+
+    /**
+    * filtrowanie stringów pod kątem niebezpiecznych danych
+    * @param  string $var
+    * @return string
+    */
+    public function checkVariable($var) {
+        return \is_string($var) ? \htmlspecialchars($var) : $var;
+    }
+
+    public function getPost($key, $default = null) {
+        return isset($_POST[$key]) ? $this->protectXss($_POST[$key]) : $default;
+    }
+
+    public function getGet($key, $default = null) {
+        return isset($_GET[$key]) ? $this->protectXss($_GET[$key]) : $default;
+    }
+
 }
