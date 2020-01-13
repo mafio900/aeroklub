@@ -11,6 +11,8 @@ abstract class Controller
     */
     public function redirect($url)
     {
+        \Tools\Session::set('warning', \Tools\FlashMessage::getWarning());
+        \Tools\Session::set('success', \Tools\FlashMessage::getSuccess());
         if(preg_match('/^http:/', $url) === 1)
             header('location: '.$url);
         else

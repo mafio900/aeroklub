@@ -8,6 +8,7 @@ class Main extends GlobalController
     {
         try {
             \Tools\Session::initialize();
+            $this->getFlashMessageFromSession();
             // Routing aplikacji
             $router = \Tools\Router::getRouter();
             $match = $router->match();
@@ -34,8 +35,11 @@ class Main extends GlobalController
                       $action === 'regForm' ||
                       $action === 'logForm' )) {
                   $result = $appController->$action();
-              } else {
                   //\Tools\FlashMessage::addWarning(\Messages\Warning::$nologin);
+
+              } else {
+                  \Tools\FlashMessage::addWarning(\Messages\Warning::$nologin);
+                  //d('elo');
                   if (preg_match('/^ajax/', $action) === 1) // Zapytanie asynchroniczne
                     $appController->view->setTemplate('ajaxModals/notAllow');
                   else // To nie jest zapytanie asynchroniczne
@@ -49,11 +53,12 @@ class Main extends GlobalController
                 }
                 // Uruchamiamy akcję kontrolera
                 $result = $appController->$action($id);
-                $appController->view->set('name', $_SESSION['name']);
             }
 
             // Przekazujemy zwrócone dane do widoku
             $appController->view->setData($result);
+            $appController->view->set('warning', \Tools\FlashMessage::getWarning());
+            $appController->view->set('success', \Tools\FlashMessage::getSuccess());
             // Renderujemy widok
             $appController->view->render();
         } catch(\Exceptions\DatabaseConnection $e) {
@@ -65,6 +70,19 @@ class Main extends GlobalController
         } catch(\Exception $e) {
             //$this->redirect('404.html');
         }
+    }
+
+    private function getFlashMessageFromSession() {
+      //pobieramy informacje z sesji
+      $warning = \Tools\Session::get('warning');
+      \Tools\Session::clear('warning');
+      $success = \Tools\Session::get('success');
+      \Tools\Session::clear('success');
+
+      if(isset($warning))
+          \Tools\FlashMessage::addWarningSet($warning);
+      if(isset($success))
+          \Tools\FlashMessage::addSuccessSet($success);
     }
 
 }

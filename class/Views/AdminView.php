@@ -8,5 +8,9 @@ class AdminView extends View {
         $this->set('active', $name);
         array_push($this->globalJS, 'external/jquery', 'external/jquery-ui', 'external/popper', 'external/bootstrap');
         array_push($this->globalCSS, 'external/bootstrap', 'external/jquery-ui', 'external/font-awesome', 'adminGlobal');
+        if(\Tools\Access::islogin() === true) {
+            $this->set('isLogin', true);
+            $this->set('name', \Tools\Access::get(\Tools\Access::$name));
+        }
     }
 }

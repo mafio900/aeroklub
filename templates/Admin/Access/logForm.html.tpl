@@ -12,7 +12,7 @@
             <input type="password" class="col-12 col-md-3" id="password" name="password" placeholder="Wprowadź hasło">
         </div>
         <div class="alert alert-danger collapse" role="alert"></div>
-        <button type="submit" class="btn btn-success">Zaloguj</button>
+        <button type="submit" class="btn btn-light">Zaloguj</button>
     </form>
 </div>
 {/block}

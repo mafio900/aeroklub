@@ -1,6 +1,6 @@
 <?php
 namespace Controllers;
-
+use \Tools\FlashMessage;
 /**
  * Kontroller producentów
  */
@@ -91,7 +91,8 @@ class Producent extends GlobalController
             throw new \Exceptions\EmptyValue;
         }
         $model = $this->createModel('Producent');
-        $model->insert($_POST['ProducentNazwa']);
+        $id = $model->insert($_POST['ProducentNazwa']);
+        FlashMessage::addMessage($id, 'add');
         $this->redirect('producent/');
     }
 

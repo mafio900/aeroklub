@@ -35,7 +35,7 @@
             </ul>
             {if isset($name)}
                 <span>Jesteś zalogowany jako: {$name}</span>
-                <a class="ml-3 btn btn-danger btn-sm" href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}wyloguj/">Wyloguj</a>
+                <a class="ml-3 btn btn-light btn-sm" href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}wyloguj/">Wyloguj</a>
             {/if}
         </div>
     </div>
