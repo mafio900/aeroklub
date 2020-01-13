@@ -25,7 +25,7 @@ class Status extends PDODatabase
         $this->testConnection();
         $this->testTable($this->table);
         if(!isset($name))
-            throw new \Exceptions\EmptyValue;
+            return 0;
         try	{
             $query = 'INSERT INTO `'.$this->table.'` (`StatusNazwa`)';
             $query .= ' VALUES (:name)';
@@ -37,7 +37,8 @@ class Status extends PDODatabase
             }
             $stmt->closeCursor();
         } catch(\PDOException $e) {
-            throw new \Exceptions\Query($e);
+            //throw new \Exceptions\Query($e);
+            return -1;
         }
         return $id;
     }
@@ -54,7 +55,7 @@ class Status extends PDODatabase
         $this->testTable($this->table);
 
         if(!isset($id) && !isset($name))
-            throw new \Exceptions\EmptyValue;
+            return 0;
         try	{
             $query = 'UPDATE `'.$this->table.'`';
             $query .= ' SET StatusNazwa = :name';
@@ -68,7 +69,8 @@ class Status extends PDODatabase
             }
             $stmt->closeCursor();
         } catch(\PDOException $e) {
-            throw new \Exceptions\Query($e);
+            //throw new \Exceptions\Query($e);
+            return -1;
         }
         return $id;
     }

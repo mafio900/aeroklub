@@ -25,7 +25,7 @@ class RezUsluga extends PDODatabase
         $this->testConnection();
         $this->testTable($this->table);
         if(!isset($idRezerwacja) && !isset($idUsluga) && !isset($ilosc))
-        throw new \Exceptions\EmptyValue;
+            return 0;
         try	{
             if($idSamolot==0)
             {
@@ -48,7 +48,8 @@ class RezUsluga extends PDODatabase
             }
             $stmt->closeCursor();
         } catch(\PDOException $e) {
-            throw new \Exceptions\Query($e);
+            //throw new \Exceptions\Query($e);
+            return -1;
         }
         return $id;
     }
@@ -65,7 +66,7 @@ class RezUsluga extends PDODatabase
         $this->testTable($this->table);
 
         if(!isset($id) && !isset($idUsluga) && !isset($ilosc))
-            throw new \Exceptions\EmptyValue;
+            return 0;
         try	{
             $query = 'UPDATE `'.$this->table.'`';
             if($idSamolot==0)
@@ -85,7 +86,8 @@ class RezUsluga extends PDODatabase
             }
             $stmt->closeCursor();
         } catch(\PDOException $e) {
-            throw new \Exceptions\Query($e);
+            //throw new \Exceptions\Query($e);
+            return -1;
         }
         return $id;
     }

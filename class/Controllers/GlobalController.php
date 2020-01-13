@@ -24,13 +24,16 @@ class GlobalController extends Controller
     public function deleteGiven($ids)
     {
         $counter = -1;
+        $flag = true;
+        //d($ids);
         if(isset($ids)) {
             foreach($ids as $id)
             {
                 $counter += $this->deleteOne($id);
+                $flag = false;
             }
         }
-        if($counter != -1)
+        if($counter != -1 || $flag)
             return $counter + 1;
         return $counter;
     }

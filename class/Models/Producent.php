@@ -24,8 +24,8 @@ class Producent extends PDODatabase
         $id = -1;
         $this->testConnection();
         $this->testTable($this->table);
-        if(!isset($name))
-            throw new \Exceptions\EmptyValue;
+        if(!isset($name) || $name == '')
+            return 0;
         try	{
             $query = 'INSERT INTO `'.$this->table.'` (`ProducentNazwa`)';
             $query .= ' VALUES (:name)';
@@ -37,7 +37,8 @@ class Producent extends PDODatabase
             }
             $stmt->closeCursor();
         } catch(\PDOException $e) {
-            throw new \Exceptions\Query($e);
+            //throw new \Exceptions\Query($e);
+            return -1;
         }
         return $id;
     }
@@ -64,11 +65,12 @@ class Producent extends PDODatabase
             $stmt->bindValue(':name', $name, PDO::PARAM_STR);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             if($stmt->execute()) {
-                $id = $this->pdo->lastInsertId();
+                $id = $stmt->rowCount();
             }
             $stmt->closeCursor();
         } catch(\PDOException $e) {
-            throw new \Exceptions\Query($e);
+            //throw new \Exceptions\Query($e);
+            return -1;
         }
         return $id;
     }

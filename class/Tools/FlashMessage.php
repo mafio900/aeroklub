@@ -84,9 +84,9 @@ class FlashMessage {
         if ($value < 0) {
             if (\property_exists('\Messages\Error', $type))
                 self::addError(\Messages\Error::$$type, $replace);
-        } elseif ($value === 0) {
+        } elseif ($value == 0) {
             if (\property_exists('\Messages\Warning', $type))
-                self::addWarning(\Messages\Warning::$nochanges, $replace);
+                self::addWarning(\Messages\Warning::$$type, $replace);
         } else {
             if (\property_exists('\Messages\Success', $type))
                 self::addSuccess(\Messages\Success::$$type, $replace);

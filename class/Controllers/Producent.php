@@ -90,9 +90,6 @@ class Producent extends GlobalController
     {
         $this->check(['ProducentNazwa'], $_POST);
         if($_POST['ProducentNazwa']=='')
-        {
-            throw new \Exceptions\EmptyValue;
-        }
         $model = $this->createModel('Producent');
         $id = $model->insert($_POST['ProducentNazwa']);
         FlashMessage::addMessage($id, 'add');
@@ -108,10 +105,6 @@ class Producent extends GlobalController
     public function edit()
     {
         $this->check(['id', 'ProducentNazwa'], $_POST);
-        if($_POST['ProducentNazwa']=='' && $_POST['id']=='')
-        {
-            throw new \Exceptions\EmptyValue;
-        }
         $model = $this->createModel('Producent');
         $id = $model->update($_POST['id'], $_POST['ProducentNazwa']);
         FlashMessage::addMessage($id, 'update');

@@ -147,7 +147,7 @@ class PDODatabase extends Model
         $this->testConnection();
         $table = $this->getTableName($table);
         $this->testTable($table);
-        $counter = 0;
+        $counter = -1;
         try	{
             $query = 'DELETE FROM `'.$table.'` WHERE id = :id';
             $stmt = $this->pdo->prepare($query);
@@ -159,7 +159,8 @@ class PDODatabase extends Model
             }
             $stmt->closeCursor();
         } catch(\PDOException $e) {
-            throw new \Exceptions\Query($e);
+            //throw new \Exceptions\Query($e);
+            return -1;
         }
         return $counter;
     }

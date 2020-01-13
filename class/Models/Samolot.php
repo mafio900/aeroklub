@@ -25,7 +25,7 @@ class Samolot extends PDODatabase
         $this->testConnection();
         $this->testTable($this->table);
         if(!isset($idProducent) && !isset($model) && !isset($rejestracja))
-            throw new \Exceptions\EmptyValue;
+            return 0;
         try	{
             $query = 'INSERT INTO `'.$this->table.'` (`IdProducent`, `Model`, `Rejestracja`, `Opis`)';
             $query .= ' VALUES (:idProducent, :model, :rejestracja, :opis)';
@@ -40,7 +40,8 @@ class Samolot extends PDODatabase
             }
             $stmt->closeCursor();
         } catch(\PDOException $e) {
-            throw new \Exceptions\Query($e);
+            //throw new \Exceptions\Query($e);
+            return -1;
         }
         return $id;
     }
@@ -57,7 +58,7 @@ class Samolot extends PDODatabase
         $this->testTable($this->table);
 
         if(!isset($id) && !isset($idProducent) && !isset($model) && !isset($rejestracja))
-            throw new \Exceptions\EmptyValue;
+            return 0;
         try	{
             $query = 'UPDATE `'.$this->table.'`';
             $query .= ' SET idProducent = :idProducent, Model = :model, Rejestracja = :rejestracja, Opis = :opis';
@@ -74,7 +75,8 @@ class Samolot extends PDODatabase
             }
             $stmt->closeCursor();
         } catch(\PDOException $e) {
-            throw new \Exceptions\Query($e);
+            //throw new \Exceptions\Query($e);
+            return -1;
         }
         return $id;
     }

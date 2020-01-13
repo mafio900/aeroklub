@@ -1,4 +1,4 @@
-<?php
+return 0;<?php
 namespace Models;
 
 use PDO;
@@ -26,7 +26,7 @@ class User extends PDODatabase
         $this->testTable($this->table);
         if(!isset($imie) && !isset($nazwisko) && !isset($pesel) && !isset($ulica) && !isset($nrDomu)
         && !isset($miejscowosc) && !isset($kodPocztowy) && !isset($nrTelefonu) && !isset($ranga) && !isset($login) && !isset($password))
-            new \Exceptions\EmptyValue;
+            return 0;
         try	{
             $query = 'INSERT INTO `'.$this->table.'` (`Imie`, `Nazwisko`, `Pesel`, `Ulica`, `NrDomu`, `NrLokalu`, `Miejscowosc`, `KodPocztowy`, `NrTelefonu`, `Email`, `Ranga`, `Login`, `Password`)';
             $query .= ' VALUES (:imie, :nazwisko, :pesel, :ulica, :nrDomu, :nrLokalu, :miejscowosc, :kodPocztowy, :nrTelefonu, :email, :ranga, :login, :password)';
@@ -51,7 +51,8 @@ class User extends PDODatabase
         }
         $stmt->closeCursor();
         } catch(\PDOException $e) {
-            throw new \Exceptions\Query($e);
+            //throw new \Exceptions\Query($e);
+            return -1;
         }
         return $id;
     }
@@ -69,7 +70,7 @@ class User extends PDODatabase
 
         if(!isset($id) && !isset($imie) && !isset($nazwisko) && !isset($pesel) && !isset($ulica) && !isset($nrDomu)
         && !isset($miejscowosc) && !isset($kodPocztowy) && !isset($nrTelefonu) && !isset($ranga) && !isset($login) && !isset($password))
-            throw new \Exceptions\EmptyValue;
+            return 0;
         try	{
             $query = 'UPDATE `'.$this->table.'`';
             $query .= ' SET Imie = :imie, Nazwisko = :nazwisko, Pesel = :pesel, Ulica = :ulica, NrDomu = :nrDomu, NrLokalu = :nrLokalu, Miejscowosc = :miejscowosc,
@@ -97,7 +98,8 @@ class User extends PDODatabase
         }
             $stmt->closeCursor();
         } catch(\PDOException $e) {
-            throw new \Exceptions\Query($e);
+            //throw new \Exceptions\Query($e);
+            return -1;
         }
         return $id;
     }

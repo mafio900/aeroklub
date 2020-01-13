@@ -25,7 +25,7 @@ class Rezerwacja extends PDODatabase
         $this->testConnection();
         $this->testTable($this->table);
         if(!isset($terminRealizacji) && !isset($idKlient) && !isset($idPracownik))
-            throw new \Exceptions\EmptyValue;
+            return 0;
         try	{
             //INSERT INTO `rezerwacja`(`TerminRealizacji`, `KwotaLaczna`, `IdKlient`, `IdPracownik`) VALUES ("2019-11-23", 300, 3, 1)
             $query = 'INSERT INTO `'.$this->table.'` (`TerminRealizacji`, `IdKlient`, `IdPracownik`)';
@@ -40,7 +40,8 @@ class Rezerwacja extends PDODatabase
             }
             $stmt->closeCursor();
         } catch(\PDOException $e) {
-            throw new \Exceptions\Query($e);
+            //throw new \Exceptions\Query($e);
+            return -1;
         }
         return $id;
     }
@@ -57,7 +58,7 @@ class Rezerwacja extends PDODatabase
         $this->testTable($this->table);
 
         if(!isset($id) && !isset($terminRealizacji) && !isset($kwotaLaczna) && !isset($idStatus) && !isset($idKlient) && !isset($idPracownik))
-            throw new \Exceptions\EmptyValue;
+            return 0;
         try	{
             $query = 'UPDATE `'.$this->table.'`';
             $query .= ' SET TerminRealizacji = :terminRealizacji, KwotaLaczna = :kwotaLaczna, IdStatus = :idStatus, IdKlient = :idKlient, IdPracownik = :idPracownik';
@@ -75,7 +76,8 @@ class Rezerwacja extends PDODatabase
             }
             $stmt->closeCursor();
         } catch(\PDOException $e) {
-            throw new \Exceptions\Query($e);
+            //throw new \Exceptions\Query($e);
+            return -1;
         }
         return $id;
     }
