@@ -18,6 +18,7 @@ class Producent extends GlobalController
         $this->view->addJSSet(array('external/datatables',
                                     'dataTables',
                                     'modal/load-modal',
+                                    'modal/delete-confirm',
                                     'modal/producent',
                                     'external/jquery.validate',
                                     'external/jquery.validate.add',
@@ -53,7 +54,8 @@ class Producent extends GlobalController
      */
     public function delete($id)
     {
-        $this->deleteOne($id);
+        $counter = $this->deleteOne($id);
+        FlashMessage::addMessage($counter, 'delete');
         $this->redirect('producent/');
     }
 
@@ -62,7 +64,8 @@ class Producent extends GlobalController
      */
     public function deletePlenty()
     {
-        $this->deleteGiven($_POST['ids']);
+        $counter = $this->deleteGiven($_POST['ids']);
+        FlashMessage::addMessage($counter, 'delete');
         $this->redirect('producent/');
     }
 
@@ -111,6 +114,7 @@ class Producent extends GlobalController
         }
         $model = $this->createModel('Producent');
         $model->update($_POST['id'], $_POST['ProducentNazwa']);
+        FlashMessage::addMessage($id, 'update');
         $this->redirect("producent/");
     }
 

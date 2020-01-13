@@ -1,6 +1,6 @@
 <?php
 namespace Controllers;
-
+use \Tools\FlashMessage;
 /**
  * Kontroller uslugi
  */
@@ -18,6 +18,7 @@ class Usluga extends GlobalController
         $this->view->addJSSet(array('external/datatables',
                                     'dataTables',
                                     'modal/load-modal',
+                                    'modal/delete-confirm',
                                     'modal/usluga',
                                     'external/jquery.validate',
                                     'external/jquery.validate.add',
@@ -52,7 +53,8 @@ class Usluga extends GlobalController
      */
     public function delete($id)
     {
-        $this->deleteOne($id);
+        $counter = $this->deleteOne($id);
+        FlashMessage::addMessage($counter, 'delete');
         $this->redirect('usluga/');
     }
 
@@ -61,7 +63,8 @@ class Usluga extends GlobalController
      */
     public function deletePlenty()
     {
-        $this->deleteGiven($_POST['ids']);
+        $counter = $this->deleteGiven($_POST['ids']);
+        FlashMessage::addMessage($counter, 'delete');
         $this->redirect('usluga/');
     }
 
@@ -88,7 +91,8 @@ class Usluga extends GlobalController
             throw new \Exceptions\EmptyValue;
         }
         $model = $this->createModel('Usluga');
-        $model->insert($_POST['UslugaNazwa'], $_POST['CenaJedn'], $_POST['JednMiary'], $_POST['Opis']);
+        $id = $model->insert($_POST['UslugaNazwa'], $_POST['CenaJedn'], $_POST['JednMiary'], $_POST['Opis']);
+        FlashMessage::addMessage($id, 'add');
         $this->redirect('usluga/');
     }
 
@@ -104,7 +108,8 @@ class Usluga extends GlobalController
             throw new \Exceptions\EmptyValue;
         }
         $model = $this->createModel('Usluga');
-        $model->update($_POST['id'], $_POST['UslugaNazwa'], $_POST['CenaJedn'], $_POST['JednMiary'], $_POST['Opis']);
+        $id = $model->update($_POST['id'], $_POST['UslugaNazwa'], $_POST['CenaJedn'], $_POST['JednMiary'], $_POST['Opis']);
+        FlashMessage::addMessage($id, 'update');
         $this->redirect("usluga/");
     }
 

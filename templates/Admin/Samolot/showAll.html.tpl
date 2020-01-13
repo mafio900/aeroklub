@@ -14,5 +14,6 @@
 {/block}
 {block name=tfoot}
 {/block}
+{block name=deleteDescription}samolot {$producenci[$row['IdProducent']]['ProducentNazwa']} {$row['Model']} o rejestracji {$row['Rejestracja']}{/block}
 {block name=footUrlName}samolot{/block}
 {block name=footButtonName}Dodaj samolot{/block}

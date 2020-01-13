@@ -11,5 +11,6 @@
 {/block}
 {block name=tfoot}
 {/block}
+{block name=deleteDescription}producenta {$row['ProducentNazwa']}{/block}
 {block name=footUrlName}producent{/block}
 {block name=footButtonName}Dodaj producenta{/block}

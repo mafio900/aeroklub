@@ -21,8 +21,13 @@
             {/block}
             <td><span class="btn-group">{block name=editButton}<button data-url="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}{block name=footUrlName}{/block}/{$row['id']}"
             role="button" type="button" class="edit-button btn btn-primary btn-sm ml-2" title="Pokaż szczegółowe informacje"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>{/block}
-            <a href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}{block name=footUrlName}{/block}/usun/{$row['id']}"
-            role="button" class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></a></span></td>
+            <button type="button" class="btn btn-danger btn-sm delete-button"
+                  data-url="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}{block name=footUrlName}{/block}/usun/{$row['id']}/"
+                  data-description="{block name=deleteDescription}{/block}"
+                  data-toggle="tooltip" data-placement="top" title="Usuń">
+                  <i class="fa fa-times" aria-hidden="true"></i>
+              </button>
+            </span></td>
         </tr>
         {/foreach}
     </tbody>
@@ -37,5 +42,5 @@
 <button data-url="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}{block name=footUrlName}{/block}/formularz"
 role="button" class="add-button btn btn-primary btn-sm mt-2"><i class="fa fa-plus" aria-hidden="true"></i> {block name=footButtonName}{/block}</button>
 {/if}
-{include file="./modals/base.html.tpl"}
+{include file='./modals/deleteConfirmBlock.html.tpl'}
 {/block}

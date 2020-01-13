@@ -1,8 +1,8 @@
 
-  <form id="{block name=id}modal{/block}-form"
-        action="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}{block name=action}{/block}" method="POST">
+  <form id="{block name=modalid}modal{/block}-form"
+        action="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}{block name=action}{/block}" method="{block name=modalMethod}POST{/block}">
     <div class="modal-header">
-        <h4 class="modal-title pull-left" id="{block name=id}modal-id{/block}-title">{block name=title}Tytuł{/block}</h4>
+        <h4 class="modal-title pull-left" id="{block name=modalid}modal-id{/block}-title">{block name=title}Tytuł{/block}</h4>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span></button>
 

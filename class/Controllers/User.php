@@ -1,6 +1,6 @@
 <?php
 namespace Controllers;
-
+use \Tools\FlashMessage;
 /**
  * Kontroller użytkowników
  */
@@ -18,6 +18,7 @@ class User extends GlobalController
         $this->view->addJSSet(array('external/datatables',
                                     'dataTables',
                                     'modal/load-modal',
+                                    'modal/delete-confirm',
                                     'modal/user',
                                     'external/jquery.validate',
                                     'external/jquery.validate.add',
@@ -52,7 +53,8 @@ class User extends GlobalController
      */
     public function delete($id)
     {
-        $this->deleteOne($id);
+        $counter = $this->deleteOne($id);
+        FlashMessage::addMessage($counter, 'delete');
         $this->redirect('user/');
     }
 
@@ -61,7 +63,8 @@ class User extends GlobalController
      */
     public function deletePlenty()
     {
-        $this->deleteGiven($_POST['ids']);
+        $counter = $this->deleteGiven($_POST['ids']);
+        FlashMessage::addMessage($counter, 'delete');
         $this->redirect('user/');
     }
 
@@ -89,8 +92,9 @@ class User extends GlobalController
             throw new \Exceptions\EmptyValue;
         }
         $model = $this->createModel('User');
-        $model->insert($_POST['Imie'], $_POST['Nazwisko'], $_POST['Pesel'], $_POST['Ulica'], $_POST['NrDomu'], $_POST['NrLokalu'], $_POST['Miejscowosc'],
+        $id = $model->insert($_POST['Imie'], $_POST['Nazwisko'], $_POST['Pesel'], $_POST['Ulica'], $_POST['NrDomu'], $_POST['NrLokalu'], $_POST['Miejscowosc'],
         $_POST['KodPocztowy'], $_POST['NrTelefonu'], $_POST['Email'], $_POST['Ranga'], $_POST['Login'], $_POST['Password']);
+        FlashMessage::addMessage($id, 'add');
         $this->redirect('user/');
     }
 
@@ -107,8 +111,9 @@ class User extends GlobalController
             throw new \Exceptions\EmptyValue;
         }
         $model = $this->createModel('User');
-        $model->update($_POST['id'], $_POST['Imie'], $_POST['Nazwisko'], $_POST['Pesel'], $_POST['Ulica'], $_POST['NrDomu'], $_POST['NrLokalu'], $_POST['Miejscowosc'],
+        $id = $model->update($_POST['id'], $_POST['Imie'], $_POST['Nazwisko'], $_POST['Pesel'], $_POST['Ulica'], $_POST['NrDomu'], $_POST['NrLokalu'], $_POST['Miejscowosc'],
         $_POST['KodPocztowy'], $_POST['NrTelefonu'], $_POST['Email'], $_POST['Ranga'], $_POST['Login'], $_POST['Password']);
+        FlashMessage::addMessage($id, 'update');
         $this->redirect("user/");
     }
 

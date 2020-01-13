@@ -1,5 +1,6 @@
 <?php
 namespace Controllers;
+use \Tools\FlashMessage;
 
 /**
  * Kontroller rezerwacji
@@ -25,6 +26,7 @@ class Rezerwacja extends GlobalController
                                     'datepicker',
                                     'select2',
                                     'modal/load-modal',
+                                    'modal/delete-confirm',
                                     'modal/rezerwacja',
                                     'external/jquery.validate',
                                     'external/jquery.validate.add',
@@ -70,6 +72,7 @@ class Rezerwacja extends GlobalController
                                     'validation/rezerwacja',
                                     'validation/rezusluga',
                                     'modal/load-modal',
+                                    'modal/delete-confirm',
                                     'modal/rezusluga',
                                     'rezerwacja'));
         $model = $this->createModel('Rezerwacja');
@@ -104,7 +107,8 @@ class Rezerwacja extends GlobalController
      */
     public function delete($id)
     {
-        $this->deleteOne($id);
+        $counter = $this->deleteOne($id);
+        FlashMessage::addMessage($counter, 'delete');
         $this->redirect('rezerwacja/');
     }
 
@@ -113,7 +117,8 @@ class Rezerwacja extends GlobalController
      */
     public function deletePlenty()
     {
-        $this->deleteGiven($_POST['ids']);
+        $counter = $this->deleteGiven($_POST['ids']);
+        FlashMessage::addMessage($counter, 'delete');
         $this->redirect('rezerwacja/');
     }
 
@@ -145,6 +150,7 @@ class Rezerwacja extends GlobalController
         }
         $model = $this->createModel('Rezerwacja');
         $id = $model->insert($_POST['TerminRealizacji'], $_POST['IdKlient'], $_POST['IdPracownik']);
+        FlashMessage::addMessage($id, 'add');
         $this->redirect('rezerwacja/'.$id);
     }
 
@@ -160,7 +166,8 @@ class Rezerwacja extends GlobalController
             throw new \Exceptions\EmptyValue;
         }
         $model = $this->createModel('Rezerwacja');
-        $model->update($_POST['id'], $_POST['TerminRealizacji'], $_POST['KwotaLaczna'], $_POST['IdStatus'], $_POST['IdKlient'], $_POST['IdPracownik']);
+        $id = $model->update($_POST['id'], $_POST['TerminRealizacji'], $_POST['KwotaLaczna'], $_POST['IdStatus'], $_POST['IdKlient'], $_POST['IdPracownik']);
+        FlashMessage::addMessage($id, 'update');
         $this->redirect("rezerwacja/".$_POST['id']);
     }
 

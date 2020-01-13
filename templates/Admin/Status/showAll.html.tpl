@@ -10,5 +10,6 @@
 {/block}
 {block name=tfoot}
 {/block}
+{block name=deleteDescription}status {$row['StatusNazwa']}{/block}
 {block name=footUrlName}status{/block}
 {block name=footButtonName}Dodaj status{/block}

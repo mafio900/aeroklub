@@ -1,6 +1,6 @@
 <?php
 namespace Controllers;
-
+use \Tools\FlashMessage;
 /**
  * Kontroller samolotów
  */
@@ -21,6 +21,7 @@ class Samolot extends GlobalController
                                     'external/pl',
                                     'select2',
                                     'modal/load-modal',
+                                    'modal/delete-confirm',
                                     'modal/samolot',
                                     'external/jquery.validate',
                                     'external/jquery.validate.add',
@@ -75,7 +76,8 @@ class Samolot extends GlobalController
      */
     public function delete($id)
     {
-        $this->deleteOne($id);
+        $counter = $this->deleteOne($id);
+        FlashMessage::addMessage($counter, 'delete');
         $this->redirect('samolot/');
     }
 
@@ -84,7 +86,8 @@ class Samolot extends GlobalController
      */
     public function deletePlenty()
     {
-        $this->deleteGiven($_POST['ids']);
+        $counter = $this->deleteGiven($_POST['ids']);
+        FlashMessage::addMessage($counter, 'delete');
         $this->redirect('samolot/');
     }
 
@@ -114,7 +117,8 @@ class Samolot extends GlobalController
             throw new \Exceptions\EmptyValue;
         }
         $model = $this->createModel('Samolot');
-        $model->insert($_POST['IdProducent'], $_POST['Model'], $_POST['Rejestracja'], $_POST['Opis']);
+        $id = $model->insert($_POST['IdProducent'], $_POST['Model'], $_POST['Rejestracja'], $_POST['Opis']);
+        FlashMessage::addMessage($id, 'add');
         $this->redirect('samolot/');
     }
 
@@ -130,7 +134,8 @@ class Samolot extends GlobalController
             throw new \Exceptions\EmptyValue;
         }
         $model = $this->createModel('Samolot');
-        $model->update($_POST['id'], $_POST['IdProducent'], $_POST['Model'], $_POST['Rejestracja'], $_POST['Opis']);
+        $id = $model->update($_POST['id'], $_POST['IdProducent'], $_POST['Model'], $_POST['Rejestracja'], $_POST['Opis']);
+        FlashMessage::addMessage($id, 'update');
         $this->redirect("samolot/");
     }
 

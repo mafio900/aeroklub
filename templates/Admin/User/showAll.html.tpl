@@ -14,5 +14,6 @@
 {/block}
 {block name=tfoot}
 {/block}
+{block name=deleteDescription}użytkownika {$row['Imie']} {$row['Nazwisko']}{/block}
 {block name=footUrlName}user{/block}
 {block name=footButtonName}Dodaj użytkownika{/block}

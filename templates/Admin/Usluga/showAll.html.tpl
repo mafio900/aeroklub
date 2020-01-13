@@ -10,5 +10,6 @@
 {/block}
 {block name=tfoot}
 {/block}
+{block name=deleteDescription}usługę: {$row['UslugaNazwa']}{/block}
 {block name=footUrlName}usluga{/block}
 {block name=footButtonName}Dodaj usługę{/block}

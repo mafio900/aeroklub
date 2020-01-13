@@ -18,16 +18,21 @@ class GlobalController extends Controller
         if(isset($id)) {
             $counter = $model->deleteOneById($id);
         }
+        return $counter;
     }
 
     public function deleteGiven($ids)
     {
+        $counter = -1;
         if(isset($ids)) {
             foreach($ids as $id)
             {
-                $this->deleteOne($id);
+                $counter += $this->deleteOne($id);
             }
         }
+        if($counter != -1)
+            return $counter + 1;
+        return $counter;
     }
 
     public function ajaxEditForm($id){

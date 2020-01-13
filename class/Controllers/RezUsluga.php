@@ -1,6 +1,6 @@
 <?php
 namespace Controllers;
-
+use \Tools\FlashMessage;
 /**
  * Kontroller tabeli rezusluga
  */
@@ -33,7 +33,8 @@ class RezUsluga extends GlobalController
     {
         $model = $this->createModel('RezUsluga');
         $idRez = $model->selectOneById($id)['IdRezerwacja'];
-        $this->deleteOne($id);
+        $counter = $this->deleteOne($id);
+        FlashMessage::addMessage($counter, 'delete');
         $this->redirect('rezerwacja/'.$idRez);
     }
 
@@ -42,7 +43,8 @@ class RezUsluga extends GlobalController
      */
     public function deletePlenty($id)
     {
-        $this->deleteGiven($_POST['ids']);
+        $counter = $this->deleteGiven($_POST['ids']);
+        FlashMessage::addMessage($counter, 'delete');
         $this->redirect('rezerwacja/'.$id);
     }
 
@@ -58,7 +60,8 @@ class RezUsluga extends GlobalController
             throw new \Exceptions\EmptyValue;
         }
         $model = $this->createModel('RezUsluga');
-        $model->insert($_POST['id'], $_POST['IdUsluga'], $_POST['Ilosc'], $_POST['IdSamolot']);
+        $id = $model->insert($_POST['id'], $_POST['IdUsluga'], $_POST['Ilosc'], $_POST['IdSamolot']);
+        FlashMessage::addMessage($id, 'add');
         $this->redirect('rezerwacja/'.$_POST['id']);
     }
 
@@ -74,8 +77,9 @@ class RezUsluga extends GlobalController
             throw new \Exceptions\EmptyValue;
         }
         $model = $this->createModel('RezUsluga');
-        $model->update($_POST['id'], $_POST['IdUsluga'], $_POST['Ilosc'], $_POST['IdSamolot']);
+        $id = $model->update($_POST['id'], $_POST['IdUsluga'], $_POST['Ilosc'], $_POST['IdSamolot']);
         $idRez = $model->selectOneById($_POST['id'])['IdRezerwacja'];
+        FlashMessage::addMessage($id, 'update');
         $this->redirect('rezerwacja/'.$idRez);
     }
 

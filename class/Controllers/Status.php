@@ -1,6 +1,6 @@
 <?php
 namespace Controllers;
-
+use \Tools\FlashMessage;
 /**
  * Kontroller statusów rezerwacji
  */
@@ -18,6 +18,7 @@ class Status extends GlobalController
         $this->view->addJSSet(array('external/datatables',
                                     'dataTables',
                                     'modal/load-modal',
+                                    'modal/delete-confirm',
                                     'modal/status',
                                     'external/jquery.validate',
                                     'external/jquery.validate.add',
@@ -52,7 +53,8 @@ class Status extends GlobalController
      */
     public function delete($id)
     {
-        $this->deleteOne($id);
+        $counter = $this->deleteOne($id);
+        FlashMessage::addMessage($counter, 'delete');
         $this->redirect('status/');
     }
 
@@ -61,7 +63,8 @@ class Status extends GlobalController
      */
     public function deletePlenty()
     {
-        $this->deleteGiven($_POST['ids']);
+        $counter = $this->deleteGiven($_POST['ids']);
+        FlashMessage::addMessage($counter, 'delete');
         $this->redirect('status/');
     }
 
@@ -88,7 +91,8 @@ class Status extends GlobalController
             throw new \Exceptions\EmptyValue;
         }
         $model = $this->createModel('Status');
-        $model->insert($_POST['StatusNazwa']);
+        $id = $model->insert($_POST['StatusNazwa']);
+        FlashMessage::addMessage($id, 'add');
         $this->redirect('status/');
     }
 
@@ -104,7 +108,8 @@ class Status extends GlobalController
             throw new \Exceptions\EmptyValue;
         }
         $model = $this->createModel('Status');
-        $model->update($_POST['id'], $_POST['StatusNazwa']);
+        $id = $model->update($_POST['id'], $_POST['StatusNazwa']);
+        FlashMessage::addMessage($id, 'update');
         $this->redirect("status/");
     }
 
