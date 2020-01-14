@@ -144,10 +144,6 @@ class Rezerwacja extends GlobalController
     public function add()
     {
         $this->check(['TerminRealizacji', 'IdKlient', 'IdPracownik'], $_POST);
-        if($_POST['TerminRealizacji']=='' && $_POST['IdKlient']=='' && $_POST['IdPracownik']=='')
-        {
-            throw new \Exceptions\EmptyValue;
-        }
         $model = $this->createModel('Rezerwacja');
         $id = $model->insert($_POST['TerminRealizacji'], $_POST['IdKlient'], $_POST['IdPracownik']);
         FlashMessage::addMessage($id, 'add');
@@ -161,10 +157,6 @@ class Rezerwacja extends GlobalController
     public function edit()
     {
         $this->check(['id', 'TerminRealizacji', 'KwotaLaczna', 'IdStatus', 'IdKlient', 'IdPracownik'], $_POST);
-        if($_POST['TerminRealizacji']=='' && $_POST['KwotaLaczna']=='' && $_POST['IdStatus']=='' && $_POST['IdKlient']=='' && $_POST['IdPracownik']=='' && $_POST['id']=='')
-        {
-            throw new \Exceptions\EmptyValue;
-        }
         $model = $this->createModel('Rezerwacja');
         $id = $model->update($_POST['id'], $_POST['TerminRealizacji'], $_POST['KwotaLaczna'], $_POST['IdStatus'], $_POST['IdKlient'], $_POST['IdPracownik']);
         FlashMessage::addMessage($id, 'update');

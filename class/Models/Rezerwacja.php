@@ -24,8 +24,19 @@ class Rezerwacja extends PDODatabase
         $id = -1;
         $this->testConnection();
         $this->testTable($this->table);
-        if(!isset($terminRealizacji) && !isset($idKlient) && !isset($idPracownik))
+        if( !isset($terminRealizacji) ||
+            $terminRealizacji == '' ||
+            !preg_match('/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])\s(0[0-9]|1[0-9]|2[0-3]):(0[0-9]|[1-5][0-9])$/', $terminRealizacji) ||
+            !isset($idKlient) ||
+            $idKlient == '' ||
+            !is_numeric($idKlient) ||
+            !isset($idPracownik) ||
+            $idPracownik == '' ||
+            !is_numeric($idPracownik)
+        ){
+            \Tools\FlashMessage::addMessage(0, 'valid');
             return 0;
+        }
         try	{
             //INSERT INTO `rezerwacja`(`TerminRealizacji`, `KwotaLaczna`, `IdKlient`, `IdPracownik`) VALUES ("2019-11-23", 300, 3, 1)
             $query = 'INSERT INTO `'.$this->table.'` (`TerminRealizacji`, `IdKlient`, `IdPracownik`)';
@@ -57,8 +68,28 @@ class Rezerwacja extends PDODatabase
         $this->testConnection();
         $this->testTable($this->table);
 
-        if(!isset($id) && !isset($terminRealizacji) && !isset($kwotaLaczna) && !isset($idStatus) && !isset($idKlient) && !isset($idPracownik))
+        if( !isset($id) ||
+            $id == '' ||
+            !is_numeric($id)
+            !isset($terminRealizacji) ||
+            $terminRealizacji == '' ||
+            !preg_match('/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])\s(0[0-9]|1[0-9]|2[0-3]):(0[0-9]|[1-5][0-9])$/', $terminRealizacji) ||
+            !isset($kwotaLaczna) ||
+            $kwotaLaczna == '' ||
+            !preg_match('/^\d+(\.\d{2})?$/', $kwotaLaczna) ||
+            !isset($idStatus) ||
+            $idStatus == '' ||
+            !is_numeric($idStatus) ||
+            !isset($idKlient) ||
+            $idKlient == '' ||
+            !is_numeric($idKlient) ||
+            !isset($idPracownik) ||
+            $idPracownik == '' ||
+            !is_numeric($idPracownik)
+        ){
+            \Tools\FlashMessage::addMessage(0, 'valid');
             return 0;
+        }
         try	{
             $query = 'UPDATE `'.$this->table.'`';
             $query .= ' SET TerminRealizacji = :terminRealizacji, KwotaLaczna = :kwotaLaczna, IdStatus = :idStatus, IdKlient = :idKlient, IdPracownik = :idPracownik';
