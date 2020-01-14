@@ -92,6 +92,7 @@ class Usluga extends PDODatabase
             ($opis != '' && strlen($opis) > 100 ) ||
             ($opis != '' && !preg_match('/^[^\s][0-9a-zA-ZąĄęĘóśŚÓłŁżŻźŹćĆńŃ\.\-\s]*$/', $opis) )
         ){
+            \Tools\FlashMessage::addMessage(0, 'valid');
             return 0;
         }
         try	{
