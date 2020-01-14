@@ -112,10 +112,6 @@ class Samolot extends GlobalController
     public function add()
     {
         $this->check(['IdProducent', 'Model', 'Rejestracja', 'Opis'], $_POST);
-        if($_POST['IdProducent']=='' && $_POST['Model']=='' && $_POST['Rejestracja']=='')
-        {
-            throw new \Exceptions\EmptyValue;
-        }
         $model = $this->createModel('Samolot');
         $id = $model->insert($_POST['IdProducent'], $_POST['Model'], $_POST['Rejestracja'], $_POST['Opis']);
         FlashMessage::addMessage($id, 'add');
@@ -129,10 +125,6 @@ class Samolot extends GlobalController
     public function edit()
     {
         $this->check(['id', 'IdProducent', 'Model', 'Rejestracja', 'Opis'], $_POST);
-        if($_POST['id']=='' && $_POST['IdProducent']=='' && $_POST['Model']=='' && $_POST['Rejestracja']=='')
-        {
-            throw new \Exceptions\EmptyValue;
-        }
         $model = $this->createModel('Samolot');
         $id = $model->update($_POST['id'], $_POST['IdProducent'], $_POST['Model'], $_POST['Rejestracja'], $_POST['Opis']);
         FlashMessage::addMessage($id, 'update');

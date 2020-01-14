@@ -24,8 +24,22 @@ class Samolot extends PDODatabase
         $id = -1;
         $this->testConnection();
         $this->testTable($this->table);
-        if(!isset($idProducent) && !isset($model) && !isset($rejestracja))
+        if( !isset($idProducent) ||
+            $idProducent == '' ||
+            !is_numeric($idProducent) ||
+            !isset($model) ||
+            $model == '' ||
+            !preg_match('/^[^\s][0-9a-zA-ZąĄęĘóśŚÓłŁżŻźŹćĆńŃ\.\-\s]*$/', $model) ||
+            strlen($model) > 100 ||
+            !isset($rejestracja) ||
+            $rejestracja == '' ||
+            !preg_match('/^([A-Z]{2}-[A-Z]{3})|([A-Z]{2}-[0-9]{4})$/', $rejestracja) ||
+            ($opis != '' && strlen($opis) > 100 ) ||
+            ($opis != '' && !preg_match('/^[^\s][0-9a-zA-ZąĄęĘóśŚÓłŁżŻźŹćĆńŃ\.\-\s]*$/', $opis) )
+        ){
+            \Tools\FlashMessage::addMessage(0, 'valid');
             return 0;
+        }
         try	{
             $query = 'INSERT INTO `'.$this->table.'` (`IdProducent`, `Model`, `Rejestracja`, `Opis`)';
             $query .= ' VALUES (:idProducent, :model, :rejestracja, :opis)';
@@ -57,8 +71,25 @@ class Samolot extends PDODatabase
         $this->testConnection();
         $this->testTable($this->table);
 
-        if(!isset($id) && !isset($idProducent) && !isset($model) && !isset($rejestracja))
+        if( !isset($id) ||
+            $id == '' ||
+            !is_numeric($id) ||
+            !isset($idProducent) ||
+            $idProducent == '' ||
+            !is_numeric($idProducent) ||
+            !isset($model) ||
+            $model == '' ||
+            !preg_match('/^[^\s][0-9a-zA-ZąĄęĘóśŚÓłŁżŻźŹćĆńŃ\.\-\s]*$/', $model) ||
+            strlen($model) > 100 ||
+            !isset($rejestracja) ||
+            $rejestracja == '' ||
+            !preg_match('/^([A-Z]{2}-[A-Z]{3})|([A-Z]{2}-[0-9]{4})$/', $rejestracja) ||
+            ($opis != '' && strlen($opis) > 100 ) ||
+            ($opis != '' && !preg_match('/^[^\s][0-9a-zA-ZąĄęĘóśŚÓłŁżŻźŹćĆńŃ\.\-\s]*$/', $opis) )
+        ){
+            \Tools\FlashMessage::addMessage(0, 'valid');
             return 0;
+        }
         try	{
             $query = 'UPDATE `'.$this->table.'`';
             $query .= ' SET idProducent = :idProducent, Model = :model, Rejestracja = :rejestracja, Opis = :opis';
