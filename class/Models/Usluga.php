@@ -37,6 +37,7 @@ class Usluga extends PDODatabase
             !isset($jednostka) ||
             $jednostka == '' ||
             !preg_match('/^[^\s][a-zA-ZąĄęĘóśŚÓłŁżŻźŹćĆńŃ]*$/', $jednostka) ||
+            strlen($jednostka) > 20 ||
             ($opis != '' && strlen($opis) > 100 ) ||
             ($opis != '' && !preg_match('/^[^\s][0-9a-zA-ZąĄęĘóśŚÓłŁżŻźŹćĆńŃ\.\-\s]*$/', $opis) )
         ){
@@ -86,6 +87,7 @@ class Usluga extends PDODatabase
             !preg_match('/^\d+(\.\d{2})?$/', $cena) ||
             !isset($jednostka) ||
             $jednostka == '' ||
+            strlen($jednostka) > 20 ||
             !preg_match('/^[^\s][a-zA-ZąĄęĘóśŚÓłŁżŻźŹćĆńŃ]*$/', $jednostka) ||
             ($opis != '' && strlen($opis) > 100 ) ||
             ($opis != '' && !preg_match('/^[^\s][0-9a-zA-ZąĄęĘóśŚÓłŁżŻźŹćĆńŃ\.\-\s]*$/', $opis) )
