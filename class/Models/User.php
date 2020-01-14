@@ -1,4 +1,4 @@
-return 0;<?php
+<?php
 namespace Models;
 
 use PDO;
