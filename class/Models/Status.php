@@ -25,7 +25,7 @@ class Status extends PDODatabase
         $this->testConnection();
         $this->testTable($this->table);
         if( !isset($statusnazwa) ||
-            $statusnazwa = '' ||
+            $statusnazwa == '' ||
             !preg_match('/^[^\s][a-zA-ZąĄęĘóśŚÓłŁżŻźŹćĆńŃ]*$/', $statusnazwa) ||
             strlen($statusnazwa) > 50
         ){
@@ -64,7 +64,7 @@ class Status extends PDODatabase
             $id == '' ||
             !is_numeric($id) ||
             !isset($statusnazwa) ||
-            $statusnazwa = '' ||
+            $statusnazwa == '' ||
             !preg_match('/^[^\s][a-zA-ZąĄęĘóśŚÓłŁżŻźŹćĆńŃ]*$/', $statusnazwa) ||
             strlen($statusnazwa) > 50
         ){

@@ -86,10 +86,6 @@ class Status extends GlobalController
     public function add()
     {
         $this->check(['StatusNazwa'], $_POST);
-        if($_POST['StatusNazwa']=='')
-        {
-            throw new \Exceptions\EmptyValue;
-        }
         $model = $this->createModel('Status');
         $id = $model->insert($_POST['StatusNazwa']);
         FlashMessage::addMessage($id, 'add');
@@ -103,10 +99,6 @@ class Status extends GlobalController
     public function edit()
     {
         $this->check(['id', 'StatusNazwa'], $_POST);
-        if($_POST['StatusNazwa']=='' && $_POST['id']=='')
-        {
-            throw new \Exceptions\EmptyValue;
-        }
         $model = $this->createModel('Status');
         $id = $model->update($_POST['id'], $_POST['StatusNazwa']);
         FlashMessage::addMessage($id, 'update');
