@@ -4,8 +4,8 @@ namespace Models;
 use PDO;
 
 /**
- * Model producentów
- */
+* Model producentów
+*/
 class Producent extends PDODatabase
 {
     public function __construct()
@@ -15,62 +15,78 @@ class Producent extends PDODatabase
     }
 
     /**
-     * Metoda wstawiania do bazy danych producenta
-     * @param  string $name
-     * @return array
-     */
-    public function insert($name)
+    * Metoda wstawiania do bazy danych producenta
+    * @param  string $name
+    * @return array
+    */
+    public function insert($ProducentNazwa)
     {
         $id = -1;
         $this->testConnection();
         $this->testTable($this->table);
-        if(!isset($name) || $name == '')
+        if( !isset($ProducentNazwa) ||
+            $ProducentNazwa == '' ||
+            !preg_match('/^[a-zA-ZąĄęĘóśŚÓłŁżŻźŹćĆńŃ\s]*$/', $ProducentNazwa) ||
+            strlen($ProducentNazwa) > 100
+        ){
+            \Tools\FlashMessage::addMessage(0, 'valid');
             return 0;
+        }
         try	{
-            $query = 'INSERT INTO `'.$this->table.'` (`ProducentNazwa`)';
-            $query .= ' VALUES (:name)';
-            $stmt = $this->pdo->prepare($query);
+        $query = 'INSERT INTO `'.$this->table.'` (`ProducentNazwa`)';
+        $query .= ' VALUES (:ProducentNazwa)';
+        $stmt = $this->pdo->prepare($query);
 
-            $stmt->bindValue(':name', $name, PDO::PARAM_STR);
-            if($stmt->execute()) {
-                $id = $this->pdo->lastInsertId();
-            }
-            $stmt->closeCursor();
+        $stmt->bindValue(':ProducentNazwa', $ProducentNazwa, PDO::PARAM_STR);
+        if($stmt->execute()) {
+        $id = $this->pdo->lastInsertId();
+        }
+        $stmt->closeCursor();
         } catch(\PDOException $e) {
-            //throw new \Exceptions\Query($e);
-            return -1;
+        //throw new \Exceptions\Query($e);
+        return -1;
         }
         return $id;
     }
 
     /**
-     * Metoda edytowania producenta w bazie danych
-     * @param  int $id
-     * @param  string $name
-     * @return int
-     */
-    public function update($id, $name)
+    * Metoda edytowania producenta w bazie danych
+    * @param  int $id
+    * @param  string $name
+    * @return int
+    */
+    public function update($id, $ProducentNazwa)
     {
         $this->testConnection();
         $this->testTable($this->table);
 
-        if(!isset($id) && !isset($name))
-            throw new \Exceptions\EmptyValue;
+        if( !isset($id) ||
+            $id == '' ||
+            !is_numeric($id) ||
+            !isset($ProducentNazwa) ||
+            $ProducentNazwa == '' ||
+            !preg_match('/^[a-zA-ZąĄęĘóśŚÓłŁżŻźŹćĆńŃ\s]*$/', $ProducentNazwa) ||
+            strlen($ProducentNazwa) > 100
+        ){
+            \Tools\FlashMessage::addMessage(0, 'valid');
+            return 0;
+        }
         try	{
-            $query = 'UPDATE `'.$this->table.'`';
-            $query .= ' SET ProducentNazwa = :name';
-            $query .= ' WHERE id = :id';
-            $stmt = $this->pdo->prepare($query);
+        $query = 'UPDATE `'.$this->table.'`';
+        $query .= ' SET ProducentNazwa = :ProducentNazwa';
+        $query .= ' WHERE id = :id';
+        $stmt = $this->pdo->prepare($query);
 
-            $stmt->bindValue(':name', $name, PDO::PARAM_STR);
-            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-            if($stmt->execute()) {
-                $id = $stmt->rowCount();
-            }
-            $stmt->closeCursor();
+        $stmt->bindValue(':ProducentNazwa', $ProducentNazwa, PDO::PARAM_STR);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        if($stmt->execute()) {
+        $id = $stmt->rowCount();
+        }
+        $stmt->closeCursor();
         } catch(\PDOException $e) {
-            //throw new \Exceptions\Query($e);
-            return -1;
+        //throw new \Exceptions\Query($e);
+        \Tools\FlashMessage::addMessage(-1, 'query');
+        return -1;
         }
         return $id;
     }
