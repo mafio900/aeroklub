@@ -14,14 +14,22 @@
 
             </ul>
             <ul class="navbar-nav text-center">
-
+                {if !isset($rank)}
                 <li class="nav-item">
-                    <a class="nav-link" href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}logowanie/"> Zaloguj się </a>
+                    <a class="nav-link" href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}formularz-logowania/"> Zaloguj się </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}rejestracja/"> Zarejestruj się </a>
                 </li>
+                {else}
+                <li class="nav-item">
+                    <a class="nav-link">Jesteś zalogowany jako: {$name}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}wyloguj/"> Wyloguj się </a>
+                </li>
+                {/if}
 
             </ul>
         </div>

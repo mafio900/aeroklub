@@ -6,7 +6,7 @@ namespace Config\Application;
 */
 final class Routing {
     public static $routes = [
-    ['GET','/', array('controller' => 'User', 'action' => 'showAll'), 'home'],
+    ['GET','/', array('controller' => 'Home', 'action' => 'showAll'), 'home'],
     //konfiguracja User
     ['GET','/user/?', array('controller' => 'User', 'action' => 'showAll'), 'user'],
     ['GET','/user/[i:id]/?', array('controller' => 'User', 'action' => 'ajaxEditForm'), 'user_showOne'],

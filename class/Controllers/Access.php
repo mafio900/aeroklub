@@ -12,16 +12,20 @@ class Access extends Controller {
     public function login(){
         $model = $this->createModel('Access');
         if($this->getPost('login')  !== null && $this->getPost('password') !== null) {
-            if($model->login($this->getPost('login'), $this->getPost('password') ) )
+            $ranga = $model->login($this->getPost('login'), $this->getPost('password'));
+            if($ranga == 'Klient' ){
                 $this->redirect('');
+            }
+            else if($ranga == 'Pracownik'){
+                $this->redirect('user/');
+            }
         }
         FlashMessage::addMessage(-1, 'login');
-        //d('xd');
         $this->redirect('formularz-logowania/');
     }
     // wylogowywuje z systemu
     public function logout(){
         $this->createModel('Access')->logout();
-        $this->redirect('formularz-logowania/');
+        $this->redirect('');
     }
 }

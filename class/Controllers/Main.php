@@ -24,17 +24,21 @@ class Main extends GlobalController
             }
             $appController = new $fullController();
             // Utworzenie obiektu widoku
-
-            $appController->view = $this->createView('AdminView', $controller);
+            $viewName = 'ClientView';
+            if(\Tools\Access::get(\Tools\Access::$rank) == 'Pracownik')
+                $viewName = 'AdminView';
+            $appController->view = $this->createView($viewName, $controller);
 
             if (\Tools\Access::islogin() !== true) {
               // Logowanie do systemu lub rejestracja
-              if ($controller === 'Access' && (
+              if (($controller === 'Access' && (
                       $action === 'login'   ||
                       $action === 'add'     ||
                       $action === 'regForm' ||
-                      $action === 'logForm' )) {
-                  $result = $appController->$action();
+                      $action === 'logForm' )) ||
+                      $controller === 'Home'
+                  ) {
+                  $result = $appController->$action($id);
 
               } else {
                   \Tools\FlashMessage::addWarning(\Messages\Warning::$nologin);

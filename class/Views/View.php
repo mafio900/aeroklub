@@ -43,6 +43,11 @@ abstract class View
         $this->smarty = new Smarty();
         $this->set('subdir', '/'.\Config\Application\Config::$subdir);
         $this->set('protocol', \Config\Application\Config::$protocol);
+        if(\Tools\Access::islogin() === true) {
+            $this->set('isLogin', true);
+            $this->set('rank', \Tools\Access::get(\Tools\Access::$rank));
+            $this->set('name', \Tools\Access::get(\Tools\Access::$name));
+        }
     }
 
     /**
@@ -75,7 +80,9 @@ abstract class View
         	}
         }
         catch(\Exception $e) {
-        	throw new \Exceptions\TemplateNotFound($e, $this->template);
+        	//throw new \Exceptions\TemplateNotFound($e, $this->template);
+            \Tools\FlashMessage::addMessage(-1, 'templateNotFound');
+            \Controllers\Controller::redirect('');
         }
     }
 

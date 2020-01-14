@@ -9,8 +9,9 @@
 		// klucze sesji
 		public static 	$login 			= 'user';
 		public static 	$name 			= 'name';
-		public static 	$id 				= 'id';
-		private static 	$loginTime 	= 'logintime';
+        public static 	$rank 			= 'rank';
+		public static 	$id 			= 'id';
+		private static 	$loginTime 	    = 'logintime';
 		// czas, po którym nastapi wylogowanie [sek]
 		private static $sessionTime = 10;
 
@@ -26,7 +27,7 @@
 		 * @param  string $name  				nazwisko użytkownika
 		 * @param  int $id    					identyfikator użytkownika
 		 */
-		public static function login($login, $name, $id) {
+		public static function login($login, $name, $rank, $id) {
 			// sprawdzenie istniejącej sesji
 			if(parent::check() === true)
 			{
@@ -34,6 +35,7 @@
 				parent::regenerate();
 				parent::set(self::$login, $login);
 				parent::set(self::$name, $name);
+                parent::set(self::$rank, $rank);
 				parent::set(self::$id, $id);
 				parent::set(self::$loginTime, time());
 			}
@@ -42,6 +44,7 @@
 		public static function logout() {
 			parent::clear(self::$login);
 			parent::clear(self::$name);
+            parent::clear(self::$rank, $rank);
 			parent::clear(self::$id);
 			parent::clear(self::$loginTime);
 			parent::regenerate();

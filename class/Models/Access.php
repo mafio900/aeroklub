@@ -30,8 +30,8 @@ class Access extends PDODatabase {
             // Poprawne zalogowanie się użytkownika
             if(password_verify($password, $data['Password'])){
                 //zainicjalizowanie sesji
-                \Tools\Access::login($login, $data['Nazwisko'].' '.$data['Imie'] , $data['id']);
-                return true;
+                \Tools\Access::login($login, $data['Nazwisko'].' '.$data['Imie'], $data['Ranga'], $data['id']);
+                return $data['Ranga'];
             }
         }
         return false;
