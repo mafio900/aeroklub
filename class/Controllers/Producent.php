@@ -89,7 +89,6 @@ class Producent extends GlobalController
     public function add()
     {
         $this->check(['ProducentNazwa'], $_POST);
-        if($_POST['ProducentNazwa']=='')
         $model = $this->createModel('Producent');
         $id = $model->insert($_POST['ProducentNazwa']);
         FlashMessage::addMessage($id, 'add');
