@@ -65,7 +65,9 @@ final class Routing {
 
     //konfiguracja logowania
     ['GET','/formularz-logowania/?', array('controller' => 'Access', 'action' => 'logForm'), 'login_form'],
+    ['GET','/formularz-rejestracji/?', array('controller' => 'Access', 'action' => 'regForm'), 'reg_form'],
     ['POST','/zaloguj/?', array('controller' => 'Access', 'action' => 'login'), 'login'],
+    ['POST','/zarejestruj/?', array('controller' => 'Access', 'action' => 'register'), 'register'],
     ['GET','/wyloguj/?', array('controller' => 'Access', 'action' => 'logout'), 'logout']
 
     ];

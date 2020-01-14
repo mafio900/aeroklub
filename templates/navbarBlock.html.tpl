@@ -20,7 +20,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}rejestracja/"> Zarejestruj się </a>
+                    <a class="nav-link" href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}formularz-rejestracji/"> Zarejestruj się </a>
                 </li>
                 {else}
                 <li class="nav-item">

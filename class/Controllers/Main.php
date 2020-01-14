@@ -33,7 +33,7 @@ class Main extends GlobalController
               // Logowanie do systemu lub rejestracja
               if (($controller === 'Access' && (
                       $action === 'login'   ||
-                      $action === 'add'     ||
+                      $action === 'register'     ||
                       $action === 'regForm' ||
                       $action === 'logForm' )) ||
                       $controller === 'Home'
