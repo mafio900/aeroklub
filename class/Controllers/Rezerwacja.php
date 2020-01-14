@@ -147,7 +147,9 @@ class Rezerwacja extends GlobalController
         $model = $this->createModel('Rezerwacja');
         $id = $model->insert($_POST['TerminRealizacji'], $_POST['IdKlient'], $_POST['IdPracownik']);
         FlashMessage::addMessage($id, 'add');
-        $this->redirect('rezerwacja/'.$id);
+        if($id != 0)
+            $this->redirect('rezerwacja/'.$id);
+        $this->redirect('rezerwacja/');
     }
 
     /**
