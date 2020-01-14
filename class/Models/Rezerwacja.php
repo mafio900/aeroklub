@@ -72,7 +72,7 @@ class Rezerwacja extends PDODatabase
             $stmt->bindValue(':idPracownik', $idPracownik, PDO::PARAM_INT);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             if($stmt->execute()) {
-                $id = $this->pdo->lastInsertId();
+                $id = $stmt->rowCount();
             }
             $stmt->closeCursor();
         } catch(\PDOException $e) {

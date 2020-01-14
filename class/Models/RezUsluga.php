@@ -82,7 +82,7 @@ class RezUsluga extends PDODatabase
                 $stmt->bindValue(':idSamolot', $idSamolot, PDO::PARAM_INT);
             $stmt->bindValue(':id', $id, PDO::PARAM_STR);
             if($stmt->execute()) {
-            $id = $this->pdo->lastInsertId();
+                $id = $stmt->rowCount();
             }
             $stmt->closeCursor();
         } catch(\PDOException $e) {

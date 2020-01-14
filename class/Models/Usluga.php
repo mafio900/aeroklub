@@ -106,7 +106,7 @@ class Usluga extends PDODatabase
             $stmt->bindValue(':opis', $opis, PDO::PARAM_STR);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             if($stmt->execute()) {
-                $id = $this->pdo->lastInsertId();
+                $id = $stmt->rowCount();
             }
             $stmt->closeCursor();
         } catch(\PDOException $e) {
