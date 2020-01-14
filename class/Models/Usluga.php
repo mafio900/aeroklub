@@ -22,19 +22,33 @@ class Usluga extends PDODatabase
      * @param  string $opis
      * @return array
      */
-    public function insert($name, $cena, $jednostka, $opis)
+    public function insert($usluganazwa, $cena, $jednostka, $opis)
     {
         $id = -1;
         $this->testConnection();
         $this->testTable($this->table);
-        if(!isset($name) && !isset($cena) && !isset($jednostka))
+        if( !isset($usluganazwa) ||
+            $usluganazwa == '' ||
+            !preg_match('/^[^\s][0-9a-zA-ZąĄęĘóśŚÓłŁżŻźŹćĆńŃ\.\-\s]*$/', $usluganazwa) ||
+            strlen($usluganazwa) > 100 ||
+            !isset($cena) ||
+            $cena == '' ||
+            !preg_match('/^\d+(\.\d{2})?$/', $cena) ||
+            !isset($jednostka) ||
+            $jednostka == '' ||
+            !preg_match('/^[^\s][a-zA-ZąĄęĘóśŚÓłŁżŻźŹćĆńŃ]*$/', $jednostka) ||
+            ($opis != '' && strlen($opis) > 100 ) ||
+            ($opis != '' && !preg_match('/^[^\s][0-9a-zA-ZąĄęĘóśŚÓłŁżŻźŹćĆńŃ\.\-\s]*$/', $opis) )
+        ){
+            \Tools\FlashMessage::addMessage(0, 'valid');
             return 0;
+        }
         try	{
             $query = 'INSERT INTO `'.$this->table.'` (`UslugaNazwa`, `CenaJedn`, `JednMiary`, `Opis`)';
-            $query .= ' VALUES (:name, :cena, :jednostka, :opis)';
+            $query .= ' VALUES (:usluganazwa, :cena, :jednostka, :opis)';
             $stmt = $this->pdo->prepare($query);
 
-            $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+            $stmt->bindValue(':usluganazwa', $usluganazwa, PDO::PARAM_STR);
             $stmt->bindValue(':cena', $cena, PDO::PARAM_STR);
             $stmt->bindValue(':jednostka', $jednostka, PDO::PARAM_STR);
             $stmt->bindValue(':opis', $opis, PDO::PARAM_STR);
@@ -55,20 +69,36 @@ class Usluga extends PDODatabase
      * @param  string $name
      * @return int
      */
-    public function update($id, $name, $cena, $jednostka, $opis)
+    public function update($id, $usluganazwa, $cena, $jednostka, $opis)
     {
         $this->testConnection();
         $this->testTable($this->table);
 
-        if(!isset($id) && !isset($name) && !isset($cena) && !isset($jednostka))
+        if( !isset($id) ||
+            $id == '' ||
+            !is_numeric($id) ||
+            !isset($usluganazwa) ||
+            $usluganazwa == '' ||
+            !preg_match('/^[^\s][0-9a-zA-ZąĄęĘóśŚÓłŁżŻźŹćĆńŃ\.\-\s]*$/', $usluganazwa) ||
+            strlen($usluganazwa) > 100 ||
+            !isset($cena) ||
+            $cena == '' ||
+            !preg_match('/^\d+(\.\d{2})?$/', $cena) ||
+            !isset($jednostka) ||
+            $jednostka == '' ||
+            !preg_match('/^[^\s][a-zA-ZąĄęĘóśŚÓłŁżŻźŹćĆńŃ]*$/', $jednostka) ||
+            ($opis != '' && strlen($opis) > 100 ) ||
+            ($opis != '' && !preg_match('/^[^\s][0-9a-zA-ZąĄęĘóśŚÓłŁżŻźŹćĆńŃ\.\-\s]*$/', $opis) )
+        ){
             return 0;
+        }
         try	{
             $query = 'UPDATE `'.$this->table.'`';
-            $query .= ' SET UslugaNazwa = :name, CenaJedn = :cena, JednMiary = :jednostka, Opis = :opis';
+            $query .= ' SET UslugaNazwa = :usluganazwa, CenaJedn = :cena, JednMiary = :jednostka, Opis = :opis';
             $query .= ' WHERE id = :id';
             $stmt = $this->pdo->prepare($query);
 
-            $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+            $stmt->bindValue(':usluganazwa', $usluganazwa, PDO::PARAM_STR);
             $stmt->bindValue(':cena', $cena, PDO::PARAM_STR);
             $stmt->bindValue(':jednostka', $jednostka, PDO::PARAM_STR);
             $stmt->bindValue(':opis', $opis, PDO::PARAM_STR);
