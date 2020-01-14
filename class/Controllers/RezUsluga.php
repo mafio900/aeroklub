@@ -24,6 +24,25 @@ class RezUsluga extends GlobalController
         return $result;
     }
 
+    public function ajaxEditForm($id)
+    {
+        $this->view->setTemplate('ajaxModals/editRezUsluga');
+
+        $model = $this->createModel('RezUsluga');
+        $result['data'] = $model->selectOneById($id);
+
+        $model = $this->createModel('Samolot');
+        $result['samoloty'] = $model->transferByColumn($model->selectAll());
+
+        $model = $this->createModel('Producent');
+        $result['producenci'] = $model->transferByColumn($model->selectAll());
+
+        $model = $this->createModel('Usluga');
+        $result['uslugi'] = $model->transferByColumn($model->selectAll());
+
+        return $result;
+    }
+
     /**
      * Usuwanie z tabeli rezusluga
      * @param  int $id
@@ -55,10 +74,6 @@ class RezUsluga extends GlobalController
     public function add()
     {
         $this->check([`id`, `IdUsluga`, `Ilosc`, `IdSamolot`], $_POST);
-        if($_POST['id']=='' && $_POST['IdUsluga']=='' && $_POST['Ilosc']=='')
-        {
-            throw new \Exceptions\EmptyValue;
-        }
         $model = $this->createModel('RezUsluga');
         $id = $model->insert($_POST['id'], $_POST['IdUsluga'], $_POST['Ilosc'], $_POST['IdSamolot']);
         FlashMessage::addMessage($id, 'add');
@@ -72,34 +87,11 @@ class RezUsluga extends GlobalController
     public function edit()
     {
         $this->check(['id', `IdUsluga`, `Ilosc`, `IdSamolot`], $_POST);
-        if($_POST['IdUsluga']=='' && $_POST['Ilosc']=='' && $_POST['id']=='')
-        {
-            throw new \Exceptions\EmptyValue;
-        }
         $model = $this->createModel('RezUsluga');
         $id = $model->update($_POST['id'], $_POST['IdUsluga'], $_POST['Ilosc'], $_POST['IdSamolot']);
         $idRez = $model->selectOneById($_POST['id'])['IdRezerwacja'];
         FlashMessage::addMessage($id, 'update');
         $this->redirect('rezerwacja/'.$idRez);
-    }
-
-    public function ajaxEditForm($id)
-    {
-        $this->view->setTemplate('ajaxModals/editRezUsluga');
-
-        $model = $this->createModel('RezUsluga');
-        $result['data'] = $model->selectOneById($id);
-
-        $model = $this->createModel('Samolot');
-        $result['samoloty'] = $model->transferByColumn($model->selectAll());
-
-        $model = $this->createModel('Producent');
-        $result['producenci'] = $model->transferByColumn($model->selectAll());
-
-        $model = $this->createModel('Usluga');
-        $result['uslugi'] = $model->transferByColumn($model->selectAll());
-
-        return $result;
     }
 
 }

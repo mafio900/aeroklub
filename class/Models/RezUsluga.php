@@ -24,8 +24,20 @@ class RezUsluga extends PDODatabase
         $id = -1;
         $this->testConnection();
         $this->testTable($this->table);
-        if(!isset($idRezerwacja) && !isset($idUsluga) && !isset($ilosc))
+        if( !isset($idRezerwacja) ||
+            $idRezerwacja == '' ||
+            !is_numeric($idRezerwacja) ||
+            !isset($idUsluga) ||
+            $idUsluga == '' ||
+            !is_numeric($idUsluga) ||
+            !isset($ilosc) ||
+            $ilosc == '' ||
+            !is_numeric($ilosc) ||
+            ($idSamolot != '' && !is_numeric($idSamolot) )
+        ){
+            \Tools\FlashMessage::addMessage(0, 'valid');
             return 0;
+        }
         try	{
             if($idSamolot==0)
             {
@@ -65,8 +77,20 @@ class RezUsluga extends PDODatabase
         $this->testConnection();
         $this->testTable($this->table);
 
-        if(!isset($id) && !isset($idUsluga) && !isset($ilosc))
+        if( !isset($id) ||
+            $id == '' ||
+            !is_numeric($id) ||
+            !isset($idUsluga) ||
+            $idUsluga == '' ||
+            !is_numeric($idUsluga) ||
+            !isset($ilosc) ||
+            $ilosc == '' ||
+            !is_numeric($ilosc) ||
+            ($idSamolot != '' && !is_numeric($idSamolot) )
+        ){
+            \Tools\FlashMessage::addMessage(0, 'valid');
             return 0;
+        }
         try	{
             $query = 'UPDATE `'.$this->table.'`';
             if($idSamolot==0)
