@@ -43,8 +43,8 @@ class Producent extends PDODatabase
         }
         $stmt->closeCursor();
         } catch(\PDOException $e) {
-        //throw new \Exceptions\Query($e);
-        return -1;
+            //throw new \Exceptions\Query($e);
+            return -1;
         }
         return $id;
     }
