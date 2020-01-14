@@ -29,8 +29,8 @@ class Access extends Controller {
     // loguje do systemu
     public function login(){
         $model = $this->createModel('Access');
-        if($this->getPost('login')  !== null && $this->getPost('password') !== null) {
-            $ranga = $model->login($this->getPost('login'), $this->getPost('password'));
+        if($this->getPost('Login')  !== null && $this->getPost('Password') !== null) {
+            $ranga = $model->login($this->getPost('Login'), $this->getPost('Password'));
             if($ranga == 'Klient' ){
                 $this->redirect('');
             }
