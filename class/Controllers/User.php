@@ -86,11 +86,6 @@ class User extends GlobalController
     public function add()
     {
         $this->check(['Imie', 'Nazwisko', 'Pesel', 'Ulica', 'NrDomu', 'NrLokalu', 'Miejscowosc', 'KodPocztowy', 'NrTelefonu', 'Email', 'Ranga', 'Login', 'Password'], $_POST);
-        if($_POST['Imie']=='' && $_POST['Nazwisko']=='' && $_POST['Pesel']=='' && $_POST['Ulica']=='' && $_POST['NrDomu']==''
-         && $_POST['Miejscowosc']=='' && $_POST['KodPocztowy']=='' && $_POST['NrTelefonu']=='' && $_POST['Ranga']=='' && $_POST['Login']=='' && $_POST['Password']=='')
-        {
-            throw new \Exceptions\EmptyValue;
-        }
         $model = $this->createModel('User');
         $id = $model->insert($_POST['Imie'], $_POST['Nazwisko'], $_POST['Pesel'], $_POST['Ulica'], $_POST['NrDomu'], $_POST['NrLokalu'], $_POST['Miejscowosc'],
         $_POST['KodPocztowy'], $_POST['NrTelefonu'], $_POST['Email'], $_POST['Ranga'], $_POST['Login'], $_POST['Password']);
@@ -105,11 +100,6 @@ class User extends GlobalController
     public function edit()
     {
         $this->check(['id', 'Imie', 'Nazwisko', 'Pesel', 'Ulica', 'NrDomu', 'NrLokalu', 'Miejscowosc', 'KodPocztowy', 'NrTelefonu', 'Email', 'Ranga', 'Login', 'Password'], $_POST);
-        if($_POST['Imie']=='' && $_POST['Nazwisko']=='' && $_POST['Pesel']=='' && $_POST['Ulica']=='' && $_POST['NrDomu']==''
-         && $_POST['Miejscowosc']=='' && $_POST['KodPocztowy']=='' && $_POST['NrTelefonu']=='' && $_POST['Ranga']=='' && $_POST['Login']=='' && $_POST['Password']=='' && $_POST['id']=='')
-        {
-            throw new \Exceptions\EmptyValue;
-        }
         $model = $this->createModel('User');
         $id = $model->update($_POST['id'], $_POST['Imie'], $_POST['Nazwisko'], $_POST['Pesel'], $_POST['Ulica'], $_POST['NrDomu'], $_POST['NrLokalu'], $_POST['Miejscowosc'],
         $_POST['KodPocztowy'], $_POST['NrTelefonu'], $_POST['Email'], $_POST['Ranga'], $_POST['Login'], $_POST['Password']);
