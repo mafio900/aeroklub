@@ -26,7 +26,7 @@ class Producent extends PDODatabase
         $this->testTable($this->table);
         if( !isset($ProducentNazwa) ||
             $ProducentNazwa == '' ||
-            !preg_match('/^[a-zA-ZąĄęĘóśŚÓłŁżŻźŹćĆńŃ\s]*$/', $ProducentNazwa) ||
+            !preg_match('/^[^\s][a-zA-ZąĄęĘóśŚÓłŁżŻźŹćĆńŃ\s]*$/', $ProducentNazwa) ||
             strlen($ProducentNazwa) > 100
         ){
             \Tools\FlashMessage::addMessage(0, 'valid');
@@ -72,21 +72,21 @@ class Producent extends PDODatabase
             return 0;
         }
         try	{
-        $query = 'UPDATE `'.$this->table.'`';
-        $query .= ' SET ProducentNazwa = :ProducentNazwa';
-        $query .= ' WHERE id = :id';
-        $stmt = $this->pdo->prepare($query);
+            $query = 'UPDATE `'.$this->table.'`';
+            $query .= ' SET ProducentNazwa = :ProducentNazwa';
+            $query .= ' WHERE id = :id';
+            $stmt = $this->pdo->prepare($query);
 
-        $stmt->bindValue(':ProducentNazwa', $ProducentNazwa, PDO::PARAM_STR);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        if($stmt->execute()) {
-        $id = $stmt->rowCount();
-        }
-        $stmt->closeCursor();
+            $stmt->bindValue(':ProducentNazwa', $ProducentNazwa, PDO::PARAM_STR);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            if($stmt->execute()) {
+                $id = $stmt->rowCount();
+            }
+            $stmt->closeCursor();
         } catch(\PDOException $e) {
-        //throw new \Exceptions\Query($e);
-        \Tools\FlashMessage::addMessage(-1, 'query');
-        return -1;
+            //throw new \Exceptions\Query($e);
+            \Tools\FlashMessage::addMessage(-1, 'query');
+            return -1;
         }
         return $id;
     }
