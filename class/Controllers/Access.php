@@ -58,6 +58,18 @@ class Access extends Controller {
         }
     }
 
+    public function checkLogin(){
+        $this->check(['Login'], $_POST);
+        $c = $this->createModel('Access')->checkLogin($_POST['Login']);
+        $this->view->setTemplate('blank');
+        if($c){
+            echo json_encode(array('id' => 1));
+        }
+        else{
+            echo json_encode(array('id' => 0));
+        }
+    }
+
     // wylogowywuje z systemu
     public function logout(){
         $this->createModel('Access')->logout();

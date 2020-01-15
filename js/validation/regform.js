@@ -96,7 +96,25 @@
 
         $('input[name="Login"]').rules( "add", {
             login: true,
-            maxlength: '30'
+            maxlength: '30',
+            remote: {
+                url: $('#login').data('url'),
+                type: "POST",
+                cache: false,
+                dataType: "json",
+                data: {
+                    Login: function() { return $("#login").val(); }
+                },
+                dataFilter: function(response) {
+                    if($.parseJSON(response).id==0)
+                        return "true";
+                    else
+                        return false;
+                }
+            },
+            messages: {
+                remote: "Podany login już istnieje!"
+            }
         });
 
         $('input[name="Password"]').rules( "add", {

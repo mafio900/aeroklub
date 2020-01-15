@@ -46,6 +46,7 @@ class Main extends GlobalController
                       $action === 'login'   ||
                       $action === 'register'     ||
                       $action === 'regForm' ||
+                      $action === 'checkLogin' ||
                       $action === 'logForm' )) ||
                       $controller === 'Home'
                   ) {

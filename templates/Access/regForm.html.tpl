@@ -4,7 +4,7 @@
 {block name=formBody}
         <div class="form-control-* form-row mb-2">
             <label class="col-12 col-md-2 col-form-label text-center text-md-left" for="Login">Login</label>
-            <input type="text" class="col-12 col-md-3" id="login" name="Login">
+            <input type="text" class="col-12 col-md-3" id="login" name="Login" data-url="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}check/">
             <div class="col-12 text-center text-md-left"></div>
         </div>
         <div class="form-control-* form-row mb-2">

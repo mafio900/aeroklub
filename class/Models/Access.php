@@ -37,6 +37,25 @@ class Access extends PDODatabase {
         return false;
     }
 
+    public function checkLogin($login) {
+        $data = null;
+        try	{
+            $query = 'SELECT * FROM `user` WHERE `Login` = :login';
+            $stmt = $this->pdo->prepare($query);
+
+            $stmt->bindValue(':login', $login, PDO::PARAM_STR);
+            if($stmt->execute()) {
+                $data = $stmt->fetchAll();
+                if($data)
+                    return true;
+            }
+            $stmt->closeCursor();
+        } catch(\PDOException $e) {
+            throw new \Exceptions\Query($e);
+        }
+        return false;
+    }
+
     /**
     * Wylogowanie użytkownika z systemu
     */
