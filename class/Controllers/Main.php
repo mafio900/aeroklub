@@ -7,6 +7,7 @@ class Main extends GlobalController
     function __construct()
     {
         try {
+            //Zainicjalizowanie sesji
             \Tools\Session::initialize();
             $this->getFlashMessageFromSession();
             // Routing aplikacji
@@ -23,10 +24,20 @@ class Main extends GlobalController
                 throw new \Exceptions\Application();
             }
             $appController = new $fullController();
-            // Utworzenie obiektu widoku
+            //Tworzenie zmiennych z nazwą widoku oraz czy użytkownik to Pracownik czy też Klient
             $viewName = 'ClientView';
-            if(\Tools\Access::get(\Tools\Access::$rank) == 'Pracownik')
+            $admin = false;
+            if(\Tools\Access::get(\Tools\Access::$rank) == 'Pracownik'){
                 $viewName = 'AdminView';
+                $admin = true;
+            }
+            //Przekierowanie jeżeli ktoś jest zalogowany i próbuje dostać się do tych kontrolerów
+            if(!$admin && ($controller=='Producent' || $controller=='Rezerwacja' || $controller=='RezUsluga'
+            || $controller=='Samolot' || $controller=='Status' || $controller=='User' || $controller=='Ulsuga')){
+                \Tools\FlashMessage::addMessage(-1, 'access');
+                $this->redirect('');
+            }
+            // Utworzenie obiektu widoku
             $appController->view = $this->createView($viewName, $controller);
 
             if (\Tools\Access::islogin() !== true) {
@@ -60,6 +71,7 @@ class Main extends GlobalController
 
             // Przekazujemy zwrócone dane do widoku
             $appController->view->setData($result);
+            // Dodanie wszystkich komunikatów na stronę
             $appController->view->set('error', \Tools\FlashMessage::getError());
             $appController->view->set('warning', \Tools\FlashMessage::getWarning());
             $appController->view->set('success', \Tools\FlashMessage::getSuccess());
