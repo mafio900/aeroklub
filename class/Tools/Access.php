@@ -44,7 +44,7 @@
 		public static function logout() {
 			parent::clear(self::$login);
 			parent::clear(self::$name);
-            parent::clear(self::$rank, $rank);
+            parent::clear(self::$rank);
 			parent::clear(self::$id);
 			parent::clear(self::$loginTime);
 			parent::regenerate();
