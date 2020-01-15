@@ -32,14 +32,14 @@ class Main extends GlobalController
                 $admin = true;
             }
             //Przekierowanie jeżeli ktoś jest zalogowany i próbuje dostać się do tych kontrolerów
-            if(!$admin && ($controller=='Producent' || $controller=='Rezerwacja' || $controller=='RezUsluga'
+            if(\Tools\Access::islogin() == true && !$admin && ($controller=='Producent' || $controller=='Rezerwacja' || $controller=='RezUsluga'
             || $controller=='Samolot' || $controller=='Status' || $controller=='User' || $controller=='Ulsuga')){
                 \Tools\FlashMessage::addMessage(-1, 'access');
                 $this->redirect('');
             }
             // Utworzenie obiektu widoku
             $appController->view = $this->createView($viewName, $controller);
-
+            $result = array();
             if (\Tools\Access::islogin() !== true) {
               // Logowanie do systemu lub rejestracja
               if (($controller === 'Access' && (
@@ -56,7 +56,7 @@ class Main extends GlobalController
                   \Tools\FlashMessage::addWarning(\Messages\Warning::$nologin);
 
                   if (preg_match('/^ajax/', $action) === 1) // Zapytanie asynchroniczne
-                    $appController->view->setTemplate('ajaxModals/notAllow');
+                    $appController->view->setTemplate('Admin/ajaxModals/notAllow');
                   else // To nie jest zapytanie asynchroniczne
                     $this->redirect('formularz-logowania/');
               }
