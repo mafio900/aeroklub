@@ -23,7 +23,7 @@ class Access extends Controller {
                                     'external/jquery.validate.add',
                                     'external/jquery.validate.polish',
                                     'validation',
-                                    'validation/regForm',
+                                    'validation/regform',
                                     'regform'));
     }
     // loguje do systemu
