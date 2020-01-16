@@ -1,0 +1,31 @@
+h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#formularz{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input[type=text],[type=date], [type=password]{
+    border: 1px solid #a9a9a9;
+    border-radius: 5px;
+}
+
+input.error{
+    border: 2px solid #D8000C !important;
+    border-radius: 4px;
+}
+.error{
+    color: #D8000C !important;
+}
+
+input.success{
+    border: 2px solid #28a745 !important;
+    border-radius: 4px;
+}
+.success{
+    color: #28a745 !important;
+}

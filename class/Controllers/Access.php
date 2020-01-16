@@ -7,7 +7,7 @@ class Access extends Controller {
     // formularz logowania
     public function logForm(){
         $this->view->setTemplate('Access/logForm');
-        $this->view->addCSSSet(array());
+        $this->view->addCSSSet(array('inputs'));
         $this->view->addJSSet(array('external/jquery.validate',
                                     'external/jquery.validate.add',
                                     'external/jquery.validate.polish',
@@ -18,7 +18,7 @@ class Access extends Controller {
     // formularz rejestracji
     public function regForm(){
         $this->view->setTemplate('Access/regForm');
-        $this->view->addCSSSet(array());
+        $this->view->addCSSSet(array('inputs'));
         $this->view->addJSSet(array('external/jquery.validate',
                                     'external/jquery.validate.add',
                                     'external/jquery.validate.polish',

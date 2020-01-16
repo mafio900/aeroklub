@@ -1,0 +1,17 @@
+.bg{
+    /*background: #FFDDDD;*/
+    height: auto;
+}
+.parallax {
+    background: url('../images/bg.jpg') no-repeat center;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 513px;
+    width: auto;
+}
+
+h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

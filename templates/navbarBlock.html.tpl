@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark navbar-expand-md bg-secondary sticky-top">
+<nav class="navbar navbar-light navbar-expand-md">
     <div class="container-fluid">
         <a class="navbar-brand" href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}">ZPAI</a>
 
