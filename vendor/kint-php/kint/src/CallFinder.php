@@ -27,7 +27,7 @@ namespace Kint;
 
 class CallFinder
 {
-    private static $ignore = array(
+    private static $ignore = [
         T_CLOSE_TAG => true,
         T_COMMENT => true,
         T_DOC_COMMENT => true,
@@ -35,7 +35,7 @@ class CallFinder
         T_OPEN_TAG => true,
         T_OPEN_TAG_WITH_ECHO => true,
         T_WHITESPACE => true,
-    );
+    ];
 
     /**
      * Things we need to do specially for operator tokens:
@@ -43,7 +43,7 @@ class CallFinder
      * - Wrap the access path in parentheses if there
      *   are any of these in the final short parameter.
      */
-    private static $operator = array(
+    private static $operator = [
         T_AND_EQUAL => true,
         T_BOOLEAN_AND => true,
         T_BOOLEAN_OR => true,
@@ -84,6 +84,9 @@ class CallFinder
         T_STRING_CAST => true,
         T_UNSET_CAST => true,
         T_XOR_EQUAL => true,
+        T_POW => true,
+        T_POW_EQUAL => true,
+        T_DOUBLE_ARROW => true,
         '!' => true,
         '%' => true,
         '&' => true,
@@ -100,9 +103,9 @@ class CallFinder
         '^' => true,
         '|' => true,
         '~' => true,
-    );
+    ];
 
-    private static $strip = array(
+    private static $strip = [
         '(' => true,
         ')' => true,
         '[' => true,
@@ -112,39 +115,34 @@ class CallFinder
         T_OBJECT_OPERATOR => true,
         T_DOUBLE_COLON => true,
         T_NS_SEPARATOR => true,
-    );
+    ];
 
     public static function getFunctionCalls($source, $line, $function)
     {
-        static $up = array(
+        static $up = [
             '(' => true,
             '[' => true,
             '{' => true,
             T_CURLY_OPEN => true,
             T_DOLLAR_OPEN_CURLY_BRACES => true,
-        );
-        static $down = array(
+        ];
+        static $down = [
             ')' => true,
             ']' => true,
             '}' => true,
-        );
-        static $modifiers = array(
+        ];
+        static $modifiers = [
             '!' => true,
             '@' => true,
             '~' => true,
             '+' => true,
             '-' => true,
-        );
-        static $identifier = array(
+        ];
+        static $identifier = [
             T_DOUBLE_COLON => true,
             T_STRING => true,
             T_NS_SEPARATOR => true,
-        );
-
-        if (KINT_PHP56) {
-            self::$operator[T_POW] = true;
-            self::$operator[T_POW_EQUAL] = true;
-        }
+        ];
 
         if (KINT_PHP70) {
             self::$operator[T_SPACESHIP] = true;
@@ -156,9 +154,9 @@ class CallFinder
 
         $tokens = \token_get_all($source);
         $cursor = 1;
-        $function_calls = array();
+        $function_calls = [];
         /** @var array<int, null|array|string> Performance optimization preventing backwards loops */
-        $prev_tokens = array(null, null, null);
+        $prev_tokens = [null, null, null];
 
         if (\is_array($function)) {
             $class = \explode('\\', $function[0]);
@@ -188,7 +186,7 @@ class CallFinder
                 continue;
             }
 
-            $prev_tokens = array($prev_tokens[1], $prev_tokens[2], $token);
+            $prev_tokens = [$prev_tokens[1], $prev_tokens[2], $token];
 
             // Check if it's the right type to be the function we're looking for
             if (T_STRING !== $token[0] || \strtolower($token[1]) !== $function) {
@@ -203,7 +201,7 @@ class CallFinder
 
             // Check if it matches the signature
             if (null === $class) {
-                if ($prev_tokens[1] && \in_array($prev_tokens[1][0], array(T_DOUBLE_COLON, T_OBJECT_OPERATOR), true)) {
+                if ($prev_tokens[1] && \in_array($prev_tokens[1][0], [T_DOUBLE_COLON, T_OBJECT_OPERATOR], true)) {
                     continue;
                 }
             } else {
@@ -222,8 +220,8 @@ class CallFinder
             $instring = false; // Whether we're in a string or not
             $realtokens = false; // Whether the current scope contains anything meaningful or not
             $paramrealtokens = false; // Whether the current parameter contains anything meaningful
-            $params = array(); // All our collected parameters
-            $shortparam = array(); // The short version of the parameter
+            $params = []; // All our collected parameters
+            $shortparam = []; // The short version of the parameter
             $param_start = $offset; // The distance to the start of the parameter
 
             // Loop through the following tokens until the function call ends
@@ -276,11 +274,11 @@ class CallFinder
                     $shortparam[] = '"';
                 } elseif (1 === $depth) {
                     if (',' === $token[0]) {
-                        $params[] = array(
+                        $params[] = [
                             'full' => \array_slice($tokens, $param_start, $offset - $param_start),
                             'short' => $shortparam,
-                        );
-                        $shortparam = array();
+                        ];
+                        $shortparam = [];
                         $paramrealtokens = false;
                         $param_start = $offset + 1;
                     } elseif (T_CONSTANT_ENCAPSED_STRING === $token[0] && \strlen($token[1]) > 2) {
@@ -293,10 +291,10 @@ class CallFinder
                 // Depth has dropped to 0 (So we've hit the closing paren)
                 if ($depth <= 0) {
                     if ($paramrealtokens) {
-                        $params[] = array(
+                        $params[] = [
                             'full' => \array_slice($tokens, $param_start, $offset - $param_start),
                             'short' => $shortparam,
-                        );
+                        ];
                     }
 
                     break;
@@ -322,11 +320,11 @@ class CallFinder
                     }
                 }
 
-                $param = array(
+                $param = [
                     'name' => self::tokensToString($name),
                     'path' => self::tokensToString(self::tokensTrim($param['full'])),
                     'expression' => $expression,
-                );
+                ];
             }
 
             // Get the modifiers
@@ -340,7 +338,7 @@ class CallFinder
                 --$index;
             }
 
-            $mods = array();
+            $mods = [];
 
             while (isset($tokens[$index])) {
                 if (isset(self::$ignore[$tokens[$index][0]])) {
@@ -357,10 +355,10 @@ class CallFinder
                 break;
             }
 
-            $function_calls[] = array(
+            $function_calls[] = [
                 'parameters' => $params,
                 'modifiers' => $mods,
-            );
+            ];
         }
 
         return $function_calls;
@@ -439,7 +437,7 @@ class CallFinder
 
         $tokens = self::tokensTrim($tokens);
 
-        $output = array();
+        $output = [];
         $last = null;
 
         foreach ($tokens as $index => $token) {

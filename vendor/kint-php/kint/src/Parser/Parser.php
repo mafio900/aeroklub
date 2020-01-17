@@ -60,9 +60,9 @@ class Parser
     protected $caller_class;
     protected $depth_limit = false;
     protected $marker;
-    protected $object_hashes = array();
+    protected $object_hashes = [];
     protected $parse_break = false;
-    protected $plugins = array();
+    protected $plugins = [];
 
     /**
      * @param false|int   $depth_limit Maximum depth to parse data
@@ -165,8 +165,10 @@ class Parser
                 return $this->parseResource($var, $o);
             case 'string':
                 return $this->parseString($var, $o);
+            case 'unknown type':
+            case 'resource (closed)':
             default:
-                return $this->parseUnknown($var, $o);
+                return $this->parseResourceClosed($var, $o);
         }
     }
 
@@ -184,12 +186,12 @@ class Parser
 
         foreach ($types as $type) {
             if (!isset($this->plugins[$type])) {
-                $this->plugins[$type] = array(
-                    self::TRIGGER_BEGIN => array(),
-                    self::TRIGGER_SUCCESS => array(),
-                    self::TRIGGER_RECURSION => array(),
-                    self::TRIGGER_DEPTH_LIMIT => array(),
-                );
+                $this->plugins[$type] = [
+                    self::TRIGGER_BEGIN => [],
+                    self::TRIGGER_SUCCESS => [],
+                    self::TRIGGER_RECURSION => [],
+                    self::TRIGGER_DEPTH_LIMIT => [],
+                ];
             }
 
             foreach ($this->plugins[$type] as $trigger => &$pool) {
@@ -204,7 +206,7 @@ class Parser
 
     public function clearPlugins()
     {
-        $this->plugins = array();
+        $this->plugins = [];
     }
 
     public function haltParse()
@@ -262,9 +264,9 @@ class Parser
     {
         $bt = \debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT | DEBUG_BACKTRACE_IGNORE_ARGS);
 
-        $caller_frame = array(
+        $caller_frame = [
             'function' => __FUNCTION__,
-        );
+        ];
 
         while (isset($bt[0]['object']) && $bt[0]['object'] === $this) {
             $caller_frame = \array_shift($bt);
@@ -303,7 +305,7 @@ class Parser
         $string = new BlobObject();
         $string->transplant($o);
         $string->encoding = BlobObject::detectEncoding($var);
-        $string->size = BlobObject::strlen($var, $string->encoding);
+        $string->size = \strlen($var);
 
         $rep = new Representation('Contents');
         $rep->contents = $var;
@@ -543,16 +545,16 @@ class Parser
     }
 
     /**
-     * Parses an unknown into a Kint object structure.
+     * Parses a closed resource into a Kint object structure.
      *
      * @param mixed       $var The input variable
      * @param BasicObject $o   The base object
      *
      * @return BasicObject
      */
-    private function parseUnknown(&$var, BasicObject $o)
+    private function parseResourceClosed(&$var, BasicObject $o)
     {
-        $o->type = 'unknown';
+        $o->type = 'resource (closed)';
         $this->applyPlugins($var, $o, self::TRIGGER_SUCCESS);
 
         return $o;
@@ -574,7 +576,7 @@ class Parser
         /** @var bool Psalm bug workaround */
         $this->parse_break = false;
 
-        $plugins = array();
+        $plugins = [];
 
         if (isset($this->plugins[$o->type][$trigger])) {
             $plugins = $this->plugins[$o->type][$trigger];

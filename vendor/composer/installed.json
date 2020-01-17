@@ -59,23 +59,23 @@
         "source": {
             "type": "git",
             "url": "https://github.com/kint-php/kint.git",
-            "reference": "335ac1bcaf04d87df70d8aa51e8887ba2c6d203b"
+            "reference": "5459781c835778a377321b47de87cec5daab90b7"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/kint-php/kint/zipball/335ac1bcaf04d87df70d8aa51e8887ba2c6d203b",
-            "reference": "335ac1bcaf04d87df70d8aa51e8887ba2c6d203b",
+            "url": "https://api.github.com/repos/kint-php/kint/zipball/5459781c835778a377321b47de87cec5daab90b7",
+            "reference": "5459781c835778a377321b47de87cec5daab90b7",
             "shasum": ""
         },
         "require": {
-            "php": ">=5.3.6"
+            "php": ">=5.6"
         },
         "require-dev": {
             "friendsofphp/php-cs-fixer": "^2.0",
-            "phpunit/phpunit": "^4.0",
+            "phpunit/phpunit": "^5.0",
             "seld/phar-utils": "^1.0",
-            "symfony/finder": "^2.0 || ^3.0 || ^4.0",
-            "vimeo/psalm": "^3.0"
+            "symfony/finder": "^2.0 || ^3.0 || ^4.0 || ^5.0",
+            "vimeo/psalm": "^3.7"
         },
         "suggest": {
             "ext-ctype": "Simple data type tests",
@@ -87,9 +87,9 @@
             "symfony/polyfill-iconv": "Replacement for ext-iconv if missing",
             "symfony/polyfill-mbstring": "Replacement for ext-mbstring if missing"
         },
-        "time": "2019-10-17T18:05:24+00:00",
+        "time": "2020-01-14T20:03:41+00:00",
         "type": "library",
-        "installation-source": "dist",
+        "installation-source": "source",
         "autoload": {
             "files": [
                 "init.php"
