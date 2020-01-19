@@ -1,7 +1,10 @@
 {extends file="./baseTemplate.html.tpl"}
 
-{block name=title}Formularz{/block}
 {block name=body}
+<div class="parallax">
+    <h1>{block name=title}Formularz{/block}</h1>
+</div>
+<div class="container">
     <form id="formularz" class="col-12" action="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}{block name=action}{/block}" method="post">
         <div class="panel panel-default">
             <div class="panel-body">
@@ -13,5 +16,6 @@
             </div>
         </div>
     </form>
-    {block name=rezusl}{/block}
+</div>
+{block name=rezusl}{/block}
 {/block}

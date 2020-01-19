@@ -2,15 +2,21 @@
     /*background: #FFDDDD;*/
     height: auto;
 }
+main{
+    overflow: hidden;
+}
+
 .parallax {
     background: url('../images/bg.jpg') no-repeat center;
     background-size: cover;
     background-attachment: fixed;
-    height: 513px;
-    width: auto;
+    background-position: 0px -35vh;
+    height: 50vh;
+    width: 100vw;
 }
 
 h1{
+    padding-top: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
