@@ -1,13 +1,13 @@
 {extends file="../baseTemplate.html.tpl"}
 
 {block name=body}
-<div class="parallax">
-    <h1>Strona główna</h1>
+<div class="parallax-window">
+    <h1>Aeroklub Kalisz</h1>
 </div>
 <div class="container">
         <div class="row mt-5">
 
-        <div class="col-6">
+        <div class="col-md-6 slide-in">
             <p><h3>Aeroklub Ziemi Kaliskiej</h3> utworzony w  1957 roku na lotnisku w Kaliszu.
             Obecnie jest jednym z młodszych, a jednocześnie najdynamiczniej rozwijającym się aeroklubem w Polsce.</p>
 
@@ -16,7 +16,7 @@
 
             <p>W Kaliszu panuje klimat umiarkowany przejściowy, z przewagą wpływów oceanicznych. Średnia temp. lipca wynosi +18,3 st C, a stycznia -1,3 st C. Opady roczne wynoszą ok. 580 mm. W ostatnich latach obserwujemy jednak stałą tendencję do ocieplania się klimatu. Charakterystycznymi cechami mikroklimatu zwłaszcza obszarów wzgórz są zmniejszone amplitudy dobowe i bardzo ciepłe noce (średnio w miesiącach półrocza letniego o 0,5 do 1,5 st C cieplejsze niż w Poznaniu, Wrocławiu, czy Słubicach).</p>
         </div>
-        <div class="col-6">
+        <div class="col-md-6 slide-in">
             <h3>LOTNISKO</h3>
             <p>W swojej bazie na lotnisku w Kaliszu stacjonuje śmigłowiec Lotniczego Pogotowia Ratunkowego – nowoczesny Eurocopter EC135. Lotnictwo sanitarne na Ziemi Kaliskiej ma bardzo bogata tradycję i jest ściśle związane z aeroklubem od pierwszych lat jego istnienia.</p>
 

@@ -1,23 +1,49 @@
-.bg{
-    /*background: #FFDDDD;*/
-    height: auto;
+@keyframes slideInFromBottom {
+    0% {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
+
+@keyframes slideInFromTop {
+    0% {
+        transform: translateY(-60px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
 main{
     overflow: hidden;
 }
 
-.parallax {
-    background: url('../images/bg.jpg') no-repeat center;
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: 0px -35vh;
-    height: 50vh;
-    width: 100vw;
+.navbar{
+    animation: slideInFromTop 2s ease-in-out;
 }
 
-h1{
-    padding-top: 30px;
+.parallax-window {
+    min-height: 50vh;
+    background: transparent;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: flex-start;
+}
+
+.parallax-window h1{
+    color: white;
+    margin-top: 2%;
+    animation: slideInFromBottom 2s ease-in-out;
+}
+
+.slide-in{
+    animation: slideInFromBottom 2s ease-in-out;
+}
+
+h3{
+    color: rgb(124, 33, 40);
 }

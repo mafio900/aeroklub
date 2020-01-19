@@ -11,8 +11,8 @@
                 {block name=formBody}{/block}
             </div>
             <div class="panel-footer text-center">
-                <button id="submit-button" type="submit" class="btn btn-success">{block name=submitName}{/block}</button>
-                <a href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}{block name=where}{/block}" role="button" class="btn btn-primary">Cofnij</a>
+                <button id="submit-button" type="submit" class="btn">{block name=submitName}{/block}</button>
+                <a href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}{block name=where}{/block}" role="button" class="btn btn-outline-dark">Cofnij</a>
             </div>
         </div>
     </form>

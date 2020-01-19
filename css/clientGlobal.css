@@ -1,5 +1,11 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .navbar{
-    background-color: #FFF0F0;
+    background-color: rgb(124, 33, 40);
 }
 
 .close{

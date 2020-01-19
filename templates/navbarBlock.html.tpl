@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light navbar-expand-md">
+<nav class="navbar navbar-dark navbar-expand-md">
     <div class="container-fluid">
         <a class="navbar-brand" href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}">ZPAI</a>
 
@@ -10,6 +10,10 @@
 
                 <li class="nav-item {if $active=='Home'}active{/if}">
                     <a class="nav-link" href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}"> Home </a>
+                </li>
+
+                <li class="nav-item {if $active=='Oferty'}active{/if}">
+                    <a class="nav-link" href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}oferty"> Oferty </a>
                 </li>
 
             </ul>

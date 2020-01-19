@@ -2,6 +2,7 @@ h1{
     display: flex;
     align-items: center;
     justify-content: center;
+    color: rgb(124, 33, 40);
 }
 #formularz{
     display: flex;
@@ -28,4 +29,16 @@ input.success{
 }
 .success{
     color: #28a745 !important;
+}
+
+#submit-button{
+    color: white;
+    background-color: rgb(124, 33, 40);
+    border-color: rgb(94, 3, 10);
+}
+
+#submit-button:hover{
+    color: white;
+    background-color: rgb(154, 63, 70);
+    border-color: rgb(124, 33, 40);
 }
