@@ -19,7 +19,7 @@ class Samolot extends PDODatabase
      * @param  string $name
      * @return array
      */
-    public function insert($idProducent, $model, $rejestracja, $opis)
+    public function insert($idProducent, $model, $rejestracja, $opis, $zdjecieNazwa, $rozszerzenie)
     {
         $id = -1;
         $this->testConnection();
@@ -41,14 +41,16 @@ class Samolot extends PDODatabase
             return 0;
         }
         try	{
-            $query = 'INSERT INTO `'.$this->table.'` (`IdProducent`, `Model`, `Rejestracja`, `Opis`)';
-            $query .= ' VALUES (:idProducent, :model, :rejestracja, :opis)';
+            $query = 'INSERT INTO `'.$this->table.'` (`IdProducent`, `Model`, `Rejestracja`, `Opis`, `ZdjecieNazwa`, `Rozszerzenie`)';
+            $query .= ' VALUES (:idProducent, :model, :rejestracja, :opis, :zdjecieNazwa, :rozszerzenie)';
             $stmt = $this->pdo->prepare($query);
 
             $stmt->bindValue(':idProducent', $idProducent, PDO::PARAM_INT);
             $stmt->bindValue(':model', $model, PDO::PARAM_STR);
             $stmt->bindValue(':rejestracja', $rejestracja, PDO::PARAM_STR);
             $stmt->bindValue(':opis', $opis, PDO::PARAM_STR);
+            $stmt->bindValue(':zdjecieNazwa', $zdjecieNazwa, PDO::PARAM_STR);
+            $stmt->bindValue(':rozszerzenie', $rozszerzenie, PDO::PARAM_STR);
             if($stmt->execute()) {
                 $id = $this->pdo->lastInsertId();
             }
@@ -66,7 +68,7 @@ class Samolot extends PDODatabase
      * @param  string $name
      * @return int
      */
-    public function update($id, $idProducent, $model, $rejestracja, $opis)
+    public function update($id, $idProducent, $model, $rejestracja, $opis, $rozszerzenie)
     {
         $this->testConnection();
         $this->testTable($this->table);
@@ -92,7 +94,7 @@ class Samolot extends PDODatabase
         }
         try	{
             $query = 'UPDATE `'.$this->table.'`';
-            $query .= ' SET idProducent = :idProducent, Model = :model, Rejestracja = :rejestracja, Opis = :opis';
+            $query .= ' SET idProducent = :idProducent, Model = :model, Rejestracja = :rejestracja, Opis = :opis, Rozszerzenie = :rozszerzenie';
             $query .= ' WHERE id = :id';
             $stmt = $this->pdo->prepare($query);
 
@@ -100,6 +102,7 @@ class Samolot extends PDODatabase
             $stmt->bindValue(':model', $model, PDO::PARAM_STR);
             $stmt->bindValue(':rejestracja', $rejestracja, PDO::PARAM_STR);
             $stmt->bindValue(':opis', $opis, PDO::PARAM_STR);
+            $stmt->bindValue(':rozszerzenie', $rozszerzenie, PDO::PARAM_STR);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             if($stmt->execute()) {
                 $id = $stmt->rowCount();

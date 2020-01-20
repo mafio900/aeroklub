@@ -48,7 +48,9 @@ class Main extends GlobalController
                       $action === 'regForm' ||
                       $action === 'checkLogin' ||
                       $action === 'logForm' )) ||
-                      $controller === 'Home'
+                      $controller === 'Home' ||
+                      $controller === 'Flota' ||
+                      $controller === 'Oferty'
                   ) {
                   $result = $appController->$action($id);
 

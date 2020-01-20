@@ -1,5 +1,6 @@
 {extends file="../modals/formBlock.html.tpl"}
 {block name=action}samolot/edytuj/{/block}
+{block name=otherOptions}enctype="multipart/form-data"{/block}
 {block name=title}Edycja samolotu{/block}
 {block name=body}
   {include file="../Samolot/form.html.tpl"}

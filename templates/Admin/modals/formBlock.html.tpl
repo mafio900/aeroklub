@@ -1,5 +1,5 @@
 
-  <form id="{block name=modalid}modal{/block}-form"
+  <form id="{block name=modalid}modal{/block}-form" {block name=otherOptions}{/block} 
         action="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}{block name=action}{/block}" method="{block name=modalMethod}POST{/block}">
     <div class="modal-header">
         <h4 class="modal-title pull-left" id="{block name=modalid}modal-id{/block}-title">{block name=title}Tytuł{/block}</h4>

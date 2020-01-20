@@ -12,6 +12,10 @@
                     <a class="nav-link" href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}"> Home </a>
                 </li>
 
+                <li class="nav-item {if $active=='Flota'}active{/if}">
+                    <a class="nav-link" href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}flota"> Flota </a>
+                </li>
+
                 <li class="nav-item {if $active=='Oferty'}active{/if}">
                     <a class="nav-link" href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}oferty"> Oferty </a>
                 </li>

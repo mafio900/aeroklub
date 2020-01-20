@@ -13,4 +13,5 @@ final class Error {
     public static $update = 'Rekord nie został zaktualizowany w bazie danych';
     public static $register = 'Rejestracja nie powiodła się!';
     public static $access = 'Brak dostępu!';
+    public static $file = 'Błąd podczas przesyłania pliku!';
 }

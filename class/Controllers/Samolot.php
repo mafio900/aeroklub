@@ -76,6 +76,9 @@ class Samolot extends GlobalController
      */
     public function delete($id)
     {
+        $model = $this->createModel('Samolot');
+        $samolot = $model->selectOneById($id);
+        unlink("./images/flota/".$samolot['ZdjecieNazwa'].'.'.$samolot['Rozszerzenie']);
         $counter = $this->deleteOne($id);
         FlashMessage::addMessage($counter, 'delete');
         $this->redirect('samolot/');
@@ -86,6 +89,11 @@ class Samolot extends GlobalController
      */
     public function deletePlenty()
     {
+        $model = $this->createModel('Samolot');
+        $samoloty = $model->transferByColumn($model->selectAll());
+        foreach($_POST['ids'] as $id){
+            unlink("./images/flota/".$samoloty[$id]['ZdjecieNazwa'].'.'.$samoloty[$id]['Rozszerzenie']);
+        }
         $counter = $this->deleteGiven($_POST['ids']);
         FlashMessage::addMessage($counter, 'delete');
         $this->redirect('samolot/');
@@ -111,9 +119,24 @@ class Samolot extends GlobalController
      */
     public function add()
     {
-        $this->check(['IdProducent', 'Model', 'Rejestracja', 'Opis'], $_POST);
-        $model = $this->createModel('Samolot');
-        $id = $model->insert($_POST['IdProducent'], $_POST['Model'], $_POST['Rejestracja'], $_POST['Opis']);
+        $this->check(['IdProducent', 'Model', 'Rejestracja', 'Opis', 'ZdjecieNazwa'], $_POST);
+        $id = $_FILES['Zdjecie']['error'];
+        $typ = $_FILES['Zdjecie']['type'];
+        if($id==0){
+            if($typ=="image/png" || $typ=="image/jpeg"){
+                $rozszerzenie = $_FILES['Zdjecie']['type']=="image/png" ? "png" : "jpg";
+                $lokalizacja = "./images/flota/".$_POST['ZdjecieNazwa'].'.'.$rozszerzenie;
+                if(is_uploaded_file($_FILES['Zdjecie']['tmp_name'])){
+                    if(move_uploaded_file($_FILES['Zdjecie']['tmp_name'], $lokalizacja)){
+                        $model = $this->createModel('Samolot');
+                        $id = $model->insert($_POST['IdProducent'], $_POST['Model'], $_POST['Rejestracja'], $_POST['Opis'], $_POST['ZdjecieNazwa'], $rozszerzenie);
+                    }
+                }
+            }
+        }
+        if($id<=0) {
+            FlashMessage::addMessage(-1, 'file');
+        }
         FlashMessage::addMessage($id, 'add');
         $this->redirect('samolot/');
     }
@@ -125,8 +148,40 @@ class Samolot extends GlobalController
     public function edit()
     {
         $this->check(['id', 'IdProducent', 'Model', 'Rejestracja', 'Opis'], $_POST);
+        $id = $_FILES['Zdjecie']['error'];
+        $typ = $_FILES['Zdjecie']['type'];
+        $flag = true;
+        $rozszerzenie = null;
         $model = $this->createModel('Samolot');
-        $id = $model->update($_POST['id'], $_POST['IdProducent'], $_POST['Model'], $_POST['Rejestracja'], $_POST['Opis']);
+        $samolot = $model->selectOneById($_POST['id']);
+        if($id==0){
+            if($typ=="image/png" || $typ=="image/jpeg" || $typ=="image/jpg"){
+                $nazwa = $samolot['ZdjecieNazwa'];
+                $rozszerzenie = $_FILES['Zdjecie']['type']=="image/png" ? "png" : "jpg";
+                $lokalizacja = "./images/flota/".$nazwa.'.'.$rozszerzenie;
+                if($rozszerzenie!=$samolot['Rozszerzenie']){
+                    unlink("./images/flota/".$nazwa.'.'.$samolot['Rozszerzenie']);
+                }
+                if(is_uploaded_file($_FILES['Zdjecie']['tmp_name'])){
+                    if(!move_uploaded_file($_FILES['Zdjecie']['tmp_name'], $lokalizacja)){
+                        $flag = false;
+                    }
+                }
+                else {
+                    $flag = false;
+                }
+            }
+        }
+        if($flag){
+            if($rozszerzenie==null){
+                $rozszerzenie = $samolot['Rozszerzenie'];
+            }
+            $id = $model->update($_POST['id'], $_POST['IdProducent'], $_POST['Model'], $_POST['Rejestracja'], $_POST['Opis'], $rozszerzenie);
+        }
+        else {
+            FlashMessage::addMessage(-1, 'file');
+            $id = -1;
+        }
         FlashMessage::addMessage($id, 'update');
         $this->redirect("samolot/");
     }
