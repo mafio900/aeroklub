@@ -2,10 +2,10 @@
 -- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Czas generowania: 18 Gru 2019, 02:50
--- Wersja serwera: 10.4.8-MariaDB
--- Wersja PHP: 7.3.10
+-- Host: localhost
+-- Czas generowania: 20 Sty 2020, 21:44
+-- Wersja serwera: 5.7.26-29-log
+-- Wersja PHP: 5.6.40
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Baza danych: `aeroklub`
+-- Baza danych: `31971658_brzychu`
 --
 
 -- --------------------------------------------------------
@@ -38,9 +38,10 @@ CREATE TABLE `producent` (
 --
 
 INSERT INTO `producent` (`id`, `ProducentNazwa`) VALUES
+(4, 'asdasd'),
+(3, 'Bombardier'),
 (1, 'Cessna'),
-(2, 'Saab'),
-(3, 'Bombardier');
+(2, 'Saab');
 
 -- --------------------------------------------------------
 
@@ -50,10 +51,10 @@ INSERT INTO `producent` (`id`, `ProducentNazwa`) VALUES
 
 CREATE TABLE `rezerwacja` (
   `id` int(11) NOT NULL,
-  `DataZlozenia` timestamp NOT NULL DEFAULT current_timestamp(),
+  `DataZlozenia` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `TerminRealizacji` timestamp NULL DEFAULT NULL,
-  `KwotaLaczna` double NOT NULL DEFAULT 0,
-  `IdStatus` int(11) NOT NULL DEFAULT 1,
+  `KwotaLaczna` double NOT NULL DEFAULT '0',
+  `IdStatus` int(11) NOT NULL DEFAULT '1',
   `IdKlient` int(11) NOT NULL,
   `IdPracownik` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -63,11 +64,7 @@ CREATE TABLE `rezerwacja` (
 --
 
 INSERT INTO `rezerwacja` (`id`, `DataZlozenia`, `TerminRealizacji`, `KwotaLaczna`, `IdStatus`, `IdKlient`, `IdPracownik`) VALUES
-(1, '2019-12-04 19:30:11', '2019-12-19 18:00:00', 55500, 2, 2, 1),
-(2, '2019-12-11 08:31:23', '2019-12-20 13:00:00', 0, 1, 3, 1),
-(3, '2019-12-11 14:50:49', '2019-12-30 13:00:00', 4800, 1, 3, 1),
-(4, '2019-12-16 20:35:52', '2019-12-16 22:36:00', 0, 1, 5, 1),
-(5, '2019-12-17 13:45:32', '2019-12-31 13:00:00', 0, 1, 2, 1);
+(1, '2020-01-15 01:17:41', '2020-01-15 01:17:00', 500, 1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -88,8 +85,7 @@ CREATE TABLE `rezusluga` (
 --
 
 INSERT INTO `rezusluga` (`id`, `IdRezerwacja`, `IdUsluga`, `Ilosc`, `IdSamolot`) VALUES
-(1, 3, 2, 3, 3),
-(2, 1, 1, 111, 1);
+(1, 1, 1, 1, 1);
 
 --
 -- Wyzwalacze `rezusluga`
@@ -151,17 +147,19 @@ CREATE TABLE `samolot` (
   `IdProducent` int(11) NOT NULL,
   `Model` varchar(100) NOT NULL,
   `Rejestracja` varchar(7) NOT NULL,
-  `Opis` varchar(100) DEFAULT NULL
+  `Opis` varchar(100) DEFAULT NULL,
+  `ZdjecieNazwa` varchar(100) DEFAULT NULL,
+  `Rozszerzenie` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Zrzut danych tabeli `samolot`
 --
 
-INSERT INTO `samolot` (`id`, `IdProducent`, `Model`, `Rejestracja`, `Opis`) VALUES
-(1, 1, '152', 'SP-SAS', ''),
-(2, 2, '340', 'SP-LOC', ''),
-(3, 3, 'Dash-8', 'SP-EQA', '');
+INSERT INTO `samolot` (`id`, `IdProducent`, `Model`, `Rejestracja`, `Opis`, `ZdjecieNazwa`, `Rozszerzenie`) VALUES
+(1, 1, '152', 'SP-SAS', 'MaĹy samolot na jednÄ osobÄ', 'Cessna152', 'jpg'),
+(3, 3, 'Dash-8', 'SP-EQA', 'DuĹźy samolot', 'bombardierDash8', 'jpg'),
+(7, 2, '340', 'SP-XHK', 'Leci daleko', 'saab340', 'png');
 
 -- --------------------------------------------------------
 
@@ -200,7 +198,7 @@ CREATE TABLE `user` (
   `NrLokalu` varchar(10) DEFAULT NULL,
   `Miejscowosc` varchar(50) NOT NULL,
   `KodPocztowy` varchar(6) NOT NULL,
-  `NrTelefonu` varchar(9) NOT NULL,
+  `NrTelefonu` varchar(12) NOT NULL,
   `Email` varchar(50) DEFAULT NULL,
   `Ranga` varchar(20) NOT NULL,
   `Login` varchar(30) NOT NULL,
@@ -212,12 +210,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `Imie`, `Nazwisko`, `Pesel`, `Ulica`, `NrDomu`, `NrLokalu`, `Miejscowosc`, `KodPocztowy`, `NrTelefonu`, `Email`, `Ranga`, `Login`, `Password`) VALUES
-(1, 'Bartosz', 'Brzychciński', '96122106245', 'Macedońska', '5', '', 'Kalisz', '62-800', '696207075', 'mafio900@gmail.com', 'Pracownik', 'mafio901', '$2y$10$91/HeB937BtU1MHJx3f2I.3Y6p9/Ka5AqT3C9vAW9Iu303GPV4Fli'),
-(2, 'Szymon', 'Flas', '96091205832', 'Piekarska', '69', '69', 'Kalisz', '62-800', '666666666', 'flas022@wp.pl', 'Klient', '022flas', '$2y$10$JK8BBU9IPDOvzpL3bhj6nO042humBALC6gmkLbka23mMvza2Lc4aO'),
-(3, 'Kamil', 'Kosol', '42531255431', 'Koko', '42', '2', 'Kalisz', '53-431', '555555555', 'koko@gmail.com', 'Klient', 'kokos', '$2y$10$SnapVPwNTtPhJhokQ2B9tO2BmySePtK84d/Abx2gGb0y9fopA2sYC'),
-(4, 'Włodek', 'Kalski', '24857430953', 'Macedońska', '5', '5', 'Kalisz', '62-800', '234857495', 'mafio900@gmail.com', 'Klient', 'kaka', '$2y$10$13PnIQ6WqnobKMIps4J1H.w.8YVFl72dO.G2FnTW.P9Vc2KFflZ8G'),
-(5, 'Kamil', 'Kowalski', '96122106832', 'Kasztanowa', '4', '', 'Kalisz', '62-800', '696206059', 'mama@wp.pl', 'Klient', 'maskotka', '$2y$10$HA929jc492BGidPu50mwb.eNsbPgMQe250ykwNAEg4gztRx.KkGiO'),
-(6, 'Kamil', 'Podlaski-Wykoszony', '96122106832', 'Macedońska', '5', '5', 'Kalisz', '62-800', '696207075', 'mafio900@gmail.com', 'Pracownik', 'mafio', '$2y$10$4MkaiTZxf0c7UcbLi6UeRO2PNzYi44nqGCEgStig2lqPky/D5OEMS');
+(1, 'Bartosz', 'BrzychciĹski', '96122106832', 'MacedoĹska', '5', '', 'Kalisz', '62-800', '696207075', 'mafio900@gmail.com', 'Pracownik', 'mafio900', '$2y$10$gjUhTuSApznWfkp0wzeW7e8QWXh45p7HS2QuEVEhV2o5Q9RkmnXia'),
+(2, 'Andrzej', 'Kowalski', '96143105245', 'WrocĹawska', '62', '62', 'Kalisz', '62-800', '699888777', 'endrju@wp.pl', 'Klient', 'test', '$2y$10$Jbs857xBna7A5.lyAShlye4qKeKlsl5NolZkl0LfRPasQgRDVAdAi');
 
 -- --------------------------------------------------------
 
@@ -240,7 +234,7 @@ CREATE TABLE `usluga` (
 INSERT INTO `usluga` (`id`, `UslugaNazwa`, `CenaJedn`, `JednMiary`, `Opis`) VALUES
 (1, 'Lot kalisz', 500, 'godzina', ''),
 (2, 'Lot konin', 1600, 'godzina', ''),
-(3, 'Lot ostrów wielkopolski', 1000, 'godzina', '');
+(3, 'Lot ostrĂłw wielkopolski', 1000, 'godzina', '');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -250,7 +244,8 @@ INSERT INTO `usluga` (`id`, `UslugaNazwa`, `CenaJedn`, `JednMiary`, `Opis`) VALU
 -- Indeksy dla tabeli `producent`
 --
 ALTER TABLE `producent`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UQ_ProducentNazwa` (`ProducentNazwa`);
 
 --
 -- Indeksy dla tabeli `rezerwacja`
@@ -287,7 +282,8 @@ ALTER TABLE `status`
 -- Indeksy dla tabeli `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UQ_Login` (`Login`);
 
 --
 -- Indeksy dla tabeli `usluga`
@@ -303,25 +299,25 @@ ALTER TABLE `usluga`
 -- AUTO_INCREMENT dla tabeli `producent`
 --
 ALTER TABLE `producent`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT dla tabeli `rezerwacja`
 --
 ALTER TABLE `rezerwacja`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT dla tabeli `rezusluga`
 --
 ALTER TABLE `rezusluga`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT dla tabeli `samolot`
 --
 ALTER TABLE `samolot`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT dla tabeli `status`
@@ -333,7 +329,7 @@ ALTER TABLE `status`
 -- AUTO_INCREMENT dla tabeli `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT dla tabeli `usluga`
