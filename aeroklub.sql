@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Czas generowania: 20 Sty 2020, 21:44
+-- Czas generowania: 21 Sty 2020, 23:57
 -- Wersja serwera: 5.7.26-29-log
 -- Wersja PHP: 5.6.40
 
@@ -79,13 +79,6 @@ CREATE TABLE `rezusluga` (
   `Ilosc` float NOT NULL,
   `IdSamolot` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Zrzut danych tabeli `rezusluga`
---
-
-INSERT INTO `rezusluga` (`id`, `IdRezerwacja`, `IdUsluga`, `Ilosc`, `IdSamolot`) VALUES
-(1, 1, 1, 1, 1);
 
 --
 -- Wyzwalacze `rezusluga`
@@ -211,7 +204,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `Imie`, `Nazwisko`, `Pesel`, `Ulica`, `NrDomu`, `NrLokalu`, `Miejscowosc`, `KodPocztowy`, `NrTelefonu`, `Email`, `Ranga`, `Login`, `Password`) VALUES
 (1, 'Bartosz', 'BrzychciĹski', '96122106832', 'MacedoĹska', '5', '', 'Kalisz', '62-800', '696207075', 'mafio900@gmail.com', 'Pracownik', 'mafio900', '$2y$10$gjUhTuSApznWfkp0wzeW7e8QWXh45p7HS2QuEVEhV2o5Q9RkmnXia'),
-(2, 'Andrzej', 'Kowalski', '96143105245', 'WrocĹawska', '62', '62', 'Kalisz', '62-800', '699888777', 'endrju@wp.pl', 'Klient', 'test', '$2y$10$Jbs857xBna7A5.lyAShlye4qKeKlsl5NolZkl0LfRPasQgRDVAdAi');
+(2, 'Andrzej', 'Kowalski', '96143105245', 'WrocĹawska', '62', '62', 'Kalisz', '62-800', '699888777', 'endrju@wp.pl', 'Klient', 'test', '$2y$10$m35hAm0Q.QfMpZzk.PR7gexB.GYZh0qZpKbRUw//JmyoWABu5hX7y');
 
 -- --------------------------------------------------------
 
@@ -224,17 +217,19 @@ CREATE TABLE `usluga` (
   `UslugaNazwa` varchar(100) NOT NULL,
   `CenaJedn` double NOT NULL,
   `JednMiary` varchar(20) NOT NULL,
-  `Opis` varchar(100) DEFAULT NULL
+  `Opis` varchar(100) DEFAULT NULL,
+  `ZdjecieNazwa` varchar(100) NOT NULL,
+  `Rozszerzenie` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Zrzut danych tabeli `usluga`
 --
 
-INSERT INTO `usluga` (`id`, `UslugaNazwa`, `CenaJedn`, `JednMiary`, `Opis`) VALUES
-(1, 'Lot kalisz', 500, 'godzina', ''),
-(2, 'Lot konin', 1600, 'godzina', ''),
-(3, 'Lot ostrĂłw wielkopolski', 1000, 'godzina', '');
+INSERT INTO `usluga` (`id`, `UslugaNazwa`, `CenaJedn`, `JednMiary`, `Opis`, `ZdjecieNazwa`, `Rozszerzenie`) VALUES
+(1, 'Lot kalisz', 500, 'godzine', 'Lot nad miastem Kalisz. Nieziemskie przeĹźycie', 'kalisz', 'jpg'),
+(2, 'Lot konin', 1600, 'godzine', 'Lot z Kalisza do Konina i zwiedzanie przepiÄknych okolic.', 'konin', 'jpg'),
+(3, 'Lot ostrĂłw wielkopolski', 1000, 'godzine', 'Lot do sÄsiedzkiego miasta baĹźantĂłw.', 'ostrowWielkopolski', 'jpg');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -335,7 +330,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT dla tabeli `usluga`
 --
 ALTER TABLE `usluga`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Ograniczenia dla zrzutów tabel
