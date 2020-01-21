@@ -22,4 +22,17 @@
   <div class="col-12 text-center text-md-left"></div>
 </div>
 
+{if !isset($data)}
+<div class="form-control-* form-row mb-2 col-12">
+    <label class="col-12 col-md-6 col-form-label text-center text-md-left" for="ZdjecieNazwa">Nazwa zdjęcia</label>
+    <input class="col-12 col-md-6" name="ZdjecieNazwa" type="text">
+    <div class="col-12 text-center text-md-left"></div>
+</div>
+{/if}
+<div class="form-control-* form-row mb-2 col-12">
+    <label class="col-12 col-md-6 col-form-label text-center text-md-left" for="Zdjecie">Zdjęcie</label>
+    <input class="col-12 col-md-6" name="Zdjecie" type="file">
+    <div class="col-12 text-center text-md-left"></div>
+</div>
+
 <input name="id" value="{if isset($data['id'])}{$data['id']}{/if}" type="hidden" required>

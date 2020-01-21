@@ -17,6 +17,8 @@ class Main extends GlobalController
             $controller = isset($match['target']['controller'])  ? $match['target']['controller'] : 'User';
             $action     = isset($match['target']['action'])      ? $match['target']['action']     : 'showAll';
             $id         = isset($match['params']['id'])          ? $match['params']['id']         : null;
+            if(\Tools\Access::islogin() && $controller=='Access')
+                $this->redirect('');
             // Dodanie do nazwy kontrolera przestrzeni nazw
             $fullController = 'Controllers\\'.$controller;
             // Utworzenie kontrolera (jeśli istnieje)

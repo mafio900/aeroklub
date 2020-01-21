@@ -31,8 +31,12 @@
                     <a class="nav-link" href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}formularz-rejestracji/"> Zarejestruj się </a>
                 </li>
                 {else}
-                <li class="nav-item">
-                    <a class="nav-link">Jesteś zalogowany jako: {$name}</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="dropdownKonto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Konto</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownKonto">
+                        <a class="dropdown-item" href="#">Twoje konto</a>
+                        <a class="dropdown-item" href="#">Twoje rezerwacje</a>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}wyloguj/"> Wyloguj się </a>

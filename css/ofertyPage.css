@@ -1,0 +1,49 @@
+@keyframes slideInFromBottom {
+    0% {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromTop {
+    0% {
+        transform: translateY(-60px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.navbar{
+    animation: slideInFromTop 2s ease-in-out;
+}
+
+h1, h5{
+    color: rgb(124, 33, 40);
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.appear{
+    animation: appear 2s ease-in-out;
+}
+
+.slide-top{
+    animation: slideInFromBottom 2s ease-in-out;
+}

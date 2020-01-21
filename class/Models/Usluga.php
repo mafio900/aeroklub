@@ -22,7 +22,7 @@ class Usluga extends PDODatabase
      * @param  string $opis
      * @return array
      */
-    public function insert($usluganazwa, $cena, $jednostka, $opis)
+    public function insert($usluganazwa, $cena, $jednostka, $opis, $zdjecieNazwa, $rozszerzenie)
     {
         $id = -1;
         $this->testConnection();
@@ -45,14 +45,16 @@ class Usluga extends PDODatabase
             return 0;
         }
         try	{
-            $query = 'INSERT INTO `'.$this->table.'` (`UslugaNazwa`, `CenaJedn`, `JednMiary`, `Opis`)';
-            $query .= ' VALUES (:usluganazwa, :cena, :jednostka, :opis)';
+            $query = 'INSERT INTO `'.$this->table.'` (`UslugaNazwa`, `CenaJedn`, `JednMiary`, `Opis`, `ZdjecieNazwa`, `Rozszerzenie`)';
+            $query .= ' VALUES (:usluganazwa, :cena, :jednostka, :opis, :zdjecieNazwa, :rozszerzenie)';
             $stmt = $this->pdo->prepare($query);
 
             $stmt->bindValue(':usluganazwa', $usluganazwa, PDO::PARAM_STR);
             $stmt->bindValue(':cena', $cena, PDO::PARAM_STR);
             $stmt->bindValue(':jednostka', $jednostka, PDO::PARAM_STR);
             $stmt->bindValue(':opis', $opis, PDO::PARAM_STR);
+            $stmt->bindValue(':zdjecieNazwa', $zdjecieNazwa, PDO::PARAM_STR);
+            $stmt->bindValue(':rozszerzenie', $rozszerzenie, PDO::PARAM_STR);
             if($stmt->execute()) {
                 $id = $this->pdo->lastInsertId();
             }
@@ -70,7 +72,7 @@ class Usluga extends PDODatabase
      * @param  string $name
      * @return int
      */
-    public function update($id, $usluganazwa, $cena, $jednostka, $opis)
+    public function update($id, $usluganazwa, $cena, $jednostka, $opis, $rozszerzenie)
     {
         $this->testConnection();
         $this->testTable($this->table);
@@ -97,7 +99,7 @@ class Usluga extends PDODatabase
         }
         try	{
             $query = 'UPDATE `'.$this->table.'`';
-            $query .= ' SET UslugaNazwa = :usluganazwa, CenaJedn = :cena, JednMiary = :jednostka, Opis = :opis';
+            $query .= ' SET UslugaNazwa = :usluganazwa, CenaJedn = :cena, JednMiary = :jednostka, Opis = :opis, Rozszerzenie = :rozszerzenie';
             $query .= ' WHERE id = :id';
             $stmt = $this->pdo->prepare($query);
 
@@ -105,6 +107,7 @@ class Usluga extends PDODatabase
             $stmt->bindValue(':cena', $cena, PDO::PARAM_STR);
             $stmt->bindValue(':jednostka', $jednostka, PDO::PARAM_STR);
             $stmt->bindValue(':opis', $opis, PDO::PARAM_STR);
+            $stmt->bindValue(':rozszerzenie', $rozszerzenie, PDO::PARAM_STR);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             if($stmt->execute()) {
                 $id = $stmt->rowCount();

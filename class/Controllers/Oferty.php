@@ -1,14 +1,19 @@
 <?php
 namespace Controllers;
 
-class Flota extends GlobalController
+class Oferty extends GlobalController
 {
 
     public function showAll()
     {
-        $this->view->setTemplate('Home/page');
-        $this->view->addCSSSet(array('homePage'));
-        $this->view->addJSSet(array('external/parallax', 'home'));
+        $this->view->setTemplate('Oferty/page');
+        $this->view->addCSSSet(array('ofertyPage'));
+        $this->view->addJSSet(array());
+        
+        $model = $this->createModel('Usluga');
+        $result['data'] = $model->selectAll();
+
+        return $result;
     }
 
 }

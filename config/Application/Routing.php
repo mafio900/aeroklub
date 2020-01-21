@@ -74,6 +74,9 @@ final class Routing {
     ['GET','/wyloguj/?', array('controller' => 'Access', 'action' => 'logout'), 'logout'],
 
     //konfiguracja Flota
-    ['GET','/flota', array('controller' => 'Flota', 'action' => 'showAll'), 'flota_showAll']
+    ['GET','/flota', array('controller' => 'Flota', 'action' => 'showAll'), 'flota_showAll'],
+
+    //konfiguracja Oferty
+    ['GET','/oferty', array('controller' => 'Oferty', 'action' => 'showAll'), 'oferty_showAll']
     ];
 }
