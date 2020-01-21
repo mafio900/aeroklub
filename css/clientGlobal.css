@@ -1,3 +1,32 @@
+@keyframes slideInFromBottom {
+    0% {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromTop {
+    0% {
+        transform: translateY(-60px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 *, *:before, *:after {
   box-sizing: border-box;
   margin: 0;
@@ -18,4 +47,8 @@
 
 a{
     cursor: pointer;
+}
+
+.dropdown-item.active, .dropdown-item:active{
+    background-color: rgb(124, 33, 40) !important;
 }

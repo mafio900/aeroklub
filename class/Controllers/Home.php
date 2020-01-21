@@ -1,5 +1,6 @@
 <?php
 namespace Controllers;
+use \Tools\FlashMessage;
 
 class Home extends GlobalController
 {

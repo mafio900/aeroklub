@@ -6,4 +6,5 @@
 		public static $add = 'Rekord został dodany do bazy danych';
 		public static $update = 'Rekord został zaktualizowany w bazie danych';
         public static $register = 'Zostałeś poprawnie zarejestrowany, teraz możesz zalogować się na swoje konto';
+        public static $updateKonto = 'Pomyślnie zmieniono dane';
 	}

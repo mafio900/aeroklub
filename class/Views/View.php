@@ -47,6 +47,7 @@ abstract class View
             $this->set('isLogin', true);
             $this->set('rank', \Tools\Access::get(\Tools\Access::$rank));
             $this->set('name', \Tools\Access::get(\Tools\Access::$name));
+            $this->set('login', \Tools\Access::get(\Tools\Access::$login));
         }
     }
 

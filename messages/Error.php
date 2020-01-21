@@ -14,4 +14,5 @@ final class Error {
     public static $register = 'Rejestracja nie powiodła się!';
     public static $access = 'Brak dostępu!';
     public static $file = 'Błąd podczas przesyłania pliku!';
+    public static $updateKonto = 'Błędne hasło lub źle wypełniony formularz!';
 }

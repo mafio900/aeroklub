@@ -77,6 +77,10 @@ final class Routing {
     ['GET','/flota', array('controller' => 'Flota', 'action' => 'showAll'), 'flota_showAll'],
 
     //konfiguracja Oferty
-    ['GET','/oferty', array('controller' => 'Oferty', 'action' => 'showAll'), 'oferty_showAll']
+    ['GET','/oferty', array('controller' => 'Oferty', 'action' => 'showAll'), 'oferty_showAll'],
+
+    //konfiguracja Konto
+    ['GET','/konto', array('controller' => 'Konto', 'action' => 'showAll'), 'konto_showAll'],
+    ['POST','/konto/zmien', array('controller' => 'Konto', 'action' => 'edit'), 'konto_edit']
     ];
 }

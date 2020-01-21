@@ -8,7 +8,7 @@
     <div class="row mt-5 center slide-top">
         {if isset($data) && $data!=null}
         {foreach $data as $key => $row}
-            <div class="card mt-1" style="width: 18rem; height: 22rem;">
+            <div class="card mt-1 ml-1" style="width: 18rem; height: 22rem;">
                 <img class="card-img-top" src="./images/{if $row['ZdjecieNazwa']!=null}oferty/{$row['ZdjecieNazwa']}.{$row['Rozszerzenie']}{else}bg.jpg{/if}" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">{$row['UslugaNazwa']}</h5>

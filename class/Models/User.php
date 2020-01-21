@@ -231,4 +231,39 @@ class User extends PDODatabase
         }
         return $id;
     }
+
+    public function updatePassword($id, $password)
+    {
+        $this->testConnection();
+        $this->testTable($this->table);
+        if( !isset($id) ||
+            $id == '' ||
+            !is_numeric($id) ||
+            !isset($password) ||
+            $password == '' ||
+            (strlen($password) > 30 || strlen($password) < 4) ||
+            !preg_match('/^[^\s][0-9a-zA-Z\_\!\@\#\$\%\^\&\*\-]*$/', $password)
+        ){
+            \Tools\FlashMessage::addMessage(0, 'valid');
+            return 0;
+        }
+        try	{
+            $query = 'UPDATE `'.$this->table.'`';
+            $query .= ' SET Password = :password';
+            $query .= ' WHERE id = :id';
+            $stmt = $this->pdo->prepare($query);
+
+            $hash = password_hash($password, PASSWORD_DEFAULT);
+            $stmt->bindValue(':password', $hash, PDO::PARAM_STR);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            if($stmt->execute()) {
+                $id = $stmt->rowCount();
+            }
+            $stmt->closeCursor();
+        } catch(\PDOException $e) {
+            //throw new \Exceptions\Query($e);
+            return -1;
+        }
+        return $id;
+    }
 }

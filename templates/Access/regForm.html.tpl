@@ -86,6 +86,5 @@
                 <div class=""></div>
             </div>
         </div>
-        <div class="alert alert-danger collapse" role="alert"></div>
 {/block}
 {block name=submitName}Zarejestruj się{/block}

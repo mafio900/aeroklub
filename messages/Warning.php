@@ -8,4 +8,5 @@
         public static $add = 'Rekord nie został dodany do bazy danych';
         public static $update = 'Rekord nie został zaktualizowany w bazie danych';
 		public static $nologin = 'Musisz się zalogować';
+        public static $updateKonto = 'Nie zmieniłeś żadnych danych';
 	}
