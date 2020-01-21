@@ -86,10 +86,6 @@ class Usluga extends GlobalController
     public function add()
     {
         $this->check(['UslugaNazwa', 'CenaJedn', 'JednMiary', 'Opis'], $_POST);
-        if($_POST['UslugaNazwa']=='' && $_POST['CenaJedn']=='' && $_POST['JednMiary']=='' && $_POST['Opis']=='')
-        {
-            throw new \Exceptions\EmptyValue;
-        }
         $model = $this->createModel('Usluga');
         $id = $model->insert($_POST['UslugaNazwa'], $_POST['CenaJedn'], $_POST['JednMiary'], $_POST['Opis']);
         FlashMessage::addMessage($id, 'add');
@@ -103,10 +99,6 @@ class Usluga extends GlobalController
     public function edit()
     {
         $this->check(['id', 'UslugaNazwa', 'CenaJedn', 'JednMiary', 'Opis'], $_POST);
-        if($_POST['id']=='' && $_POST['UslugaNazwa']=='' && $_POST['CenaJedn']=='' && $_POST['JednMiary']=='' && $_POST['Opis']=='')
-        {
-            throw new \Exceptions\EmptyValue;
-        }
         $model = $this->createModel('Usluga');
         $id = $model->update($_POST['id'], $_POST['UslugaNazwa'], $_POST['CenaJedn'], $_POST['JednMiary'], $_POST['Opis']);
         FlashMessage::addMessage($id, 'update');
