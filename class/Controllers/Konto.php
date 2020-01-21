@@ -21,6 +21,18 @@ class Konto extends GlobalController
         return $result;
     }
 
+    public function changePasswordForm()
+    {
+        $this->view->setTemplate('Konto/passwordForm');
+        $this->view->addCSSSet(array('inputs', 'kontoPage'));
+        $this->view->addJSSet(array('external/jquery.validate',
+                                    'external/jquery.validate.add',
+                                    'external/jquery.validate.polish',
+                                    'validation',
+                                    'validation/kontoHaslo',
+                                    'kontoHaslo'));
+    }
+
     public function edit()
     {
         $this->check(['id', 'Imie', 'Nazwisko', 'Pesel', 'Ulica', 'NrDomu', 'NrLokalu', 'Miejscowosc', 'KodPocztowy', 'NrTelefonu', 'Email', 'Password'], $_POST);
@@ -34,5 +46,18 @@ class Konto extends GlobalController
         }
         FlashMessage::addMessage($id, 'updateKonto');
         $this->redirect('konto');
+    }
+
+    public function changePassword()
+    {
+        $this->check(['PasswordOld', 'PasswordNew'], $_POST);
+        $model = $this->createModel('User');
+        $user = $model->selectOneById(\Tools\Access::get(\Tools\Access::$id));
+        $id = -1;
+        if(password_verify($_POST['PasswordOld'], $user['Password'])){
+            $id = $model->updatePassword(\Tools\Access::get(\Tools\Access::$id), $_POST['PasswordNew']);
+        }
+        FlashMessage::addMessage($id, 'updateHaslo');
+        $this->redirect('konto/haslo');
     }
 }

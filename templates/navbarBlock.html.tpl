@@ -36,6 +36,7 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownKonto">
                         <a class="dropdown-item" href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}konto">Twoje konto</a>
                         <a class="dropdown-item" href="#">Twoje rezerwacje</a>
+                        <a class="dropdown-item" href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}konto/haslo">Zmiana hasła</a>
                     </div>
                 </li>
                 <li class="nav-item">

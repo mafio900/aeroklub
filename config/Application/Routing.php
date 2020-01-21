@@ -81,6 +81,8 @@ final class Routing {
 
     //konfiguracja Konto
     ['GET','/konto', array('controller' => 'Konto', 'action' => 'showAll'), 'konto_showAll'],
-    ['POST','/konto/zmien', array('controller' => 'Konto', 'action' => 'edit'), 'konto_edit']
+    ['POST','/konto/zmien', array('controller' => 'Konto', 'action' => 'edit'), 'konto_edit'],
+    ['GET','/konto/haslo', array('controller' => 'Konto', 'action' => 'changePasswordForm'), 'konto_changePasswordForm'],
+    ['POST','/konto/zmiana-hasla', array('controller' => 'Konto', 'action' => 'changePassword'), 'konto_changePassword']
     ];
 }
