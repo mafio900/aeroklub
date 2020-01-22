@@ -9,4 +9,5 @@
         public static $update = 'Rekord nie został zaktualizowany w bazie danych';
 		public static $nologin = 'Musisz się zalogować';
         public static $updateKonto = 'Nie zmieniłeś żadnych danych';
+        public static $finishBacket = 'Dane z formularza niepoprawne';
 	}

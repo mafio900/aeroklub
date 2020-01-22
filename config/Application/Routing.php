@@ -81,8 +81,18 @@ final class Routing {
 
     //konfiguracja Konto
     ['GET','/konto', array('controller' => 'Konto', 'action' => 'showAll'), 'konto_showAll'],
+
+    ['GET','/konto/basket', array('controller' => 'Konto', 'action' => 'showBasket'), 'konto_showBasket'],
+    ['GET','/konto/basket/formularz', array('controller' => 'Konto', 'action' => 'ajaxAddForm'), 'konto_addForm'],
+    ['POST','/konto/basket/dodaj', array('controller' => 'Konto', 'action' => 'addBasket'), 'konto_addToBasket'],
+    ['GET','/konto/basket/usun/[i:id]?', array('controller' => 'Konto', 'action' => 'clearOneFromBasket'), 'konto_deleteFromBasket'],
+    ['GET','/konto/basket/formularz-rezerwacji', array('controller' => 'Konto', 'action' => 'ajaxFinishForm'), 'konto_finishForm'],
+    ['POST','/konto/basket/zarezerwuj', array('controller' => 'Konto', 'action' => 'finishBasket'), 'konto_finishBasket'],
+    ['GET','/konto/basket/wyczysc', array('controller' => 'Konto', 'action' => 'clearBasket'), 'konto_clearBasket'],
+
     ['GET','/konto/rezerwacje', array('controller' => 'Konto', 'action' => 'showRezerwacje'), 'konto_showRezerwacje'],
     ['GET','/konto/rezerwacje/[i:id]?', array('controller' => 'Konto', 'action' => 'ajaxShowRezerwacja'), 'konto_ajaxShowRezerwacja'],
+
     ['POST','/konto/zmien', array('controller' => 'Konto', 'action' => 'edit'), 'konto_edit'],
     ['GET','/konto/haslo', array('controller' => 'Konto', 'action' => 'changePasswordForm'), 'konto_changePasswordForm'],
     ['POST','/konto/zmiana-hasla', array('controller' => 'Konto', 'action' => 'changePassword'), 'konto_changePassword']

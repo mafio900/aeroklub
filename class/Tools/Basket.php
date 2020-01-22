@@ -9,39 +9,35 @@ class Basket extends Session {
     // klucze sesji
     public static 	$basketName 		= 'basket';
 
-
     private function __construct() {}
 
-    public static function addItem($IdItem) {
+    public static function addItem($IdUsluga, $Ilosc) {
         // sprawdzenie istniejącej sesji
-        if(parent::check() === true && parent::is($basketName))
+        if(parent::check() === true && parent::is(self::$basketName))
         {
-            $basket = parent::get($basketName);
-            $basket[] = $IdItem
-            self::clearBasket();
+            $basket = parent::get(self::$basketName);
+            $newUsluga = array($IdUsluga, $Ilosc);
+            $basket[] = $newUsluga;
+            parent::clear(self::$basketName);
             parent::set(self::$basketName, $basket);
         }
         else if(parent::check() === true)
         {
-            $basket = array($IdItem);
+            $basket = array(array($IdUsluga, $Ilosc));
             parent::set(self::$basketName, $basket);
         }
     }
 
-    public static function removeItem($IdItem) {
-        $basket = parent::get($basketName);
+    public static function removeItem($IdUsluga) {
+        $basket = parent::get(self::$basketName);
         foreach ($basket as $key => $value) {
-            if($value == $IdItem){
+            if($value[0] == $IdUsluga){
                 unset($basket[$key]);
-                self::clearBasket();
+                parent::clear(self::$basketName);
                 parent::set(self::$basketName, $basket);
                 break;
             }
         }
-    }
-
-    public static function clearBasket(){
-        parent::clear($basketName);
     }
 
 }

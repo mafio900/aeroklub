@@ -8,4 +8,5 @@
         public static $register = 'Zostałeś poprawnie zarejestrowany, teraz możesz zalogować się na swoje konto';
         public static $updateKonto = 'Pomyślnie zmieniono dane';
         public static $updateHaslo = 'Pomyślnie zmieniono hasło';
+        public static $finishBacket = 'Pomyślnie dokonano rezerwacji';
 	}
