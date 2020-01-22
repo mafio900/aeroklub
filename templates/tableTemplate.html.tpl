@@ -1,10 +1,10 @@
 {extends file="./baseTemplate.html.tpl"}
 {block name=body}
-<div class="parallax">
+<div class="parallax appear">
     <h1>{block name=title}Formularz{/block}</h1>
 </div>
 {if isset($data)}
-<div class="container-fluid center row">
+<div class="container-fluid center row appear">
     <!-- BEGIN TABLE WITH DATA -->
     <table id="mainTable" class="display table table-striped table-bordered w-auto">
         <thead>
@@ -38,7 +38,7 @@
         </tfoot>
     </table><!-- END TABLE WITH DATA -->
 </div>
-<div class="row center mb-2">
+<div class="row center mb-1 appear">
     <button data-url="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}{block name=footUrlName}{/block}/formularz"
     role="button" class="add-button btn btn-sm mt-2"><i class="fa fa-plus" aria-hidden="true"></i> {block name=footButtonName}{/block}</button>
 </div>
