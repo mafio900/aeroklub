@@ -16,7 +16,20 @@ class Basket extends Session {
         if(parent::check() === true && parent::is(self::$basketName))
         {
             $basket = parent::get(self::$basketName);
-            $newUsluga = array($IdUsluga, $Ilosc);
+            $flag = false;
+            $newUsluga = '';
+            foreach ($basket as $key => $value) {
+                if($value[0]==$IdUsluga){
+                    $oldIlosc = $value[1];
+                    unset($basket[$key]);
+                    $newUsluga = array($IdUsluga, $oldIlosc + $Ilosc);
+                    $flag=true;
+                    break;
+                }
+            }
+            if(!$flag)
+                $newUsluga = array($IdUsluga, $Ilosc);
+                
             $basket[] = $newUsluga;
             parent::clear(self::$basketName);
             parent::set(self::$basketName, $basket);
