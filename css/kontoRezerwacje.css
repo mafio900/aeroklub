@@ -2,7 +2,7 @@
     animation: slideInFromTop 2s ease-in-out;
 }
 
-h1, h5{
+h1, h4, h5{
     color: rgb(124, 33, 40);
 }
 
@@ -33,4 +33,12 @@ main{
     color: white;
     background-color: rgb(154, 63, 70);
     border-color: rgb(124, 33, 40);
+}
+
+.row{
+    padding: 5px 0;
+}
+
+.line{
+    border-bottom: solid 2px rgb(124, 33, 40);
 }

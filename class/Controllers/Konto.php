@@ -24,13 +24,11 @@ class Konto extends GlobalController
     public function showRezerwacje()
     {
         $this->view->setTemplate('Konto/rezerwacje');
-        $this->view->addCSSSet(array('inputs', 'kontoRezerwacje'));
-        $this->view->addJSSet(array('external/jquery.validate',
-                                    'external/jquery.validate.add',
-                                    'external/jquery.validate.polish',
-                                    'validation',
-                                    'validation/regform',
-                                    'regform'));
+        $this->view->addCSSSet(array('inputs',
+                                    'kontoRezerwacje'));
+
+        $this->view->addJSSet(array('modal/load-modal',
+                                    'modal/kontorezerwacje'));
         $model = $this->createModel('Rezerwacja');
         $result['data'] = $model->selectAllOrderBy(null, 'ASC', 'IdKlient', \Tools\Access::get(\Tools\Access::$id));
 
@@ -38,6 +36,27 @@ class Konto extends GlobalController
         $result['statusy'] = $model->transferByColumn($model->selectAll());
 
         return $result;
+    }
+
+    public function ajaxShowRezerwacja($id)
+    {
+        $model = $this->createModel('Rezerwacja');
+        $rezerwacja = $model->selectOneById($id);
+
+        if(\Tools\Access::get(\Tools\Access::$id) == $rezerwacja['IdKlient']){
+            $this->view->setTemplate('ajaxModals/showRezerwacja');
+            $result['data'] = $rezerwacja;
+            $model = $this->createModel('Status');
+            $result['statusy'] = $model->transferByColumn($model->selectAll());
+            $model = $this->createModel('RezUsluga');
+            $result['rezuslugi'] = $model->selectAllOrderBy(null, 'ASC', 'IdRezerwacja', $id);
+            $model = $this->createModel('Usluga');
+            $result['uslugi'] = $model->transferByColumn($model->selectAll());
+            return $result;
+        }
+        else{
+            $this->view->setTemplate('ajaxModals/notAllow');
+        }
     }
 
     public function changePasswordForm()

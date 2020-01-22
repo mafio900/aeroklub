@@ -16,5 +16,5 @@
 {/block}
 {block name=tfoot}
 {/block}
-{block name=footUrlName}konto/dodaj-rezerwacje{/block}
+{block name=footUrlName}konto/rezerwacje{/block}
 {block name=footButtonName}Dodaj rezerwacje{/block}
