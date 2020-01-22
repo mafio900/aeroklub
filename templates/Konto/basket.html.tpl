@@ -17,6 +17,12 @@
 {block name=tfoot}
 {/block}
 
+{block name=editButton}<button data-url="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}konto/basket/{$row['0']}"
+role="button" type="button" class="edit-button btn btn-sm ml-2" title="Pokaż szczegółowe informacje">
+    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+</button>
+{/block}
+
 {block name=deleteButton}<a href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}konto/basket/usun/{$row['0']}" class="btn btn-danger btn-sm ml-1">
     <i class="fa fa-times" aria-hidden="true"></i></a>{/block}
 
