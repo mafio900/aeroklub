@@ -63,14 +63,22 @@ class Konto extends GlobalController
     {
         $this->view->setTemplate('Konto/basket');
         $this->view->addCSSSet(array('external/select2',
+                                    'external/jquery-timepicker',
                                     'inputs',
                                     'kontoRezerwacje'));
 
-        $this->view->addJSSet(array('external/select2',
+        $this->view->addJSSet(array('external/jquery-timepicker',
+                                    'external/select2',
                                     'external/pl',
                                     'select2',
+                                    'datepicker',
                                     'modal/load-modal',
-                                    'modal/kontobasket'));
+                                    'modal/kontobasket',
+                                    'external/jquery.validate',
+                                    'external/jquery.validate.add',
+                                    'external/date-validator',
+                                    'validation',
+                                    'validation/kontobasket'));
 
         if(\Tools\Session::is(\Tools\Basket::$basketName)){
             $result['data'] = \Tools\Session::get(\Tools\Basket::$basketName);
