@@ -21,6 +21,25 @@ class Konto extends GlobalController
         return $result;
     }
 
+    public function showRezerwacje()
+    {
+        $this->view->setTemplate('Konto/rezerwacje');
+        $this->view->addCSSSet(array('inputs', 'kontoRezerwacje'));
+        $this->view->addJSSet(array('external/jquery.validate',
+                                    'external/jquery.validate.add',
+                                    'external/jquery.validate.polish',
+                                    'validation',
+                                    'validation/regform',
+                                    'regform'));
+        $model = $this->createModel('Rezerwacja');
+        $result['data'] = $model->selectAllOrderBy(null, 'ASC', 'IdKlient', \Tools\Access::get(\Tools\Access::$id));
+
+        $model = $this->createModel('Status');
+        $result['statusy'] = $model->transferByColumn($model->selectAll());
+
+        return $result;
+    }
+
     public function changePasswordForm()
     {
         $this->view->setTemplate('Konto/passwordForm');
