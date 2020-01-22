@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Czas generowania: 21 Sty 2020, 23:57
+-- Czas generowania: 23 Sty 2020, 00:57
 -- Wersja serwera: 5.7.26-29-log
 -- Wersja PHP: 5.6.40
 
@@ -58,13 +58,6 @@ CREATE TABLE `rezerwacja` (
   `IdKlient` int(11) NOT NULL,
   `IdPracownik` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Zrzut danych tabeli `rezerwacja`
---
-
-INSERT INTO `rezerwacja` (`id`, `DataZlozenia`, `TerminRealizacji`, `KwotaLaczna`, `IdStatus`, `IdKlient`, `IdPracownik`) VALUES
-(1, '2020-01-15 01:17:41', '2020-01-15 01:17:00', 500, 1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -151,8 +144,8 @@ CREATE TABLE `samolot` (
 
 INSERT INTO `samolot` (`id`, `IdProducent`, `Model`, `Rejestracja`, `Opis`, `ZdjecieNazwa`, `Rozszerzenie`) VALUES
 (1, 1, '152', 'SP-SAS', 'MaĹy samolot na jednÄ osobÄ', 'Cessna152', 'jpg'),
-(3, 3, 'Dash-8', 'SP-EQA', 'DuĹźy samolot', 'bombardierDash8', 'jpg'),
-(7, 2, '340', 'SP-XHK', 'Leci daleko', 'saab340', 'png');
+(2, 2, '340', 'SP-XHK', 'Leci daleko', 'saab340', 'png'),
+(3, 3, 'Dash-8', 'SP-EQA', 'DuĹźy samolot', 'bombardierDash8', 'jpg');
 
 -- --------------------------------------------------------
 
@@ -300,25 +293,25 @@ ALTER TABLE `producent`
 -- AUTO_INCREMENT dla tabeli `rezerwacja`
 --
 ALTER TABLE `rezerwacja`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT dla tabeli `rezusluga`
 --
 ALTER TABLE `rezusluga`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT dla tabeli `samolot`
 --
 ALTER TABLE `samolot`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT dla tabeli `status`
 --
 ALTER TABLE `status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT dla tabeli `user`
@@ -330,7 +323,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT dla tabeli `usluga`
 --
 ALTER TABLE `usluga`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Ograniczenia dla zrzutów tabel
