@@ -31,7 +31,7 @@
                     <a class="nav-link" href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}formularz-rejestracji/"> Zarejestruj się </a>
                 </li>
                 {else}
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown {if $active=='Konto'}active{/if}">
                     <a class="nav-link dropdown-toggle" id="dropdownKonto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Konto</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownKonto">
                         <a class="dropdown-item" href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}konto">Twoje konto</a>
