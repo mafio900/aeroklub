@@ -16,5 +16,6 @@ final class Error {
     public static $file = 'Błąd podczas przesyłania pliku!';
     public static $updateKonto = 'Błędne hasło lub źle wypełniony formularz!';
     public static $updateHaslo = 'Błędne stare hasło lub źle wypełniony formularz!';
-    public static $finishBacket = 'Coś poszło nie tak przy tworzeniu rezerwacji';
+    public static $addBasket = 'Coś poszło nie tak przy dodawaniu do koszyka usługi';
+    public static $finishBasket = 'Coś poszło nie tak przy tworzeniu rezerwacji';
 }

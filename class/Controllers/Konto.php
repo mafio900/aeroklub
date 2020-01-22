@@ -99,6 +99,13 @@ class Konto extends GlobalController
     public function addBasket()
     {
         $this->check(['IdUsluga', 'Ilosc'], $_POST);
+        $model = $this->createModel('Usluga');
+        $usluga = $model->selectOneById($_POST['IdUsluga']);
+        if($usluga==null || !isset($_POST['Ilosc']) || $_POST['Ilosc'] == null || !is_numeric($_POST['Ilosc'])){
+            FlashMessage::addMessage(-1, 'addBasket');
+            $this->redirect('konto/basket');
+        }
+
         \Tools\Basket::addItem($_POST['IdUsluga'], $_POST['Ilosc']);
         $this->redirect('konto/basket');
     }
@@ -123,7 +130,7 @@ class Konto extends GlobalController
                     if($e <= 0){
                         $model = $this->createModel('Rezerwacja');
                         $model->deleteOneById($id);
-                        FlashMessage::addMessage($e, 'finishBacket');
+                        FlashMessage::addMessage($e, 'finishBasket');
                         $this->redirect('konto/basket');
                     }
                     $counter++;
@@ -131,19 +138,19 @@ class Konto extends GlobalController
                 if($counter==0){
                     $model = $this->createModel('Rezerwacja');
                     $model->deleteOneById($id);
-                    FlashMessage::addMessage($counter, 'finishBacket');
+                    FlashMessage::addMessage($counter, 'finishBasket');
                     $this->redirect('konto/basket');
                 }
                 $this->clearBasket();
-                FlashMessage::addMessage($counter, 'finishBacket');
+                FlashMessage::addMessage($counter, 'finishBasket');
                 $this->redirect('konto/rezerwacje');
             }
             else{
-                FlashMessage::addMessage($id, 'finishBacket');
+                FlashMessage::addMessage($id, 'finishBasket');
                 $this->redirect('konto/basket');
             }
         }
-        FlashMessage::addMessage(-1, 'finishBacket');
+        FlashMessage::addMessage(-1, 'finishBasket');
         $this->redirect('konto/basket');
     }
 
