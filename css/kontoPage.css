@@ -2,14 +2,10 @@ h1, h5{
     color: rgb(124, 33, 40);
 }
 
-.navbar{
-    animation: slideInFromTop 2s ease-in-out;
-}
-
 h1{
-    animation: appear 2s ease-in-out;
+    animation: appear 1.5s ease-in-out;
 }
 
 #formularz{
-    animation: appear 2s ease-in-out;
+    animation: appear 1.5s ease-in-out;
 }

@@ -4,3 +4,4 @@
     </div>
     {block name=body}{/block}
 </main>
+{include file="./modals/base.html.tpl"}
