@@ -17,6 +17,8 @@
 {block name=tfoot}
 {/block}
 
+{block name=editButton}{/block}
+
 {block name=deleteButton}<a href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}konto/basket/usun/{$row['0']}" class="btn btn-danger btn-sm ml-1">
     <i class="fa fa-times" aria-hidden="true"></i></a>{/block}
 
