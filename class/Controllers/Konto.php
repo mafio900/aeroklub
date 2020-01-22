@@ -111,37 +111,40 @@ class Konto extends GlobalController
     public function finishBasket()
     {
         $this->check(['TerminRealizacji'], $_POST);
-        $model = $this->createModel('Rezerwacja');
-        $id = $model->insert($_POST['TerminRealizacji'], \Tools\Session::get(\Tools\Access::$id), 1);
-        if($id > 0){
-            $basket = \Tools\Session::get(\Tools\Basket::$basketName);
-            $model = $this->createModel('RezUsluga');
-            $counter = 0;
-            foreach ($basket as $key => $value) {
-                $e = $model->insert($id, $value['0'], $value['1'], null);
-                if($e <= 0){
+        if(\Tools\Session::is(\Tools\Basket::$basketName) && \Tools\Session::get(\Tools\Basket::$basketName)!=null){
+            $model = $this->createModel('Rezerwacja');
+            $id = $model->insert($_POST['TerminRealizacji'], \Tools\Session::get(\Tools\Access::$id), 1);
+            if($id > 0){
+                $basket = \Tools\Session::get(\Tools\Basket::$basketName);
+                $model = $this->createModel('RezUsluga');
+                $counter = 0;
+                foreach ($basket as $key => $value) {
+                    $e = $model->insert($id, $value['0'], $value['1'], null);
+                    if($e <= 0){
+                        $model = $this->createModel('Rezerwacja');
+                        $model->deleteOneById($id);
+                        FlashMessage::addMessage($e, 'finishBacket');
+                        $this->redirect('konto/basket');
+                    }
+                    $counter++;
+                }
+                if($counter==0){
                     $model = $this->createModel('Rezerwacja');
                     $model->deleteOneById($id);
-                    FlashMessage::addMessage($e, 'finishBacket');
+                    FlashMessage::addMessage($counter, 'finishBacket');
                     $this->redirect('konto/basket');
                 }
-                $counter++;
-            }
-            if($counter==0){
-                $model = $this->createModel('Rezerwacja');
-                $model->deleteOneById($id);
+                $this->clearBasket();
                 FlashMessage::addMessage($counter, 'finishBacket');
+                $this->redirect('konto/rezerwacje');
+            }
+            else{
+                FlashMessage::addMessage($id, 'finishBacket');
                 $this->redirect('konto/basket');
             }
-            $this->clearBasket();
-            FlashMessage::addMessage($counter, 'finishBacket');
-            $this->redirect('konto/rezerwacje');
         }
-        else{
-            FlashMessage::addMessage($id, 'finishBacket');
-            $this->redirect('konto/basket');
-        }
-        $this->redirect('konto/rezerwacje');
+        FlashMessage::addMessage(-1, 'finishBacket');
+        $this->redirect('konto/basket');
     }
 
     public function clearBasket()
