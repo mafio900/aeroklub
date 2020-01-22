@@ -37,14 +37,6 @@
     background-color: rgb(124, 33, 40);
 }
 
-.close{
-    color: white;
-}
-
-.close:hover{
-    color: white;
-}
-
 a{
     cursor: pointer;
 }

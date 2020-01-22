@@ -59,6 +59,102 @@ class Konto extends GlobalController
         }
     }
 
+    public function showBasket()
+    {
+        $this->view->setTemplate('Konto/basket');
+        $this->view->addCSSSet(array('external/select2',
+                                    'external/jquery-timepicker',
+                                    'inputs',
+                                    'kontoRezerwacje'));
+
+        $this->view->addJSSet(array('external/jquery-timepicker',
+                                    'external/select2',
+                                    'external/pl',
+                                    'select2',
+                                    'datepicker',
+                                    'modal/load-modal',
+                                    'modal/kontobasket',
+                                    'external/jquery.validate',
+                                    'external/jquery.validate.add',
+                                    'external/date-validator',
+                                    'validation',
+                                    'validation/kontobasket'));
+
+        if(\Tools\Session::is(\Tools\Basket::$basketName)){
+            $result['data'] = \Tools\Session::get(\Tools\Basket::$basketName);
+            $model = $this->createModel('Usluga');
+            $result['uslugi'] = $model->transferByColumn($model->selectAll());
+            return $result;
+        }
+    }
+
+    public function ajaxAddForm($id)
+    {
+        $this->view->setTemplate('ajaxModals/addBasket');
+        $model = $this->createModel('Usluga');
+        $result['uslugi'] = $model->transferByColumn($model->selectAll());
+        return $result;
+    }
+
+    public function addBasket()
+    {
+        $this->check(['IdUsluga', 'Ilosc'], $_POST);
+        \Tools\Basket::addItem($_POST['IdUsluga'], $_POST['Ilosc']);
+        $this->redirect('konto/basket');
+    }
+
+    public function ajaxFinishForm($id)
+    {
+        $this->view->setTemplate('ajaxModals/finishBasket');
+    }
+
+    public function finishBasket()
+    {
+        $this->check(['TerminRealizacji'], $_POST);
+        $model = $this->createModel('Rezerwacja');
+        $id = $model->insert($_POST['TerminRealizacji'], \Tools\Session::get(\Tools\Access::$id), 1);
+        if($id > 0){
+            $basket = \Tools\Session::get(\Tools\Basket::$basketName);
+            $model = $this->createModel('RezUsluga');
+            $counter = 0;
+            foreach ($basket as $key => $value) {
+                $e = $model->insert($id, $value['0'], $value['1'], null);
+                if($e <= 0){
+                    $model = $this->createModel('Rezerwacja');
+                    $model->deleteOneById($id);
+                    FlashMessage::addMessage($e, 'finishBacket');
+                    $this->redirect('konto/basket');
+                }
+                $counter++;
+            }
+            if($counter==0){
+                $model = $this->createModel('Rezerwacja');
+                $model->deleteOneById($id);
+                FlashMessage::addMessage($counter, 'finishBacket');
+                $this->redirect('konto/basket');
+            }
+            $this->clearBasket();
+            FlashMessage::addMessage($counter, 'finishBacket');
+            $this->redirect('konto/rezerwacje');
+        }
+        else{
+            FlashMessage::addMessage($id, 'finishBacket');
+            $this->redirect('konto/basket');
+        }
+        $this->redirect('konto/rezerwacje');
+    }
+
+    public function clearBasket()
+    {
+        \Tools\Session::clear(\Tools\Basket::$basketName);
+    }
+
+    public function clearOneFromBasket($IdUsluga)
+    {
+        \Tools\Basket::removeItem($IdUsluga);
+        $this->redirect('konto/basket');
+    }
+
     public function changePasswordForm()
     {
         $this->view->setTemplate('Konto/passwordForm');
